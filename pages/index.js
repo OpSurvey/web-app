@@ -13,7 +13,6 @@ export default function Home() {
         <button>Empieza ahora</button>
       </navbar>
     </header>
-
     <main>
       <section>
         <section name='firsthView'>
