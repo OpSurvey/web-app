@@ -1,17 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import NavbarLanding from "../components/NavbarLanding"
 
 export default function Home() {
   return (
     <>
     <header>
-      <navbar>
-        <div>
-          <img/>
-        </div>
-        <button>Empieza ahora</button>
-      </navbar>
+      <NavbarLanding/>
     </header>
     <main>
       <section>

@@ -6,6 +6,7 @@
     "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{js,jsx}",
     "./public/**/*.html",
+    "./components/**/*.{js,jsx}"
   ],
   plugins: [
     require("flowbite/plugin")
