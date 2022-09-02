@@ -32,7 +32,7 @@ export default function Home() {
 
       <section name='clientsOpinion'>
         <p>Lo que dicen nuestros Clientes</p>
-          <article name='opinionCard' className="flex flex-row">
+          <article name='opinionCard' className="md:flex md:flex-row">
             <OpinionCard/>
             <OpinionCard/>
             <OpinionCard/>
