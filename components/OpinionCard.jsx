@@ -1,14 +1,12 @@
-export default function OpinionCard(){
+export default function OpinionCard(props){
     return(
-        <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-            </a>
+        <div className="max-w-sm bg-zinc-900 lg:rounded-lg border border-gray-200 shadow-md flex flex-col ">
+                <img className="-t-lg" src="https://portolapilot.com/wp-content/uploads/2018/12/300x300.png" alt="" />
             <div className="p-5">
                 <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">{props.clientName}</h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                <p className="mb-3 font-normal text-gray-200 dark:text-gray-400">{props.opinionContent}</p>
             </div>
         </div>
     )

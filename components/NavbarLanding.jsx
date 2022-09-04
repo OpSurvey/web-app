@@ -9,7 +9,7 @@ export default function NavbarLanding() {
             href="#" 
             className="flex items-center">
             <span 
-              class="text-lime-400 self-center text-2xl font-semibold whitespace-nowrap">
+              className="text-lime-400 self-center text-2xl font-semibold whitespace-nowrap">
               OpSurvey
             </span>
           </a>

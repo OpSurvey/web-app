@@ -1,23 +1,19 @@
 import PresentationCard from "../components/PresentationCard";
 import HowToUseCard from "../components/HowToUseCard";
 import OpinionCard from "../components/OpinionCard";
+import NavbarLanding from "../components/NavbarLanding";
 
 export default function Home() {
   return (
     <>
     <header>
-      <navbar>
-        <div>
-          <img/>
-        </div>
-        <button>Empieza ahora</button>
-      </navbar>
+      <NavbarLanding/>
     </header>
-    <main>
-      <section className="md:grid lg:grid-cols-[500px_1fr] lg:m-2 md:mb-2">
+    <main className="mt-[65px]">
+      <section className="md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
         <section name='firsthView'>
-          <article name='presentationCard'>
-            <PresentationCard/>
+          <article name='presentationCard' className="lg:mx-2">
+            <PresentationCard />
           </article>
         </section>
         <section name='howToUse' className="lg:ml-12">
@@ -30,12 +26,15 @@ export default function Home() {
         </section>
       </section>
 
-      <section name='clientsOpinion'>
-        <p>Lo que dicen nuestros Clientes</p>
-          <article name='opinionCard' className="md:flex md:flex-row">
-            <OpinionCard/>
-            <OpinionCard/>
-            <OpinionCard/>
+      <section name='clientsOpinion' className="md:mx-2">
+        <p className="text-2xl text-center font-black md:text-4xl mb-6">Lo que dicen nuestros Clientes</p>
+          <article name='opinionCard' className="md:flex md:flex-row md:justify-between" >
+            <OpinionCard clientName="Berenice Cervantes" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
+            <OpinionCard clientName="Ernesto García" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
+            <OpinionCard clientName="Francisco Martínez" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
           </article>
           <article name='greenCard'>
             <h2></h2>
