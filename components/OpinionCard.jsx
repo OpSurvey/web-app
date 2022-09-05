@@ -1,6 +1,6 @@
 export default function OpinionCard(props){
     return(
-        <div className="max-w-sm bg-zinc-900 lg:rounded-lg border border-gray-200 shadow-md flex flex-col ">
+        <div className="max-w-sm bg-zinc-900 lg:rounded-lg  shadow-md flex flex-col ">
                 <img className="-t-lg" src="https://portolapilot.com/wp-content/uploads/2018/12/300x300.png" alt="" />
             <div className="p-5">
                 <a href="#">
