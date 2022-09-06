@@ -3,6 +3,7 @@ import HowToUseCard from "../components/HowToUseCard";
 import OpinionCard from "../components/OpinionCard";
 import NavbarLanding from "../components/NavbarLanding";
 import ButtonLanding from "../components/ButtonLanding";
+import FooterLanding from "../components/FooterLanding";
 
 
 export default function Home() {
@@ -46,15 +47,7 @@ export default function Home() {
             <ButtonLanding fontColor='bg-zinc-900' textColor="text-white" />
           </article>
       </section>
-
-      <footer>
-        <div>
-          <img src="" alt="" />
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </footer>
+      <FooterLanding/>
     </main>
     </>
   )
