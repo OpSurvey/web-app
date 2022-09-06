@@ -13,8 +13,8 @@ export default function NavbarLanding() {
               OpSurvey
             </span>
           </a>
-          <div 
-          className="flex md:order-2">
+          <div className="flex md:order-2" 
+          >
           <ButtonLanding fontColor='bg-lime-400'/>
           </div>
         </div>
