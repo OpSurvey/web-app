@@ -12,7 +12,7 @@ export default function Home() {
     <header>
       <NavbarLanding/>
     </header>
-    <main className="mt-[65px]">
+    <main className="mt-[65px] px-44">
       <section className="md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
         <section name='firsthView'>
           <article name='presentationCard' className="lg:mx-2">
