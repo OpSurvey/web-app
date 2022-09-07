@@ -37,7 +37,7 @@ export default function Home() {
             <OpinionCard clientName="Francisco Martínez" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
               Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
           </article>
-          <article name='greenCard' className="bg-lime-400 rounded-lg my-16 flex justify-between p-16">
+          <article name='greenCard' className="bg-lime-400 p-2 rounded-lg my-16 md:flex md:justify-between md:p-16">
             <div>
               <p className="text-4xl font-bold ">Todo por tan solo</p>
               <h1 className="text-8xl font-black ">$1 USD</h1>
