@@ -9,7 +9,7 @@ export default function RecepiForm () {
   
     const onSubmit = (data) => {
       console.log(data);
-      // let result = await fetch("http://Ernesto:kodemia123@opsurvey.ymmmfih.mongodb.net/opsurvey/quoters", {
+      // let result = await fetch("url", {
       //   method:"POST",
       //   body:JSON.stringify(data)
       // })
