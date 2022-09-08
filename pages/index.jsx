@@ -4,6 +4,8 @@ import OpinionCard from "../components/OpinionCard";
 import NavbarLanding from "../components/NavbarLanding";
 import ButtonLanding from "../components/ButtonLanding";
 import FooterLanding from "../components/FooterLanding";
+import RecepiForm from "../components/RecepiForm";
+import QuoteForm from "../components/QuoteForm";
 
 
 export default function Home() {
@@ -48,6 +50,7 @@ export default function Home() {
           </article>
       </section>
       <FooterLanding/>
+      
     </main>
     </>
   )
