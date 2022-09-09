@@ -8,7 +8,7 @@ export default function QuoterForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit =  (data) => {
+  const onSubmit = (data) => {
     console.log(data);
     // let result = await fetch("url", {
     //   method:"POST",
@@ -18,117 +18,142 @@ export default function QuoterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-900 px-3 py-3">
-      <div className="relative z-0 mb-6 w-full group">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-900 px-6 py-3">
+      <div className="mb-4 w-full">
+        <label
+          htmlFor="firstName"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >
+          Nombre
+        </label>
         <input
           type="text"
           name="firstName"
           id="firstName"
-          className="block py-2 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-lime-400 appearance-none focus:outline-none focus:ring-0 focus:border-lime-400 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
           {...register("firstName", { required: true, minLength: 3 })}
         />
-        {errors.firstName?.type === "required" && <span className="text-amber-400 ">Name is required</span>}
-        {errors.firstName?.type === "minLength" && <span className="text-red-500 bg-red-200">Name min length is 3</span>}
-        <label
-          htmlFor="firstName"
-          className="peer-focus:font-medium absolute text-sm text-lime-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-lime-400 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >
-          First Name
-        </label>
+        {errors.firstName?.type === "required" && (
+          <span className="text-red-400 ">El nombre es requerido</span>
+        )}
+        {errors.firstName?.type === "minLength" && (
+          <span className="text-red-400 ">Largo minimo de nombre son 3 c</span>
+        )}
       </div>
-      <div className="relative z-0 mb-6 w-full group">
+      <div className="mb-4 w-full">
+        <label
+          htmlFor="lastName"
+          className="block mb-2 text-sm font-medium text-lime-400"
+        >
+          Apellido
+        </label>
         <input
           type="text"
           name="lastName"
           id="lastName"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
           placeholder=" "
           required=""
           {...register("lastName", { required: true, minLength: 3 })}
         />
-        {errors.lastName?.type === "required" && "Last Name is required"}
-        {errors.lastName?.type === "minLength" && "Last Name min length is 3"}
-        <label
-          htmlFor="lastName"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >
-          Last Name
-        </label>
+        {errors.lastName?.type === "required" && (
+          <span className="text-red-400 ">El apellido es requerido</span>
+        )}
+        {errors.lastName?.type === "minLength" && (
+          <span className="text-red-400 ">
+            Largo mínimo del apellido son 3 caracteres
+          </span>
+        )}
       </div>
-      <div className="relative z-0 mb-6 w-full group">
+      <div className="mb-4 w-full">
+        <label
+          htmlFor="email"
+          className="block mb-2 text-sm font-medium text-lime-400"
+        >
+          email
+        </label>
         <input
           type="email"
           name="email"
           id="email"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
           placeholder=" "
           required=""
           {...register("email", {
             required: true,
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Entered value does not match email format",
+              message:
+                "El valor ingresado no concuerda con el formato de email",
             },
           })}
         />
-        {errors.email?.type === "required" && "email is required"}
-        {errors.email && <span role="alert">{errors.email.message}</span>}
+        {errors.email?.type === "required" && (
+          <span className="text-red-400 ">email es requerido</span>
+        )}
+        {errors.email && (
+          <span className="text-red-400 ">{errors.email.message}</span>
+        )}
+      </div>
+
+      <div className="mb-4 w-full">
         <label
-          htmlFor="email"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          htmlFor="password"
+          className="block mb-2 text-sm font-medium text-lime-400"
         >
-          email
+          password
         </label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
+          placeholder=" "
+          required=""
+          {...register("password", { required: true, minLength: 8 })}
+        />
+        {errors.password?.type === "required" && (
+          <span className="text-red-400 ">El password es requerido</span>
+        )}
+        {errors.password?.type === "minLength" && (
+          <span className="text-red-400 ">
+            Largo mínimo del password son 8 caracteres
+          </span>
+        )}
       </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
-          <input
-            type="text"
-            name="password"
-            id="password"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required=""
-            {...register("password", { required: true, minLength: 8 })}
-          />
-          {errors.password?.type === "required" && "password is required"}
-          {errors.password?.type === "minLength" && "password min length is 8"}
-          <label
-            htmlFor="password"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            password
-          </label>
-        </div>
-        <div className="relative z-0 mb-6 w-full group">
-          <input
-            type="text"
-            name="businessName"
-            id="businessName"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required=""
-            {...register("businessName", { minLength: 5 })}
-          />
-          {errors.businessName?.type === "minLength" &&
-            "Business name min length is 5"}
-          <label
-            htmlFor="businessName"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Bussines Name
-          </label>
-        </div>
+      <div className="mb-4 w-full">
+        <label
+          htmlFor="businessName"
+          className="block mb-2 text-sm font-medium text-lime-400"
+        >
+          Nombre del negocio
+        </label>
+        <input
+          type="text"
+          name="businessName"
+          id="businessName"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
+          placeholder=" "
+          required=""
+          {...register("businessName")}
+        />
       </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
+
+      
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="RFC"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            RFC
+          </label>
           <input
             type="text"
             name="RFC"
             id="RFC"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("RFC", {
@@ -137,154 +162,155 @@ export default function QuoterForm() {
               maxLength: 13,
             })}
           />
-          {errors.RFC?.type === "minLength" && "RFC name min length is 12"}
-          {errors.RFC?.type === "maxLength" && "RFC name min length is 13"}
-          {errors.RFC?.type === "required" && "RFC is required"}
-          <label
-            htmlFor="RFC"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            RFC
-          </label>
+          {errors.RFC?.type === "minLength" && <span className="text-red-400 ">Largo mínimo del RFC son 3 caracteres</span>}
+          {errors.RFC?.type === "maxLength" && <span className="text-red-400 ">Largo máximo del RFC son 6 caracteres</span>}
+          {errors.RFC?.type === "required" && <span className="text-red-400 ">El RFC es requerido</span>}
+          
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="street"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Calle
+          </label>
           <input
             type="text"
             name="street"
             id="street"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("street", { required: true })}
           />
-          {errors.street?.type === "required" && "Street is required"}
-          <label
-          htmlFor="street"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Street</label>
+          {errors.street?.type === "required" && <span className="text-red-400 ">La calle es requerida</span>}
+          
         </div>
-      </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
+      
+      
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="extNumber"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Número exterior
+          </label>
           <input
             type="number"
             name="extNumber"
             id="extNumber"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("extNumber", { required: true })}
           />
           {errors.extNumber?.type === "required" &&
-            "Exterior Number is required"}
-          <label
-          htmlFor="extNumber"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Exterior Number</label>
+            <span className="text-red-400 ">El número exterior es requerido</span>}
+          
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="intNumber"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Número interior
+          </label>
           <input
             type="number"
             name="intNumber"
             id="intNumber"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("intNumber")}
           />
-          <label
-          htmlFor="intNumber"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Interior number </label>
         </div>
-      </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
+      
+      
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="postalCode"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Código postal
+          </label>
           <input
             type="number"
             name="postalCode"
             id="postalCode"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("postalCode", { required: true })}
           />
-          {errors.postalCode?.type === "required" && "Postal Code is required"}
-          <label
-          htmlFor="postalCode"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Postal Code</label>
+          {errors.postalCode?.type === "required" && <span className="text-red-400 ">El código postal es requerido</span>}
+          
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="neighborhood"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Colonia
+          </label>
           <input
             type="text"
             name="neighborhood"
             id="neighborhood"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("neighborhood", { required: true })}
           />
           {errors.neighborhood?.type === "required" &&
-            "Neighborhood is required"}
-          <label
-          htmlFor="neighborhood"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Neighborhood</label>
+            <span className="text-red-400 ">La colonia es requerida</span>}
+          
         </div>
-      </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
+      
+      
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="state"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Estado
+          </label>
           <input
             type="text"
             name="state"
             id="state"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("state", { required: true })}
           />
-          {errors.state?.type === "required" && "State is required"}
-          <label
-          htmlFor="state"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >State</label>
+          {errors.state?.type === "required" && <span className="text-red-400 ">El estado es requerido</span>}
+          
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="mb-4 w-full">
+        <label
+            htmlFor="logo"
+            className="block mb-2 text-sm font-medium text-lime-400"
+          >
+            Logo
+          </label>
           <input
             type="text"
             name="logo"
             id="logo"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
             placeholder=" "
             required=""
             {...register("logo")}
           />
-          <label
-          htmlFor="logo"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Logo</label>
+          
         </div>
-      </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
-        <div className="relative z-0 mb-6 w-full group">
-          <input
-            type="boolean"
-            name="isActive"
-            id="isActive"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required=""
-            {...register("isActive")}
-          />
-          <label
-          htmlFor="isActive"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Is Active</label>
-        </div>
+      
+      <div className="flex justify-center align-center w-200">
+        <ButtonLanding hoverColor="lime-600" text="Enviar" />
       </div>
 
-      <ButtonLanding hoverColor="lime-100" text="Enviar"/>
+      
     </form>
   );
 }

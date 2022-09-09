@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import ButtonLanding from "./ButtonLanding";
 
 export default function QuoteForm () {
   const {
@@ -17,47 +18,52 @@ export default function QuoteForm () {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-900 px-6 py-3">
       <div className="relative z-0 mb-6 w-full group">
+        
+        <label
+          htmlFor="profit"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >Ganancia</label>
         <input
           type="number"
           name="profit"
           id="profit"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
-          {...register("profit", { required: true, minLength: 1 })}
+          {...register("profit", { required: true})}
         />
-        {errors.profit?.type === "required" && "Profit is required"}
-        {errors.profit?.type === "minLength" && "Profit min length is 1"}
-        <label
-          htmlFor="profit"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Profit</label>
+        {errors.profit?.type === "required" && <span className="text-red-400 ">La ganancia es requerida</span>}
       </div>
       <div className="relative z-0 mb-6 w-full group">
+        
+        <label
+          htmlFor="riskFactor"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >Factor de Riesgo</label>
         <input
           type="number"
           name="riskFactor"
           id="riskFactor"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
-          {...register("riskFactor", { required: true, minLength: 1 })}
+          {...register("riskFactor", { required: true})}
         />
-        {errors.riskFactor?.type === "required" && "Risk Factor is required"}
-        {errors.riskFactor?.type === "minLength" && "Risk Factor min length is 3"}
-        <label
-          htmlFor="riskFactor"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Risk Factor</label>
+        {errors.riskFactor?.type === "required" && <span className="text-red-400 ">El factor de riesgo es requerido</span>}
       </div>
       <div className="relative z-0 mb-6 w-full group">
+        
+        <label
+          htmlFor="financin"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >Financiación</label>
         <input
           type="number"
           name="financing"
           id="financing"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
           {...register("financing", {
@@ -65,53 +71,46 @@ export default function QuoteForm () {
             }
           )}
         />
-        {errors.financing?.type === "required" && "Financing is required"}
-        <label
-          htmlFor="financin"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Financing</label>
+        {errors.financing?.type === "required" && <span className="text-red-400 ">La financiación es requerida</span>}
       </div>
       <div className="relative z-0 mb-6 w-full group">
+        
+        <label
+          htmlFor="note"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >Nota</label>
         <input
           type="note"
           name="note"
           id="note"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
           {...register("note")}
         />
-        <label
-          htmlFor="note"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Note</label>
       </div>
-      <div className="grid md:grid-cols-2 md:gap-6">
+      
       <div className="relative z-0 mb-6 w-full group">
-          <input
+          
+          <label
+          htmlFor="quantity"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >Cantidad</label>
+        <input
             type="number"
             name="quantity"
             id="quantity"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
             placeholder=" "
             required=""
             {...register("quantity", {required:true})}
           />
-          {errors.quantity?.type === "required" && "Quantity is required"}
-          <label
-          htmlFor="quantity"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >Quantity</label>
+          {errors.quantity?.type === "required" && <span className="text-red-400 ">La cantidad es requerida</span>}
         </div>
-        
-      </div>
       
-      <button
-        type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Submit
-      </button>
+      <div className="flex justify-center align-center">
+        <ButtonLanding text="Enviar"/>
+      </div>
     </form>
   );
 };

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import ButtonLanding from "./ButtonLanding";
 
 export default function LogInForm () {
   const {
@@ -17,54 +18,53 @@ export default function LogInForm () {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-900 px-6 py-3 ">
       <div className="relative z-0 mb-6 w-full group">
+      <label
+          htmlFor="email"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >email</label>
         <input
           type="email"
           name="email"
           id="email"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
           placeholder=" "
           required=""
           {...register("email", {
             required: true,
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Entered value does not match email format",
+              message: "El valor ingresado no concuerda con el formato de email",
             },
           })}
         />
-        {errors.email?.type === "required" && "email is required"}
-        {errors.email && <span role="alert">{errors.email.message}</span>}
-        <label
-          htmlFor="email"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >email</label>
+        {errors.email?.type === "required" && <span className="text-red-400 ">El email es requerido</span>}
+        {errors.email && <span className="text-red-400 ">{errors.email.message}</span>}
+        
         <div className="relative z-0 mb-6 w-full group">
+        <label
+          htmlFor="password"
+          className="block mb-2 text-sm font-medium text-lime-400 "
+        >password</label>
           <input
             type="text"
             name="password"
             id="password"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
             placeholder=" "
             required=""
             {...register("password", { required: true, minLength: 8 })}
           />
-          {errors.password?.type === "required" && "password is required"}
-          {errors.password?.type === "minLength" && "password min length is 8"}
-          <label
-          htmlFor="password"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-        >password</label>
+          {errors.password?.type === "required" && <span className="text-red-400 ">El password es requerido</span>}
+          {errors.password?.type === "minLength" && <span className="text-red-400 ">Largo mínimo del password son 8 caracteres</span>}
+          
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Submit
-      </button>
+      <div className="flex justify-center align-center">
+        <ButtonLanding text="Iniciar Sesión"/>
+      </div>
     </form>
   );
 };
