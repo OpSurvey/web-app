@@ -47,8 +47,8 @@ export default function Home() {
             <ButtonLanding fontColor='bg-zinc-900' textColor="text-white" />
           </article>
       </section>
-      <FooterLanding/>
     </main>
+    <FooterLanding/>
     </>
   )
 }

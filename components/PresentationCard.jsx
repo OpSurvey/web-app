@@ -2,7 +2,7 @@ import ButtonLanding from "./ButtonLanding"
 
 export default function PresentationCard (props) {
     return(
-    <div className=" lg:h-[855px] pt-20 bg-zinc-900  border-gray-200 shadow-md mb-2">
+    <div className=" lg:h-[855px] pt-20 bg-zinc-900 border-gray-200 shadow-md mb-2 rounded-lg">
         <div className="p-5">
             <a href="#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Agiliza tus cotizaciones</h5>
