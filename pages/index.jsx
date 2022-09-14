@@ -58,33 +58,15 @@ export default function Home() {
             />
           </section>
         </section>
-
-        <section name="clientsOpinion" className="pt-24 md:mx-2 lg:mx-8">
-          <p className="text-2xl text-center font-black md:text-4xl mb-6">
-            Lo que dicen nuestros Clientes
-          </p>
-          <article
-            name="opinionCard"
-            className="md:flex md:flex-row md:justify-between"
-          >
-            <OpinionCard
-              clientName="Berenice Cervantes"
-              opinionImg=""
-              opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
-            />
-            <OpinionCard
-              clientName="Ernesto García"
-              opinionImg=""
-              opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
-            />
-            <OpinionCard
-              clientName="Francisco Martínez"
-              opinionImg=""
-              opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
-            />
+      <section name='clientsOpinion' className="md:mx-2 lg:mx-8">
+        <p className="text-2xl text-center font-black md:text-4xl mb-6">Lo que dicen nuestros Clientes</p>
+          <article name='opinionCard' className="md:flex md:flex-row md:justify-between" >
+            <OpinionCard clientName="Berenice Cervantes" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
+            <OpinionCard clientName="Ernesto García" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
+            <OpinionCard clientName="Francisco Martínez" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
           </article>
         </section>
 
