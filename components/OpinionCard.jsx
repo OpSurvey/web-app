@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function OpinionCard(props){
     return(
         <div className="max-w-sm bg-zinc-900 lg:rounded-lg shadow-md flex flex-col ">
