@@ -1,8 +1,9 @@
 export default function FooterLanding() {
   return (
-    <footer className="p-4 bg-black md:flex md:items-center md:justify-between md:p-6">
-      <span className="pl-36 text-base text-lime-400 sm:text-center">
-        <a href="https://www.linkedin.com/" className="hover:underline">
+    <footer class="bg-black w-ful left-0 md:flex md:items-center md:justify-between md:p-6">
+      <span class="pl-36 text-base text-lime-400 sm:text-center">
+        <img />
+        <a href="https://www.linkedin.com/" class="hover:underline">
           Linkedin/OpSurvey
         </a>
       </span>
