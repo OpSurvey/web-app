@@ -27,7 +27,7 @@ export default function RecepiForm() {
             onSubmit={handleSubmit(onSubmit)}
             className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full rounded-lg lg:rounded-none xl:rounded-lg"
           >
-            <h1 className="text-amber-400 text-center text-xl">
+            <h1 className="text-white text-center text-xl">
               Crear nueva Receta
             </h1>
             <div className="mb-4 w-full">

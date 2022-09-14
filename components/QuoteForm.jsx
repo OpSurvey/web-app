@@ -80,7 +80,7 @@ export default function QuoteForm() {
             className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
             placeholder=" "
             required="true"
-            {...register( { required: true })}
+            {...("recipes", { required: true })}
           />
           {errors.recipes?.type === "required" && (
             <span className="text-red-400 ">La ganancia es requerida</span>

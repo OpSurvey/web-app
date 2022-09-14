@@ -90,7 +90,6 @@ export default function LogInForm() {
         </form>
       </main>
       <FooterLanding />
-      {/* <script src="../pages/login/index.js"></script> */}
     </>
   );
 }
