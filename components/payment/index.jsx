@@ -1,5 +1,4 @@
 import { checkout } from "../../checkout";
-import OpinionCard from "../../components/OpinionCard";
 
 export default function Payment() {
     return (
@@ -11,7 +10,7 @@ export default function Payment() {
                 checkout({
                     lineItems:[
                         {
-                            price:price_1Lfa56EAka5mfhGRoCSaIdW4,
+                            price:"price_1Lfa56EAka5mfhGRoCSaIdW4",
                             quantity: 1
                         }
                     ]
