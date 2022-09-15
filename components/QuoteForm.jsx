@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
 import { Footer } from "flowbite-react";
@@ -190,7 +190,7 @@ export default function QuoteForm() {
         </div>
 
         <div className="flex justify-center align-center">
-          <ButtonLanding text="Enviar" />
+          <Button style="bg-lime-400 text-black" text="Enviar" />
         </div>
       </form>
     </main>

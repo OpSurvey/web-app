@@ -1,4 +1,5 @@
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
+import Link from "next/link";
 
 export default function PresentationCard(props) {
   return (
@@ -17,7 +18,11 @@ export default function PresentationCard(props) {
         </p>
 
         <div className="w-full flex items-center flex-col">
-          <ButtonLanding fontColor="bg-lime-400" />
+          <Link href="./quoter">
+            <a>
+              <Button style="bg-lime-400 text-black" text="Empieza ahora"/>
+            </a>
+          </Link>
         </div>
 
         <img

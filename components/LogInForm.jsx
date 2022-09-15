@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
+import Link from "next/link";
 
 export default function LogInForm() {
   const {
@@ -85,7 +86,11 @@ export default function LogInForm() {
           </div>
 
           <div className="flex justify-center align-center">
-            <ButtonLanding id="iniciarSesion" text="Iniciar Sesión" />
+            <Link href="./user/dashboard">
+            <a>
+            <Button style="bg-lime-400 text-black" id="iniciarSesion" text="Iniciar Sesión" />
+            </a>
+            </Link>
           </div>
         </form>
       </main>

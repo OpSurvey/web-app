@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
 
@@ -327,7 +327,7 @@ export default function ClientForm() {
         </div>
 
         <div className="flex justify-center align-center mb-3">
-          <ButtonLanding text="Enviar" />
+          <Button style="bg-lime-400 text-black" text="Enviar" />
         </div>
       </form>
     </main>

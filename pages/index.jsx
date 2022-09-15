@@ -2,15 +2,16 @@ import PresentationCard from "../components/PresentationCard";
 import HowToUseCard from "../components/HowToUseCard";
 import OpinionCard from "../components/OpinionCard";
 import NavbarLanding from "../components/NavbarLanding";
-import ButtonLanding from "../components/ButtonLanding";
+import Button from "../components/Button";
 import FooterLanding from "../components/FooterLanding";
 import HowToUseCardIMG from "../components/HowToUseCardIMG";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       <header>
-        <NavbarLanding />
+        <NavbarLanding/>
       </header>
       <main className="mt-[61px] px-44">
         <section className="pt-10 md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
@@ -79,7 +80,11 @@ export default function Home() {
             <h1 className="text-8xl font-black ">$1 USD</h1>
             <p className="text-2xl font-medium">por cotización enviada</p>
           </div>
-          <ButtonLanding fontColor="bg-zinc-900" textColor="text-white" />
+          <Link href="./quoter">
+            <a >
+              <Button style="bg-zinc-900 text-white" text="Empieza ahora"/>
+            </a>
+          </Link>
         </article>
       </main>
       <FooterLanding />
