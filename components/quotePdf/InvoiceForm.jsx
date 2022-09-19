@@ -1,5 +1,6 @@
-import { requestToBodyStream } from "next/dist/server/body-streams";
 import React, { useState } from "react";
+import {uid} from "uid"
+
 
 export default function InvoiceForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +50,25 @@ export default function InvoiceForm() {
 
   const deleteRecipeHandler = (id) => {
     setRecipes((prevRecipe) => prevRecipe.filter((item) => item.id !== id));
+  };
+
+  const editRecipeHandler = (event) => {
+    const editedRecipe = {
+      id: event.target.id,
+      name: event.target.name,
+      value: event.target.value,
+    };
+
+    const newItems = items.map((items) => {
+      for (const key in items) {
+        if (key === editedRecipe.name && items.id === editedRecipe.id) {
+          items[key] = editedRecipe.value;
+        }
+      }
+      return items;
+    });
+
+    setItems(newItems);
   };
 
   const subtotal = items.reduce((prev, curr) => {
