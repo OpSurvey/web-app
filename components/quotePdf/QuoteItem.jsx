@@ -1,14 +1,14 @@
 import React from "react";
 import QuoteField from "./QuoteField";
 
-export default QuoteItem = ({
+export default function QuoteItem({
   id,
   name,
   qty,
   price,
   onDeleteRecipe,
   onEditRecipe,
-}) => {
+}) {
   const deleteRecipeHandler = () => {
     onDeleteRecipe(id);
   };

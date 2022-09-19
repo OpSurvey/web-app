@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import {uid} from "uid"
+import QuoteItem from "./QuoteItem";
+import QuoteModal from "./QuoteModal";
+import incrementString from "../../helpers/incrementString";
+const date = new Date();
+const today = date.toLocaleDateString('en-GB', {
+  month: 'numeric',
+  day: 'numeric',
+  year: 'numeric',
+});
 
 
 export default function InvoiceForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const [discount, setDiscount] = useState("");
   const [tax, setTax] = useState("");
   const [quoteNumber, setQuoteNumber] = useState(1); // estos datos se traerán de la base de datos
   const [quoterName, setQuoterName] = useState("");
@@ -71,7 +79,7 @@ export default function InvoiceForm() {
     setItems(newItems);
   };
 
-  const subtotal = items.reduce((prev, curr) => {
+  const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
       return prev + Number(curr.price * Math.floor(curr.qty))
     else return prev
@@ -91,15 +99,15 @@ export default function InvoiceForm() {
             <span>{today}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <label className="font-bold" htmlFor="invoiceNumber">
+            <label className="font-bold" htmlFor="QuoteNumber">
               Cotización numero:
             </label>
             <input
               required
               className="max-w-[130px]"
               type="number"
-              name="invoiceNumber"
-              id="invoiceNumber"
+              name="QuoteNumber"
+              id="QuoteNumber"
               min="1"
               step="1"
               value={quoteNumber}
@@ -152,7 +160,7 @@ export default function InvoiceForm() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) => (
+            {recipes.map((item) => (
               <QuoteItem
                 key={item.id}
                 id={item.id}
@@ -210,7 +218,7 @@ export default function InvoiceForm() {
               taxRate,
               total,
             }}
-            items={items}
+            recipes={recipes}
             onAddNextQuote={addNextQuoteHandler}
           />
           <div className="space-y-4 py-2">

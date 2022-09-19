@@ -4,6 +4,7 @@ import InformativeCarousel from "../../components/informativeCarousel";
 import { useEffect, useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProjectCard from "../../components/ProjectCard";
+import InvoiceForm from "../../components/quotePdf/InvoiceForm";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
@@ -73,6 +74,9 @@ export default function Dashboard() {
           </>
         )}
       </section>
+
+      <p className="text-4xl">hola</p>
+      <InvoiceForm/>
     </>
   );
 }

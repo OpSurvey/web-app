@@ -3,13 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { toPng } from "html-to-image";
 import { jsPDF } from "jspdf";
 
-export default InvoiceModal = ({
+export default function QuoteModal ({
   isOpen,
   setIsOpen,
-  QuoteInfo,
+  quoteInfo,
   items,
   onAddNextQuote,
-}) => {
+}) {
   function closeModal() {
     setIsOpen(false);
   }
@@ -73,7 +73,7 @@ export default InvoiceModal = ({
             pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
           }
           // guardar pdf
-          pdf.save(`invoice-${invoiceInfo.invoiceNumber}.pdf`);
+          pdf.save(`cotizacion-${quoteInfo.quoteNumber}.pdf`);
         };
       })
       .catch((error) => {
@@ -123,12 +123,12 @@ export default InvoiceModal = ({
                 </h1>
                 <div className="mt-6">
                   <div className="mb-4 grid grid-cols-2">
-                    <span className="font-bold">Invoice Number:</span>
-                    <span>{invoiceInfo.invoiceNumber}</span>
-                    <span className="font-bold">Cashier:</span>
-                    <span>{invoiceInfo.cashierName}</span>
-                    <span className="font-bold">Customer:</span>
-                    <span>{invoiceInfo.customerName}</span>
+                    <span className="font-bold">Cotización #:</span>
+                    <span>{quoteInfo.quoteNumber}</span>
+                    <span className="font-bold">Cotizador:</span>
+                    <span>{quoteInfo.quoterName}</span>
+                    <span className="font-bold">Cliente:</span>
+                    <span>{quoteInfo.customerName}</span>
                   </div>
 
                   <table className="w-full text-left">
@@ -161,23 +161,23 @@ export default InvoiceModal = ({
                   <div className="mt-4 flex flex-col items-end space-y-2">
                     <div className="flex w-full justify-between border-t border-black/10 pt-2">
                       <span className="font-bold">Subtotal:</span>
-                      <span>${invoiceInfo.subtotal.toFixed(2)}</span>
+                      <span>${quoteInfo.subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
                       <span className="font-bold">Discount:</span>
-                      <span>${invoiceInfo.discountRate.toFixed(2)}</span>
+                      <span>${quoteInfo.discountRate.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
                       <span className="font-bold">Tax:</span>
-                      <span>${invoiceInfo.taxRate.toFixed(2)}</span>
+                      <span>${quoteInfo.taxRate.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between border-t border-black/10 py-2">
                       <span className="font-bold">Total:</span>
                       <span className="font-bold">
                         $
-                        {invoiceInfo.total % 1 === 0
-                          ? invoiceInfo.total
-                          : invoiceInfo.total.toFixed(2)}
+                        {quoteInfo.total % 1 === 0
+                          ? quoteInfo.total
+                          : quoteInfo.total.toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -205,7 +205,7 @@ export default InvoiceModal = ({
                   <span>Download</span>
                 </button>
                 <button
-                  onClick={addNextInvoiceHandler}
+                  onClick={addNextQuoteHandler}
                   className="flex w-full items-center justify-center space-x-1 rounded-md bg-blue-500 py-2 text-sm text-white shadow-sm hover:bg-blue-600"
                 >
                   <svg
