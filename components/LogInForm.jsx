@@ -85,7 +85,7 @@ export default function LogInForm() {
             )}
           </div>
 
-          <div className="flex justify-center align-center">
+          <div className="flex justify-center align-center mb-3 mt-2">
             <Link href="./user/dashboard">
             <a>
             <Button style="bg-lime-400 text-black" id="iniciarSesion" text="Iniciar Sesión" />

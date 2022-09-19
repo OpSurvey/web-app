@@ -29,7 +29,7 @@ export default function QuoterForm() {
           className="bg-zinc-900 px-32 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:rounded-none xl:rounded-lg"
         >
           <h1 className="text-white text-center text-xl">Crear nueva cuenta</h1>
-          <h3 className="text-white text-center text-lg pt-2">
+          <h3 className="text-white text-center text-lg pt-2 mb-3">
             Información Personal
           </h3>
           <div className="mb-4 w-full">
@@ -172,7 +172,7 @@ export default function QuoterForm() {
               </span>
             )}
           </div>
-          <h2 className="text-white text-center text-lg pt-2">
+          <h2 className="text-white text-center text-lg pt-2 mb-3">
             Información del negocio
           </h2>
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -340,7 +340,7 @@ export default function QuoterForm() {
             </div>
           </div>
 
-          <div className="flex justify-center align-center w-200">
+          <div className="flex justify-center align-center w-200 mb-3 mt-2">
             <Link href="./login">
               <a>
                 <Button style="bg-lime-400 text-black" text="Enviar" />
