@@ -3,7 +3,7 @@ export default function Button(props) {
     <>
       <button
         type="submit"
-        className={`${props.style} font-semibold rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0`}
+        className={`w-full ${props.style} md:w-auto font-semibold rounded-lg text-sm px-8 py-4 text-center md:mr-0 `}
       >
         {`${props.text}`}
       </button>

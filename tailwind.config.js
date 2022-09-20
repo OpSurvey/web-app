@@ -2,6 +2,8 @@
  * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
  */
 
+ const defaultTheme = require('tailwindcss/defaultTheme')
+
  module.exports = {
   content: [
     "./node_modules/flowbite-react/**/*.js",
@@ -16,6 +18,10 @@
     fontFamily: {
       sans: ['Poppins', 'sans-serif']
     },
+    screens:{
+      'xs': '390px',
+      ...defaultTheme.screens
+    }
   },
 };
 
