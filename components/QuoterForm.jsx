@@ -118,6 +118,34 @@ export default function QuoterForm() {
           </div>
           <div className="mb-4 w-full">
             <label
+              htmlFor="phone"
+              className="block mb-2 text-sm font-medium text-lime-400"
+            >
+              Teléfono
+            </label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
+              placeholder=" "
+              required=""
+              {...register("phone", {
+                required: true,
+                minLength: 10
+              })}
+            />
+            {errors.phone?.type === "minLength" && (
+              <span className="text-red-400 ">
+                Largo mínimo del teléfono son 10 caracteres
+              </span>
+            )}
+            {errors.phone?.type === "required" && (
+              <span className="text-red-400 ">El teléfono es requerido</span>
+            )}
+          </div>
+          <div className="mb-4 w-full">
+            <label
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-lime-400"
             >
@@ -146,7 +174,6 @@ export default function QuoterForm() {
               <span className="text-red-400 ">{errors.email.message}</span>
             )}
           </div>
-
           <div className="mb-4 w-full">
             <label
               htmlFor="password"
