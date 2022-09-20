@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
 import Link from "next/link";
 
 export default function LogInForm() {
@@ -23,10 +22,10 @@ export default function LogInForm() {
   return (
     <>
       <NavbarLanding />
-      <main className="mt-[61px] lg:px-44 sm:px-3 md:px-6 min-h-screen flex justify-center items-center ">
+      <main className="p-0 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-zinc-900 px-6 mx-3 py-3 rounded-lg w-full lg:w-2/3 h-full  "
+          className="bg-black px-6 mx-3 py-4 rounded-lg w-full lg:w-2/3 h-full  "
         >
           <h2 className="text-white text-center text-xl">Inicia Sesión</h2>
           <div className="mb-4 w-ful mt-3">
@@ -94,7 +93,6 @@ export default function LogInForm() {
           </div>
         </form>
       </main>
-      <FooterLanding />
     </>
   );
 }

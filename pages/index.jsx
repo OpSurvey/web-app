@@ -13,8 +13,8 @@ export default function Home() {
       <header>
         <NavbarLanding/>
       </header>
-      <main className="mt-[61px] px-44">
-        <section className="pt-10 md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
+      <main className="pt-8 px-44 pb-8 bg-zinc-800">
+        <section className="pt-10  md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
           <section className="firsthView">
             <article name="presentationCard" className="lg:mx-2">
               <PresentationCard />
@@ -59,9 +59,9 @@ export default function Home() {
             />
           </section>
         </section>
-      <section name='clientsOpinion' className="md:mx-2 lg:mx-8">
-        <p className="text-2xl text-center font-black md:text-4xl mb-6">Lo que dicen nuestros Clientes</p>
-          <article name='opinionCard' className="md:flex md:flex-row md:justify-between" >
+      <section name='clientsOpinion' className="pt-16 md:mx-2 lg:mx-8">
+        <p className="text-2xl text-center text-white md:text-4xl mb-6">Lo que dicen nuestros Clientes</p>
+          <article name='opinionCard' className="pt-8 md:flex md:flex-row md:justify-between" >
             <OpinionCard clientName="Berenice Cervantes" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
               Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
             <OpinionCard clientName="Ernesto García" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
@@ -87,7 +87,6 @@ export default function Home() {
           </Link>
         </article>
       </main>
-      <FooterLanding />
     </>
   );
 }

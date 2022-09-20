@@ -23,7 +23,7 @@ export default function QuoterForm() {
   return (
     <>
       <NavbarLanding />
-      <main className="mt-[61px] lg:px-48 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="pt-8 pb-8 bg-zinc-800 lg:px-48 sm:px-6 min-h-screen flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-32 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:rounded-none xl:rounded-lg"
@@ -349,7 +349,6 @@ export default function QuoterForm() {
           </div>
         </form>
       </main>
-      <FooterLanding />
     </>
   );
 }

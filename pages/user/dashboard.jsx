@@ -4,13 +4,19 @@ import InformativeCarousel from "../../components/informativeCarousel";
 import { useEffect, useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProjectCard from "../../components/ProjectCard";
+import NavDashboard from "../../components/NavDashboard";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
   console.log(width);
   return (
     <>
-      <section>
+      <NavDashboard />
+      <main className="bg-zinc-800 w-auto">
+      <section className="px-48 pt-12 text-white">
+        <h3>Bienvenido Cotizador</h3>
+      </section>
+      <section className="ml-40 mr-40 ">
         {width > 768 ? (
           <>
             <section className="flex justify-around my-8">
@@ -73,6 +79,8 @@ export default function Dashboard() {
           </>
         )}
       </section>
+      </main>
+
     </>
   );
 }
