@@ -1,8 +1,9 @@
-import React, { useState } from "react"
-import {uid} from "uid"
-import QuoteItem from "./QuoteItem";
-import QuoteModal from "./QuoteModal";
-import incrementString from "../../helpers/incrementString";
+import React, { useState } from 'react';
+import { uid } from 'uid';
+import QuoteItem from './QuoteItem';
+import QuoteModal from './QuoteModal';
+import incrementString from '../../helpers/incrementString';
+
 const date = new Date();
 const today = date.toLocaleDateString('en-GB', {
   month: 'numeric',
@@ -10,19 +11,18 @@ const today = date.toLocaleDateString('en-GB', {
   year: 'numeric',
 });
 
-
-export default function InvoiceForm() {
+const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [tax, setTax] = useState("");
-  const [quoteNumber, setQuoteNumber] = useState(1); // estos datos se traerán de la base de datos
-  const [quoterName, setQuoterName] = useState("");
-  const [customerName, setCustomerName] = useState("");
-  const [recipes, setRecipes] = useState([
+  const [tax, setTax] = useState('');
+  const [quoteNumber, setquoteNumber] = useState(1);
+  const [quoterName, setQuoterName] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [recipe, setRecipe] = useState([
     {
       id: uid(6),
-      name: "",
+      name: '',
       qty: 1,
-      price: "1.00",
+      price: '1.00',
     },
   ]);
 
@@ -33,31 +33,31 @@ export default function InvoiceForm() {
 
   const addNextQuoteHandler = () => {
     setQuoteNumber((prevNumber) => incrementString(prevNumber));
-    setRecipes([
+    setRecipe([
       {
         id: uid(6),
-        name: "",
+        name: '',
         qty: 1,
-        price: "1.00",
+        price: '1.00',
       },
     ]);
   };
 
-  const addItemHandler = () => {
+  const addRecipeHandler = () => {
     const id = uid(6);
-    setRecipes((prevRecipe) => [
+    setRecipe((prevRecipe) => [
       ...prevRecipe,
       {
         id: id,
-        name: "",
-        qty: "1",
-        price: "1.00",
+        name: '',
+        qty: 1,
+        price: '1.00',
       },
     ]);
   };
 
   const deleteRecipeHandler = (id) => {
-    setRecipes((prevRecipe) => prevRecipe.filter((item) => item.id !== id));
+    setRecipe((prevRecipe) => prevRecipe.filter((recipe) => recipe.id !== id));
   };
 
   const editRecipeHandler = (event) => {
@@ -67,25 +67,25 @@ export default function InvoiceForm() {
       value: event.target.value,
     };
 
-    const newItems = items.map((items) => {
-      for (const key in items) {
-        if (key === editedRecipe.name && items.id === editedRecipe.id) {
-          items[key] = editedRecipe.value;
+    const newRecipe = recipe.map((recipe) => {
+      for (const key in recipe) {
+        if (key === editedRecipe.name && recipe.id === editedRecipe.id) {
+          recipe[key] = editedRecipe.value;
         }
       }
-      return items;
+      return recipe;
     });
 
-    setItems(newItems);
+    setRecipe(newRecipe);
   };
 
-  const subtotal = recipes.reduce((prev, curr) => {
+  const subtotal = recipe.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
-      return prev + Number(curr.price * Math.floor(curr.qty))
-    else return prev
+      return prev + Number(curr.price * Math.floor(curr.qty));
+    else return prev;
   }, 0);
-  const taxRate = (tax * subtotal) / 100
-  const total = subtotal + taxRate
+  const taxRate = (tax * subtotal) / 100;
+  const total = subtotal + taxRate;
 
   return (
     <form
@@ -95,40 +95,40 @@ export default function InvoiceForm() {
       <div className="my-6 flex-1 space-y-2  rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">
         <div className="flex flex-col justify-between space-y-2 border-b border-gray-900/10 pb-4 md:flex-row md:items-center md:space-y-0">
           <div className="flex space-x-2">
-            <span className="font-bold">Fecha actual: </span>
+            <span className="font-bold">Fecha: </span>
             <span>{today}</span>
           </div>
           <div className="flex items-center space-x-2">
-            <label className="font-bold" htmlFor="QuoteNumber">
-              Cotización numero:
+            <label className="font-bold" htmlFor="quoteNumber">
+              Cotización #:
             </label>
             <input
               required
-              className="max-w-[130px]"
+              className="max-w-[130px] text-black"
               type="number"
-              name="QuoteNumber"
-              id="QuoteNumber"
+              name="quoteNumber"
+              id="quoteNumber"
               min="1"
               step="1"
               value={quoteNumber}
-              onChange={(event) => setQuoteNumber(event.target.value)}
+              onChange={(event) => setquoteNumber(event.target.value)}
             />
           </div>
         </div>
         <h1 className="text-center text-lg font-bold">Cotización</h1>
         <div className="grid grid-cols-2 gap-2 pt-4 pb-8">
           <label
-            htmlFor="QuoterName"
+            htmlFor="quoterName"
             className="text-sm font-bold sm:text-base"
           >
             Cotizador:
           </label>
           <input
             required
-            className="flex-1"
-            placeholder="Quoter name"
+            className="flex-1 text-black"
+            placeholder="Cotizador"
             type="text"
-            name="QuoterName"
+            name="quoterName"
             id="quoterName"
             value={quoterName}
             onChange={(event) => setQuoterName(event.target.value)}
@@ -141,8 +141,8 @@ export default function InvoiceForm() {
           </label>
           <input
             required
-            className="flex-1"
-            placeholder="Customer name"
+            className="flex-1 text-black"
+            placeholder="Nombre del cliente"
             type="text"
             name="customerName"
             id="customerName"
@@ -152,33 +152,33 @@ export default function InvoiceForm() {
         </div>
         <table className="w-full p-4 text-left">
           <thead>
-            <tr className="border-b border-gray-900/10 text-sm md:text-base">
-              <th>CONCEPTO</th>
-              <th>CANTIDAD</th>
-              <th className="text-center">PRECIO</th>
-              <th className="text-center">ELIMINAR</th>
+            <tr className="border-b border-gray-900 text-sm md:text-base">
+              <th>Concepto</th>
+              <th>Cantidad</th>
+              <th className="text-center">Precio</th>
+              <th className="text-center">Eliminar</th>
             </tr>
           </thead>
           <tbody>
-            {recipes.map((item) => (
+            {recipe.map((recipe) => (
               <QuoteItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                qty={item.qty}
-                price={item.price}
+                key={recipe.id}
+                id={recipe.id}
+                name={recipe.name}
+                qty={recipe.qty}
+                price={recipe.price}
                 onDeleteRecipe={deleteRecipeHandler}
-                onEdtiRecipe={editRecipeHandler}
+                onEditRecipe={editRecipeHandler}
               />
             ))}
           </tbody>
         </table>
         <button
-          className="rounded-md bg-lime-400 px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-lime-500"
+          className="rounded-md bg-lime-400 px-4 py-2 text-sm text-black shadow-sm hover:bg-lime-500"
           type="button"
-          onClick={addItemHandler}
+          onClick={addRecipeHandler}
         >
-          Agregar Receta
+          Agregar receta
         </button>
         <div className="flex flex-col items-end space-y-2 pt-6">
           <div className="flex w-full justify-between md:w-1/2">
@@ -188,7 +188,7 @@ export default function InvoiceForm() {
           <div className="flex w-full justify-between md:w-1/2">
             <span className="font-bold">Impuestos:</span>
             <span>
-              ({tax || "0"}%)${taxRate.toFixed(2)}
+              ({tax || '0'}%)${taxRate.toFixed(2)}
             </span>
           </div>
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
@@ -202,7 +202,7 @@ export default function InvoiceForm() {
       <div className="basis-1/4 bg-transparent">
         <div className="sticky top-0 z-10 space-y-4 divide-y divide-gray-900/10 pb-8 md:pt-6 md:pl-4">
           <button
-            className="w-full rounded-md bg-lime-400 py-2 text-sm text-black font-semibold shadow-sm hover:bg-lime-500"
+            className="w-full rounded-md bg-lime-400 py-2 text-md font-semibold text-black shadow-sm hover:bg-lime-500"
             type="submit"
           >
             Revisar Cotización
@@ -210,7 +210,7 @@ export default function InvoiceForm() {
           <QuoteModal
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            quoteInfo={{
+            invoiceInfo={{
               quoteNumber,
               quoterName,
               customerName,
@@ -218,17 +218,17 @@ export default function InvoiceForm() {
               taxRate,
               total,
             }}
-            recipes={recipes}
+            recipe={recipe}
             onAddNextQuote={addNextQuoteHandler}
           />
-          <div className="space-y-4 py-2">
+          <div className="space-y-4 py-2 ">
             <div className="space-y-2">
               <label className="text-sm font-bold md:text-base" htmlFor="tax">
                 Impuestos:
               </label>
               <div className="flex items-center">
                 <input
-                  className="w-full rounded-r-none bg-white shadow-sm"
+                  className="w-full rounded-r-none bg-white text-black shadow-sm"
                   type="number"
                   name="tax"
                   id="tax"
@@ -248,4 +248,6 @@ export default function InvoiceForm() {
       </div>
     </form>
   );
-}
+};
+
+export default InvoiceForm;

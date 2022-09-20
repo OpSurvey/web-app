@@ -1,8 +1,12 @@
 import InvoiceForm from "../../components/quotePdf/InvoiceForm";
 
 export default function Cotizacion() {
+
+    return(
+
     <>
-    <p>hola sdfsdfsdfsd</p>
-    {/* <InvoiceForm/> */}
+    <InvoiceForm/>
     </>
+
+    )
 };

@@ -1,15 +1,15 @@
-import React, { Fragment } from "react";
-import { Dialog, Transition } from '@headlessui/react'
-import { toPng } from "html-to-image";
-import { jsPDF } from "jspdf";
+import React, { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { toPng } from 'html-to-image';
+import { jsPDF } from 'jspdf';
 
-export default function QuoteModal ({
+const InvoiceModal = ({
   isOpen,
   setIsOpen,
-  quoteInfo,
-  items,
+  invoiceInfo,
+  recipe,
   onAddNextQuote,
-}) {
+}) => {
   function closeModal() {
     setIsOpen(false);
   }
@@ -20,41 +20,41 @@ export default function QuoteModal ({
   };
 
   const SaveAsPDFHandler = () => {
-    const dom = document.getElementById("print");
+    const dom = document.getElementById('print');
     toPng(dom)
       .then((dataUrl) => {
         const img = new Image();
-        img.crossOrigin = "annoymous";
+        img.crossOrigin = 'annoymous';
         img.src = dataUrl;
         img.onload = () => {
-          // Initialize the PDF.
+          // Inicializa pdf
           const pdf = new jsPDF({
-            orientation: "portrait",
-            unit: "in",
+            orientation: 'portrait',
+            unit: 'in',
             format: [5.5, 8.5],
           });
 
-          // define datos reusados
+          // Define data reusada
           const imgProps = pdf.getImageProperties(img);
           const imageType = imgProps.fileType;
           const pdfWidth = pdf.internal.pageSize.getWidth();
 
-          // Calcula numero de paginas
+          // Calcula numero de paginas.
           const pxFullHeight = imgProps.height;
           const pxPageHeight = Math.floor((imgProps.width * 8.5) / 5.5);
           const nPages = Math.ceil(pxFullHeight / pxPageHeight);
 
-          // Define tamaño de hoja
+          // Define ancho de pagina.
           let pageHeight = pdf.internal.pageSize.getHeight();
 
-          // crea un canvas para separar la imagebn
-          const pageCanvas = document.createElement("canvas");
-          const pageCtx = pageCanvas.getContext("2d");
+          // Create un canvas para dividir la pantalla.
+          const pageCanvas = document.createElement('canvas');
+          const pageCtx = pageCanvas.getContext('2d');
           pageCanvas.width = imgProps.width;
           pageCanvas.height = pxPageHeight;
 
           for (let page = 0; page < nPages; page++) {
-            // Trim the final page to reduce file size.
+            // corta el final de la pagina.
             if (page === nPages - 1 && pxFullHeight % pxPageHeight !== 0) {
               pageCanvas.height = pxFullHeight % pxPageHeight;
               pageHeight = (pageCanvas.height * pdfWidth) / pageCanvas.width;
@@ -62,24 +62,25 @@ export default function QuoteModal ({
             // muestra la pagina.
             const w = pageCanvas.width;
             const h = pageCanvas.height;
-            pageCtx.fillStyle = "white";
+            pageCtx.fillStyle = 'white';
             pageCtx.fillRect(0, 0, w, h);
             pageCtx.drawImage(img, 0, page * pxPageHeight, w, h, 0, 0, w, h);
 
-            // agrega la pagina al pdf
+            // Agrega al pdf una pagina nueva
             if (page) pdf.addPage();
 
             const imgData = pageCanvas.toDataURL(`image/${imageType}`, 1);
             pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
           }
-          // guardar pdf
-          pdf.save(`cotizacion-${quoteInfo.quoteNumber}.pdf`);
+          // Guardar pdf
+          pdf.save(`invoice-${invoiceInfo.invoiceNumber}.pdf`);
         };
       })
       .catch((error) => {
-        console.error("oops, something went wrong!", error);
+        console.error('oops, something went wrong!', error);
       });
   };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -100,7 +101,6 @@ export default function QuoteModal ({
             <Dialog.Overlay className="fixed inset-0 bg-black/50" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="inline-block h-screen align-middle"
             aria-hidden="true"
@@ -119,39 +119,39 @@ export default function QuoteModal ({
             <div className="my-8 inline-block w-full max-w-md transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
               <div className="p-4" id="print">
                 <h1 className="text-center text-lg font-bold text-gray-900">
-                  INVOICE
+                  Cotizacion
                 </h1>
                 <div className="mt-6">
                   <div className="mb-4 grid grid-cols-2">
                     <span className="font-bold">Cotización #:</span>
-                    <span>{quoteInfo.quoteNumber}</span>
+                    <span>{invoiceInfo.quoteNumber}</span>
                     <span className="font-bold">Cotizador:</span>
-                    <span>{quoteInfo.quoterName}</span>
+                    <span>{invoiceInfo.quoterName}</span>
                     <span className="font-bold">Cliente:</span>
-                    <span>{quoteInfo.customerName}</span>
+                    <span>{invoiceInfo.customerName}</span>
                   </div>
 
                   <table className="w-full text-left">
                     <thead>
                       <tr className="border-y border-black/10 text-sm md:text-base">
-                        <th>ITEM</th>
-                        <th className="text-center">QTY</th>
-                        <th className="text-right">PRICE</th>
-                        <th className="text-right">AMOUNT</th>
+                        <th>Concepto</th>
+                        <th className="text-center">Cantidad</th>
+                        <th className="text-right">Precio</th>
+                        <th className="text-right">Total</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {items.map((item) => (
-                        <tr key={item.id}>
-                          <td className="w-full">{item.name}</td>
+                      {recipe.map((recipe) => (
+                        <tr key={recipe.id}>
+                          <td className="w-full">{recipe.name}</td>
                           <td className="min-w-[50px] text-center">
-                            {item.qty}
+                            {recipe.qty}
                           </td>
                           <td className="min-w-[80px] text-right">
-                            ${Number(item.price).toFixed(2)}
+                            ${Number(recipe.price).toFixed(2)}
                           </td>
                           <td className="min-w-[90px] text-right">
-                            ${Number(item.price * item.qty).toFixed(2)}
+                            ${Number(recipe.price * recipe.qty).toFixed(2)}
                           </td>
                         </tr>
                       ))}
@@ -161,23 +161,19 @@ export default function QuoteModal ({
                   <div className="mt-4 flex flex-col items-end space-y-2">
                     <div className="flex w-full justify-between border-t border-black/10 pt-2">
                       <span className="font-bold">Subtotal:</span>
-                      <span>${quoteInfo.subtotal.toFixed(2)}</span>
+                      <span>${invoiceInfo.subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
-                      <span className="font-bold">Discount:</span>
-                      <span>${quoteInfo.discountRate.toFixed(2)}</span>
-                    </div>
-                    <div className="flex w-full justify-between">
-                      <span className="font-bold">Tax:</span>
-                      <span>${quoteInfo.taxRate.toFixed(2)}</span>
+                      <span className="font-bold">Impuestos:</span>
+                      <span>${invoiceInfo.taxRate.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between border-t border-black/10 py-2">
                       <span className="font-bold">Total:</span>
                       <span className="font-bold">
                         $
-                        {quoteInfo.total % 1 === 0
-                          ? quoteInfo.total
-                          : quoteInfo.total.toFixed(2)}
+                        {invoiceInfo.total % 1 === 0
+                          ? invoiceInfo.total
+                          : invoiceInfo.total.toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -185,7 +181,7 @@ export default function QuoteModal ({
               </div>
               <div className="mt-4 flex space-x-2 px-4 pb-6">
                 <button
-                  className="flex w-full items-center justify-center space-x-1 rounded-md border border-blue-500 py-2 text-sm text-blue-500 shadow-sm hover:bg-blue-500 hover:text-white"
+                  className="flex w-full items-center justify-center space-x-1 rounded-md border text-white bg-zinc-900 border-lime-500 py-2 text-sm shadow-sm hover:bg-lime-500 hover:text-white"
                   onClick={SaveAsPDFHandler}
                 >
                   <svg
@@ -202,11 +198,11 @@ export default function QuoteModal ({
                       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                     />
                   </svg>
-                  <span>Download</span>
+                  <span>Descargar</span>
                 </button>
                 <button
                   onClick={addNextQuoteHandler}
-                  className="flex w-full items-center justify-center space-x-1 rounded-md bg-blue-500 py-2 text-sm text-white shadow-sm hover:bg-blue-600"
+                  className="flex w-full items-center justify-center space-x-1 rounded-md text-white bg-zinc-900 border-lime-400 text-sm shadow-sm hover:bg-lime-500"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +218,7 @@ export default function QuoteModal ({
                       d="M13 5l7 7-7 7M5 5l7 7-7 7"
                     />
                   </svg>
-                  <span>Next</span>
+                  <span>Siguiente</span>
                 </button>
               </div>
             </div>
@@ -232,3 +228,5 @@ export default function QuoteModal ({
     </Transition>
   );
 };
+
+export default InvoiceModal;

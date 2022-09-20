@@ -1,24 +1,21 @@
-import React from "react";
+import React from 'react';
 
-const QuoteField = ({ onEditRecipe, callData }) => {
-
-    console.log(callData)
-
-  return (1
-    // <input
-    //   className={callData.className}
-    //   type={callData.type}
-    //   placeholder={callData.placeholder}
-    //   min={callData.min}
-    //   max={callData.max}
-    //   step={callData.step}
-    //   name={callData.name}
-    //   id={callData.id}
-    //   value={callData.value}
-    //   onChange={onEditRecipe}
-    //   required
-    // />
+const QuoteField = ({ onEditRecipe, cellData }) => {
+  return (
+    <input
+      className={cellData.className}
+      type={cellData.type}
+      placeholder={cellData.placeholder}
+      min={cellData.min}
+      max={cellData.max}
+      step={cellData.step}
+      name={cellData.name}
+      id={cellData.id}
+      value={cellData.value}
+      onChange={onEditRecipe}
+      required
+    />
   );
 };
 
-export default QuoteField
+export default QuoteField;

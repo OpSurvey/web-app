@@ -1,48 +1,41 @@
-import React from "react";
-import QuoteField from "./QuoteField";
+import React from 'react';
+import QuoteField from './QuoteField';
 
-export default function QuoteItem({
-  id,
-  name,
-  qty,
-  price,
-  onDeleteRecipe,
-  onEditRecipe,
-}) {
-  const deleteRecipeHandler = () => {
+const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
+  const deleteQuoteHandler = () => {
     onDeleteRecipe(id);
   };
 
   return (
     <tr>
-      <td className="w-full">
+      <td className="w-full text-black">
         <QuoteField
-          onEditRecipe={(event) => onEdtiRecipe(event)}
+          onEditRecipe={(event) => onEditRecipe(event)}
           cellData={{
-            placeholder: "Receta",
-            type: "text",
-            name: "name",
+            placeholder: 'Concepto',
+            type: 'text',
+            name: 'name',
             id: id,
             value: name,
           }}
         />
       </td>
-      <td className="min-w-[65px] md:min-w-[80px]">
+      <td className="min-w-[180px] md:min-w-[180px] text-black">
         <QuoteField
           onEditRecipe={(event) => onEditRecipe(event)}
           cellData={{
-            type: "number",
-            min: "1",
-            name: "qty",
+            type: 'number',
+            min: '1',
+            name: 'qty',
             id: id,
             value: qty,
           }}
         />
       </td>
-      <td className="relative min-w-[100px] md:min-w-[150px]">
+      <td className="relative min-w-[100px] md:min-w-[150px] text-black">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-2 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-400 sm:left-4"
+          className="absolute left-2 top-1/2 h-6 w-6 -translate-y-1/2 text-black sm:left-4"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -55,13 +48,13 @@ export default function QuoteItem({
           />
         </svg>
         <QuoteField
-          onEditQuote={(event) => onEditQuote(event)}
+          onEditRecipe={(event) => onEditRecipe(event)}
           cellData={{
-            className: "text-right",
-            type: "number",
-            min: "0.01",
-            step: "0.01",
-            name: "price",
+            className: 'text-right',
+            type: 'number',
+            min: '0.01',
+            step: '0.01',
+            name: 'price',
             id: id,
             value: price,
           }}
@@ -70,7 +63,7 @@ export default function QuoteItem({
       <td className="flex items-center justify-center">
         <button
           className="rounded-md bg-red-500 p-2 text-white shadow-sm transition-colors duration-200 hover:bg-red-600"
-          onClick={deleteRecipeHandler}
+          onClick={deleteQuoteHandler}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -91,3 +84,5 @@ export default function QuoteItem({
     </tr>
   );
 };
+
+export default QuoteItem;
