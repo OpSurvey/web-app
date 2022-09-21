@@ -27,7 +27,7 @@ export default function RecepiForm() {
             onSubmit={handleSubmit(onSubmit)}
             className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full rounded-lg lg:rounded-none xl:rounded-lg"
           >
-            <h1 className="text-white text-center text-xl">
+            <h1 className="text-white text-center text-xl mt-2 mb-3">
               Crear nueva Receta
             </h1>
             <div className="mb-4 w-full">
@@ -167,28 +167,8 @@ export default function RecepiForm() {
                 </span>
               )}
             </div>
-            {/* <div className="mb-4 w-full">
-              <label
-                htmlFor="quantity"
-                className="block mb-2 text-sm font-medium text-lime-400 "
-              >
-                Cantidad
-              </label>
-              <input
-                type="number"
-                name="quantity"
-                id="quantity"
-                className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
-                placeholder=" "
-                required=""
-                {...register("quantity", { required: true })}
-              />
-              {errors.type?.type === "required" && (
-                <span className="text-red-400 ">La cantidad es requerida</span>
-              )}
-            </div> */}
-
-            <div className="flex justify-center align-center mb-3">
+            
+            <div className="flex justify-center align-center mb-3 mt-3">
               <Button style="bg-lime-400 text-black" text="Enviar" />
             </div>
           </form>

@@ -1,24 +1,36 @@
-import { useForm } from "react-hook-form";
-import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
-import Link from "next/link";
+import { useForm } from "react-hook-form"
+import Button from "./Button"
+import NavbarLanding from "./NavbarLanding"
+import FooterLanding from "./FooterLanding"
+import { useRouter } from 'next/router'
 
 export default function QuoterForm() {
+
+  const router=useRouter()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
-  };
+  const onSubmit = async (data) => {
+    console.log(data)
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quoter`, {
+      method:"POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    const response= await result.json()
+    
+    const token= response.data.token
+    
+    localStorage.setItem("token", token)
+
+    router.push("/user/dashboard")
+  }
 
   return (
     <>
@@ -29,7 +41,7 @@ export default function QuoterForm() {
           className="bg-zinc-900 px-32 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:rounded-none xl:rounded-lg"
         >
           <h1 className="text-white text-center text-xl">Crear nueva cuenta</h1>
-          <h3 className="text-white text-center text-lg pt-2">
+          <h3 className="text-white text-center text-lg pt-2 mb-3">
             Información Personal
           </h3>
           <div className="mb-4 w-full">
@@ -53,7 +65,7 @@ export default function QuoterForm() {
             )}
             {errors.firstName?.type === "minLength" && (
               <span className="text-red-400 ">
-                Largo minimo de nombre son 3 c
+                Largo minimo de nombre son 3 caracteres
               </span>
             )}
           </div>
@@ -104,16 +116,44 @@ export default function QuoterForm() {
             />
             {errors.RFC?.type === "minLength" && (
               <span className="text-red-400 ">
-                Largo mínimo del RFC son 3 caracteres
+                Largo mínimo del RFC son 12 caracteres
               </span>
             )}
             {errors.RFC?.type === "maxLength" && (
               <span className="text-red-400 ">
-                Largo máximo del RFC son 6 caracteres
+                Largo máximo del RFC son 13 caracteres
               </span>
             )}
             {errors.RFC?.type === "required" && (
               <span className="text-red-400 ">El RFC es requerido</span>
+            )}
+          </div>
+          <div className="mb-4 w-full">
+            <label
+              htmlFor="phone"
+              className="block mb-2 text-sm font-medium text-lime-400"
+            >
+              Teléfono
+            </label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
+              placeholder=" "
+              required=""
+              {...register("phone", {
+                required: true,
+                minLength: 10
+              })}
+            />
+            {errors.phone?.type === "minLength" && (
+              <span className="text-red-400 ">
+                Largo mínimo del teléfono son 10 caracteres
+              </span>
+            )}
+            {errors.phone?.type === "required" && (
+              <span className="text-red-400 ">El teléfono es requerido</span>
             )}
           </div>
           <div className="mb-4 w-full">
@@ -146,7 +186,6 @@ export default function QuoterForm() {
               <span className="text-red-400 ">{errors.email.message}</span>
             )}
           </div>
-
           <div className="mb-4 w-full">
             <label
               htmlFor="password"
@@ -172,7 +211,7 @@ export default function QuoterForm() {
               </span>
             )}
           </div>
-          <h2 className="text-white text-center text-lg pt-2">
+          <h2 className="text-white text-center text-lg pt-2 mb-3">
             Información del negocio
           </h2>
           <div className="grid md:grid-cols-2 md:gap-6">
@@ -340,15 +379,11 @@ export default function QuoterForm() {
             </div>
           </div>
 
-          <div className="flex justify-center align-center w-200">
-            <Link href="./login">
-              <a>
+          <div className="flex justify-center align-center w-200 mb-3 mt-2">
                 <Button style="bg-lime-400 text-black" text="Enviar" />
-              </a>
-            </Link>
           </div>
         </form>
       </main>
     </>
-  );
+  )
 }
