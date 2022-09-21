@@ -7,8 +7,8 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
   };
 
   return (
-    <tr>
-      <td className="w-full text-black">
+    <tr >
+      <td className="text-black w-full">
         <QuoteField
           onEditRecipe={(event) => onEditRecipe(event)}
           cellData={{
@@ -20,7 +20,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
           }}
         />
       </td>
-      <td className="min-w-[180px] md:min-w-[180px] text-black">
+      <td className="min-w-[65px] md:min-w-[80px] text-black">
         <QuoteField
           onEditRecipe={(event) => onEditRecipe(event)}
           cellData={{
