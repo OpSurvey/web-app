@@ -6,22 +6,26 @@ import Button from "../components/Button";
 import FooterLanding from "../components/FooterLanding";
 import HowToUseCardIMG from "../components/HowToUseCardIMG";
 import Link from "next/link";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 export default function Home() {
+  const width = useWindowDimensions();
+
   return (
     <>
       <header>
-        <NavbarLanding/>
+        <NavbarLanding />
       </header>
-      <main className="pt-8 px-44 pb-8 bg-zinc-800">
-        <section className="pt-10  md:grid lg:grid-cols-[500px_1fr] lg:my-2 md:mb-2">
+      <main className=" bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-44 lg:pl-36 lg:pb-8">
+        <section className="pt-10 xs:w-full p-0 m-0 md:grid md:mb-2 lg:grid-cols-[500px_1fr] lg:my-2 ">
           <section className="firsthView">
-            <article name="presentationCard" className="lg:mx-2">
+            <article name="presentationCard" className="xs: p-1 lg:mx-2">
               <PresentationCard />
             </article>
           </section>
-          <section name="howToUse" className="lg:ml-12">
+          <section name="howToUse" className="xs:pt-6 lg:ml-12">
             {/* How to use the app */}
+
             <HowToUseCard
               backgroundColor="bg-lime-400"
               direction="flex-row"
@@ -59,32 +63,88 @@ export default function Home() {
             />
           </section>
         </section>
-      <section name='clientsOpinion' className="pt-16 md:mx-2 lg:mx-8">
-        <p className="text-2xl text-center text-white md:text-4xl mb-6">Lo que dicen nuestros Clientes</p>
-          <article name='opinionCard' className="pt-8 md:flex md:flex-row md:justify-between" >
-            <OpinionCard clientName="Berenice Cervantes" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
-            <OpinionCard clientName="Ernesto García" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
-            <OpinionCard clientName="Francisco Martínez" opinionImg="" opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."/>
-          </article>
-        </section>
+
+        {width > 900 ? (
+          <>
+            <section name="clientsOpinion" className="pt-16 md:mx-2 lg:mx-8">
+              <p className="text-2xl text-center text-white md:text-4xl mb-6">
+                Lo que dicen nuestros Clientes
+              </p>
+              <article
+                name="opinionCard"
+                className="pt-8 md:flex md:flex-row md:justify-between"
+              >
+                <OpinionCard
+                  clientName="Berenice Cervantes"
+                  opinionImg=""
+                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                />
+                <OpinionCard
+                  clientName="Ernesto García"
+                  opinionImg=""
+                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                />
+                <OpinionCard
+                  clientName="Francisco Martínez"
+                  opinionImg=""
+                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                />
+              </article>
+            </section>
+          </>
+        ) : (
+          <section
+            name="clientsOpinion"
+            className="hidden pt-16 md:mx-2 lg:mx-8"
+          >
+            <p className="text-2xl text-center text-white md:text-4xl mb-6">
+              Lo que dicen nuestros Clientes
+            </p>
+            <article
+              name="opinionCard"
+              className="pt-8 md:flex md:flex-row md:justify-between"
+            >
+              <OpinionCard
+                clientName="Berenice Cervantes"
+                opinionImg=""
+                opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+              />
+              <OpinionCard
+                clientName="Ernesto García"
+                opinionImg=""
+                opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+              />
+              <OpinionCard
+                clientName="Francisco Martínez"
+                opinionImg=""
+                opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
+              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+              />
+            </article>
+          </section>
+        )}
 
         <article
           name="greenCard"
           className="mt-36 bg-lime-400 pt-10 rounded-lg my-16 md:flex md:justify-between md:p-16"
         >
-          <div>
-            <p className="text-4xl font-bold ">Todo por tan solo</p>
-            <h1 className="text-8xl font-black ">$1 USD</h1>
+          <div className="">
+            <p className="align-middle text-4xl font-bold">Todo por tan solo</p>
+            <h1 className="text-8xl font-black">$1 USD</h1>
             <p className="text-2xl font-medium">por cotización enviada</p>
           </div>
-          <Link href="./quoter">
-            <a >
-              <Button style="bg-zinc-900 text-white" text="Empieza ahora"/>
-            </a>
-          </Link>
+          <div className="sx:w-full flex items-center flex-col p-5">
+            <Link href="./quoter">
+              <a>
+                <Button style="bg-zinc-900 text-white" text="Empieza ahora" />
+              </a>
+            </Link>
+          </div>
         </article>
       </main>
     </>
