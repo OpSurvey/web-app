@@ -1,24 +1,36 @@
-import { useForm } from "react-hook-form";
-import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
-import Link from "next/link";
+import { useForm } from "react-hook-form"
+import Button from "./Button"
+import NavbarLanding from "./NavbarLanding"
+import FooterLanding from "./FooterLanding"
+import { useRouter } from 'next/router'
 
 export default function LogInForm() {
+
+  const router = useRouter()
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
-  };
+  const onSubmit = async (data) => {
+    console.log(data)
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      method:"POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    const response= await result.json()
+    const token= response.data.token
+    // console.log("token", token)
+    //Ponerlo en localStorage
+    localStorage.setItem("token", token)
+    //Redirección
+    router.push("/user/dashboard")
+  }
 
   return (
     <>
@@ -86,15 +98,11 @@ export default function LogInForm() {
           </div>
 
           <div className="flex justify-center align-center mb-3 mt-2">
-            <Link href="./user/dashboard">
-            <a>
             <Button style="bg-lime-400 text-black" id="iniciarSesion" text="Iniciar Sesión" />
-            </a>
-            </Link>
           </div>
         </form>
       </main>
       <FooterLanding />
     </>
-  );
+  )
 }

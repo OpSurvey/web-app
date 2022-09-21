@@ -1,24 +1,36 @@
-import { useForm } from "react-hook-form";
-import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
-import Link from "next/link";
+import { useForm } from "react-hook-form"
+import Button from "./Button"
+import NavbarLanding from "./NavbarLanding"
+import FooterLanding from "./FooterLanding"
+import { useRouter } from 'next/router'
 
 export default function QuoterForm() {
+
+  const router=useRouter()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
-  };
+  const onSubmit = async (data) => {
+    console.log(data)
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quoter`, {
+      method:"POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    const response= await result.json()
+    
+    const token= response.data.token
+    
+    localStorage.setItem("token", token)
+
+    router.push("/user/dashboard")
+  }
 
   return (
     <>
@@ -53,7 +65,7 @@ export default function QuoterForm() {
             )}
             {errors.firstName?.type === "minLength" && (
               <span className="text-red-400 ">
-                Largo minimo de nombre son 3 c
+                Largo minimo de nombre son 3 caracteres
               </span>
             )}
           </div>
@@ -104,12 +116,12 @@ export default function QuoterForm() {
             />
             {errors.RFC?.type === "minLength" && (
               <span className="text-red-400 ">
-                Largo mínimo del RFC son 3 caracteres
+                Largo mínimo del RFC son 12 caracteres
               </span>
             )}
             {errors.RFC?.type === "maxLength" && (
               <span className="text-red-400 ">
-                Largo máximo del RFC son 6 caracteres
+                Largo máximo del RFC son 13 caracteres
               </span>
             )}
             {errors.RFC?.type === "required" && (
@@ -368,15 +380,11 @@ export default function QuoterForm() {
           </div>
 
           <div className="flex justify-center align-center w-200 mb-3 mt-2">
-            <Link href="./login">
-              <a>
                 <Button style="bg-lime-400 text-black" text="Enviar" />
-              </a>
-            </Link>
           </div>
         </form>
       </main>
       <FooterLanding />
     </>
-  );
+  )
 }
