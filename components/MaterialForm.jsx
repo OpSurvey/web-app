@@ -90,7 +90,7 @@ export default function MaterialForm() {
               Proveedor
             </label>
             <input
-              type="supplier"
+              type="text"
               name="supplier"
               id="supplier"
               className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
@@ -118,7 +118,7 @@ export default function MaterialForm() {
               Marca
             </label>
             <input
-              type="number"
+              type="text"
               name="brand"
               id="brand"
               className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
