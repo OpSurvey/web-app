@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useState } from "react"; //to HM
 
 export default function NavDashboard() {
+  const [showNav, setShowNav] = useState(false); // to HM: initiate isNavOpen state with false
   return (
     <>
       <nav className="bg-black px-2 sm:px-4 py-2.5">
@@ -20,7 +22,9 @@ export default function NavDashboard() {
             aria-controls="navbar-default"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
+            <span id="dropdown" className="sr-only">
+              Open main menu
+            </span>
             <svg
               className="w-6 h-6"
               aria-hidden="true"
@@ -36,8 +40,12 @@ export default function NavDashboard() {
             </svg>
           </button>
 
-          <div className="hidden w-full md:block md:w-auto bg-black" id="navbar-default">
-            <ul className="flex flex-col p-4 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black">
+          <div
+            className="hidden w-full md:block md:w-auto bg-black"
+            id="navbar-default"          >
+            <ul
+              className="flex flex-col p-4 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black"
+            >
               <li>
                 <Link href="../client">
                   <a
@@ -51,21 +59,25 @@ export default function NavDashboard() {
 
               <li>
                 <Link href="#">
-                <a
-                  className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0"
-                >
-                  Agregar material
-                </a>
+                  <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                    Agregar material
+                  </a>
+                </Link>
+              </li>
+
+              <li>
+                <Link href="../materials">
+                  <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                    Lista de materiales
+                  </a>
                 </Link>
               </li>
 
               <li>
                 <Link href="../recipe">
-                <a
-                  className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0"
-                >
-                  Crear receta
-                </a>
+                  <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                    Crear receta
+                  </a>
                 </Link>
               </li>
             </ul>
