@@ -16,7 +16,7 @@ export default function Dashboard() {
       <section className="px-48 pt-12 text-white">
         <h3>Bienvenido Cotizador</h3>
       </section>
-      <section className="ml-40 mr-40 ">
+      <section className="lg:ml-40 lg:mr-40 ">
         {width > 768 ? (
           <>
             <section className="flex justify-around my-8">
