@@ -3,7 +3,7 @@ import FooterLanding from '../components/FooterLanding'
 
 function MyApp({ Component, pageProps }) {
   return (
-  <div className='bg-zinc-800 min-h-screen flex flex-col justify-between xs:w-[390px] md:w-full'>
+  <div className='bg-zinc-800 min-h-screen flex flex-col justify-between md:w-full'>
     <Component {...pageProps} />
     <FooterLanding/>
   </div>
