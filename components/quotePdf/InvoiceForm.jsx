@@ -3,6 +3,7 @@ import { uid } from 'uid';
 import QuoteItem from './QuoteItem';
 import QuoteModal from './QuoteModal';
 import incrementString from '../../helpers/incrementString';
+import Search from './Search';
 
 const date = new Date();
 const today = date.toLocaleDateString('en-GB', {
@@ -14,10 +15,10 @@ const today = date.toLocaleDateString('en-GB', {
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tax, setTax] = useState('');
-  const [quoteNumber, setquoteNumber] = useState(1);
+  const [quoteNumber, setQuoteNumber] = useState(1);
   const [quoterName, setQuoterName] = useState('');
   const [customerName, setCustomerName] = useState('');
-  const [recipe, setRecipe] = useState([
+  const [recipes, setRecipes] = useState([
     {
       id: uid(6),
       name: '',
@@ -45,7 +46,7 @@ const InvoiceForm = () => {
 
   const addRecipeHandler = () => {
     const id = uid(6);
-    setRecipe((prevRecipe) => [
+    setRecipes((prevRecipe) => [
       ...prevRecipe,
       {
         id: id,
@@ -57,7 +58,7 @@ const InvoiceForm = () => {
   };
 
   const deleteRecipeHandler = (id) => {
-    setRecipe((prevRecipe) => prevRecipe.filter((recipe) => recipe.id !== id));
+    setRecipes((prevRecipe) => prevRecipe.filter((recipe) => recipe.id !== id));
   };
 
   const editRecipeHandler = (event) => {
@@ -67,7 +68,7 @@ const InvoiceForm = () => {
       value: event.target.value,
     };
 
-    const newRecipe = recipe.map((recipe) => {
+    const newRecipe = recipes.map((recipe) => {
       for (const key in recipe) {
         if (key === editedRecipe.name && recipe.id === editedRecipe.id) {
           recipe[key] = editedRecipe.value;
@@ -76,10 +77,10 @@ const InvoiceForm = () => {
       return recipe;
     });
 
-    setRecipe(newRecipe);
+    setRecipes(newRecipe);
   };
 
-  const subtotal = recipe.reduce((prev, curr) => {
+  const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
       return prev + Number(curr.price * Math.floor(curr.qty));
     else return prev;
@@ -89,14 +90,15 @@ const InvoiceForm = () => {
 
   return (
     <form
-      className="relative flex flex-col px-2 md:flex-row"
+      className="relative flex flex-col px-2 md:flex-row sm:w-100"
       onSubmit={reviewQuoteHandler}
     >
-      <div className="my-6 flex-1 space-y-2  rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">
+      <div className="my-6 flex-1 space-y-2 rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">
         <div className="flex flex-col justify-between space-y-2 border-b border-gray-900/10 pb-4 md:flex-row md:items-center md:space-y-0">
           <div className="flex space-x-2">
             <span className="font-bold">Fecha: </span>
             <span>{today}</span>
+            
           </div>
           <div className="flex items-center space-x-2">
             <label className="font-bold" htmlFor="quoteNumber">
@@ -111,8 +113,10 @@ const InvoiceForm = () => {
               min="1"
               step="1"
               value={quoteNumber}
-              onChange={(event) => setquoteNumber(event.target.value)}
+              onChange={(event) => setQuoteNumber(event.target.value)}
+
             />
+            
           </div>
         </div>
         <h1 className="text-center text-lg font-bold">Cotización</h1>
@@ -152,15 +156,15 @@ const InvoiceForm = () => {
         </div>
         <table className="w-full p-4 text-left">
           <thead>
-            <tr className="border-b border-gray-900 text-sm md:text-base">
-              <th>Concepto</th>
-              <th>Cantidad</th>
-              <th className="text-center">Precio</th>
+            <tr className="border-b border-gray-900/10 text-white text-sm md:text-base">
+              <th className='text-white'>Concepto</th>
+              <th className='text-white'>Cantidad</th>
+              <th className=" text-white text-center">Precio</th>
               <th className="text-center">Eliminar</th>
             </tr>
           </thead>
-          <tbody>
-            {recipe.map((recipe) => (
+          <tbody className=''>
+            {recipes.map((recipe) => (
               <QuoteItem
                 key={recipe.id}
                 id={recipe.id}
@@ -218,7 +222,7 @@ const InvoiceForm = () => {
               taxRate,
               total,
             }}
-            recipe={recipe}
+            recipes={recipes}
             onAddNextQuote={addNextQuoteHandler}
           />
           <div className="space-y-4 py-2 ">

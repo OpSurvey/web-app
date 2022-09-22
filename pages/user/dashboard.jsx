@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProjectCard from "../../components/ProjectCard";
 import InvoiceForm from "../../components/quotePdf/InvoiceForm";
+import Search from "../../components/quotePdf/Search";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
@@ -76,7 +77,7 @@ export default function Dashboard() {
       </section>
 
       <p className="text-4xl">hola</p>
-      <InvoiceForm/>
+      <Search/>
     </>
   );
 }
