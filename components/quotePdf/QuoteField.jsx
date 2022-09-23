@@ -1,7 +1,6 @@
 import React from 'react';
 
 const QuoteField = ({ onEditRecipe, cellData }) => {
-  console.log('celldata',cellData);
   return (
     <input
       className={cellData.className}

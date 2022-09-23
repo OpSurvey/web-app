@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { uid } from 'uid';
 import QuoteItem from './QuoteItem';
 import QuoteModal from './QuoteModal';
-import incrementString from '../../helpers/incrementString';
 import Search from './Search';
+import incrementString from '../../helpers/incrementString';
 
 const date = new Date();
 const today = date.toLocaleDateString('en-GB', {
@@ -20,7 +20,7 @@ const InvoiceForm = () => {
   const [customerName, setCustomerName] = useState('');
   const [recipes, setRecipes] = useState([
     {
-      id: uid(6),
+      id: 1,
       name: '',
       qty: 1,
       price: '1.00',
@@ -36,7 +36,7 @@ const InvoiceForm = () => {
     setQuoteNumber((prevNumber) => incrementString(prevNumber));
     setRecipe([
       {
-        id: uid(6),
+        id: 2,
         name: '',
         qty: 1,
         price: '1.00',
@@ -165,6 +165,8 @@ const InvoiceForm = () => {
           </thead>
           <tbody className=''>
             {recipes.map((recipe) => (
+
+              <>
               <QuoteItem
                 key={recipe.id}
                 id={recipe.id}
@@ -174,6 +176,8 @@ const InvoiceForm = () => {
                 onDeleteRecipe={deleteRecipeHandler}
                 onEditRecipe={editRecipeHandler}
               />
+              </>
+
             ))}
           </tbody>
         </table>
@@ -254,4 +258,4 @@ const InvoiceForm = () => {
   );
 };
 
-export default InvoiceForm;
+export default InvoiceForm

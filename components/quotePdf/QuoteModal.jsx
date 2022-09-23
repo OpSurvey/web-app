@@ -13,7 +13,6 @@ const QuoteModal = ({
   function closeModal() {
     setIsOpen(false);
   }
-  console.log(invoiceInfo);
   const addNextQuoteHandler = () => {
     setIsOpen(false);
     onAddNextQuote();

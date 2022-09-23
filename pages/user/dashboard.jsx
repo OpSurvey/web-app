@@ -9,7 +9,6 @@ import Search from "../../components/quotePdf/Search";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
-  console.log(width);
   return (
     <>
       <section>
@@ -77,7 +76,6 @@ export default function Dashboard() {
       </section>
 
       <p className="text-4xl">hola</p>
-      <Search/>
     </>
   );
 }

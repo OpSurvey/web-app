@@ -1,10 +1,12 @@
 import React from 'react';
 import QuoteField from './QuoteField';
+import Search from './Search';
 
 const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
   const deleteQuoteHandler = () => {
     onDeleteRecipe(id);
   };
+
 
   return (
     <tr className='text-black'> 
@@ -12,7 +14,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
       <QuoteField
         onEditRecipe={(event) => onEditRecipe(event)}
         cellData={{
-          placeholder: 'Recipe name',
+          placeholder: 'Recetas',
           type: 'text',
           name: 'name',
           id: id,
@@ -20,7 +22,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
         }}
       />
     </td>
-    <td className="min-w-[65px]">
+    <td className="min-w-[65px] h-10">
       <QuoteField
         onEditRecipe={(event) => onEditRecipe(event)}
         cellData={{
@@ -32,7 +34,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
         }}
       />
     </td>
-    <td className="relative min-w-[100px] md:min-w-[150px]">
+    <td className="relative min-w-[100px]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="absolute left-2 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-400 sm:left-4"
@@ -85,4 +87,4 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
   );
 };
 
-export default QuoteItem;
+export default QuoteItem
