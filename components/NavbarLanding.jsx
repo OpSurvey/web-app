@@ -9,11 +9,14 @@ export default function NavbarLanding() {
     <>
       <nav className="bg-black w-full flex top-0 left-0 xs:pl-6 xs:py-0 md:px-2 py-10 h-20 ">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <a href="/" className="flex items-center">
+          <Link href="/">
+          <a className="flex items-center">
             <span className="text-lime-400 self-center font-sans text-2xl font-semibold whitespace-nowrap">
               OpSurvey
             </span>
           </a>
+          </Link>
+
           <div className="flex md:order-2">
             <ul className="flex flex-col p-4 mt-0 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:bg-black">
               <li>

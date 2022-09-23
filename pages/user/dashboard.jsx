@@ -1,7 +1,6 @@
 import CardTable from "../../components/CardTable";
 import StatusCard from "../../components/InformativeCard";
 import InformativeCarousel from "../../components/informativeCarousel";
-import { useEffect, useState } from "react";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import ProjectCard from "../../components/ProjectCard";
 import NavDashboard from "../../components/NavDashboard";
@@ -9,6 +8,7 @@ import NavDashboard from "../../components/NavDashboard";
 export default function Dashboard() {
   const width = useWindowDimensions();
   console.log(width);
+
   return (
     <>
       <NavDashboard />
@@ -79,7 +79,7 @@ export default function Dashboard() {
           </>
         )}
       </section>
-      // </main>
+      </main>
     </>
   );
 }
