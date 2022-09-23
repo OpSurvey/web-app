@@ -30,6 +30,7 @@ export default function NavbarLanding() {
                 </Link>
               </li>
             </ul>
+            
             <Link href="./quoter">
               <a>
                 {width > 768 ? (

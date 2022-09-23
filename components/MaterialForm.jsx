@@ -187,7 +187,6 @@ export default function MaterialForm() {
           </div>
         </form>
       </main>
-      <FooterLanding />
     </>
   );
 }
