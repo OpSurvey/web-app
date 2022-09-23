@@ -194,7 +194,6 @@ export default function QuoteForm() {
         </div>
       </form>
     </main>
-    <FooterLanding />
     </>
   );
 }

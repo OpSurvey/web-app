@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function PresentationCard(props) {
   return (
-    <div className=" lg:h-[854px] pt-20 px-8 bg-zinc-900 border-gray-200 shadow-md rounded-lg">
-      <div className="p-5">
+    <div className="xs:p-1 xs:m-1 xs:mb-20 md:pt-20 px-8 md:h-[870px] bg-zinc-900 border-gray-200 shadow-md rounded-lg ">
+      <div className="xs:p-5 md:p-10 md:pl-16 lg:p-5">
         <h4 className="mb-2 text-4xl font-bold tracking-tight text-white">
           Agiliza tus cotizaciones
         </h4>

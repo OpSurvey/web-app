@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
+import NavDashboard from "./NavDashboard";
 
 export default function RecepiForm() {
   const {
@@ -21,8 +21,8 @@ export default function RecepiForm() {
 
   return (
     <>
-        <NavbarLanding />
-        <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+        <NavDashboard />
+        <main className="lg:px-44 sm:px-6 flex justify-center items-center">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full rounded-lg lg:rounded-none xl:rounded-lg"
@@ -173,7 +173,6 @@ export default function RecepiForm() {
             </div>
           </form>
         </main>
-        <FooterLanding />
     </>
   );
 }
