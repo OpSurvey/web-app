@@ -1,4 +1,16 @@
-export default function MaterialList() {
+import { useEffect, useState } from 'react';
+
+export default function RecipeList() {
+const  [recipes, setRecipies] = useState([])
+
+useEffect(()=>{
+  fetch('')
+  .then((response)=>response.json())
+  .then((json)=>{
+    setRecipies(json.results)
+  })
+},[])
+
   return (
     <>
       <div className="overflow-x-auto relative lg:px-36">
@@ -6,16 +18,13 @@ export default function MaterialList() {
           <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
             <tr>
               <th scope="col" className="py-3 px-6">
-                Material
+                Sku
               </th>
               <th scope="col" className="py-3 px-2">
-                Marca
+                Nombre
               </th>
               <th scope="col" className="py-3 px-2">
-                Cotizador
-              </th>
-              <th scope="col" className="py-3 px-2">
-                Precio
+                Costo
               </th>
               <th scope="col" className="py-3 px-2">
                 Unidad
@@ -28,12 +37,11 @@ export default function MaterialList() {
                 scope="row"
                 className="py-4 px-6 font-normal text-white whitespace-nowrap"
               >
-                Cemento
+                12345
               </th>
-              <td className="py-4 px-2">Cemex</td>
-              <td className="py-4 px-2">Bere Cervantes</td>
-              <td className="py-4 px-2">214.00</td>
-              <td className="py-4 px-2">Costal</td>
+              <td className="py-4 px-2">Hacer un piso</td>
+              <td className="py-4 px-2">699.99</td>
+              <td className="py-4 px-2">m2</td>
             </tr>
           </tbody>
         </table>

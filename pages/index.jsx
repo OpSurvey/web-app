@@ -76,21 +76,28 @@ export default function Home() {
               >
                 <OpinionCard
                   clientName="Berenice Cervantes"
-                  opinionImg=""
-                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                  opinionImg="https://cdn.opsurveyapp.com/Berenice_Cervantes.jpg"
+                  opinionContent="El proceso de cotización mejoro muchisimo con la ayuda de OpSurvey, nuestros tiempos eran altos, y teníamos la información muy vulnerable a perderse o no poder rastrear una modificación, ahora me siento más segura, sabiendo que para poder hacer una modificación es necesario contar con un usuario, agilizamos el proceso y evitamos riesgos."
                 />
                 <OpinionCard
                   clientName="Ernesto García"
-                  opinionImg=""
-                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                  opinionImg="https://cdn.opsurveyapp.com/Ernesto_Garcia.jpeg"
+                  opinionContent="Nunca me había dado cuenta de cuánto tiempo perdía al ir a un punto para realizar una cotización y volver a mi oficina para obtener la información y podérsela mandar al cliente. Hasta que conocí OPSurvey! 
+                  Me di cuenta que perdía más de medio día de trabajo para realizar una sola cotización. Ahora puedo realizar hasta 3 cotizaciones en un solo día! 
+                  Realmente es una herramienta muy útil, 100% recomendable!
+                  Estos chavos se volaron la barda !!!"
                 />
                 <OpinionCard
                   clientName="Francisco Martínez"
-                  opinionImg=""
-                  opinionContent="Mejora tu rendimiento y tu tiempo de entrega de cotizaciones.
-              Con Obsurvey podrás mejorar tu entrega de cotizaciones debido a que esta .herramienta te ayuda a que puedas realizar tus cotizaciones desde el momento que realizas la visita al cliente."
+                  opinionImg="https://cdn.opsurveyapp.com/Francisco_Martinez1.jpeg"
+                  opinionContent="Antes sentia que tenia un flujo muy bueno al momento de realzar cotizaciones y no tenia en cuenta el tiempo que se perdia para poder generar una cotización, pero cuando empecé a utilizar OpSurvey mi flujo de cotizaciones aumentó en un caso un 100% ya que no tenia que llegar a mi oficina para realizarlas ya solamente me enfocaba en lo verdaderamente importante que es captar la mayor cantidad de posibles clientes al dia.
+
+                  Es la mejor herramienta que pude conseguir para mis cotizaciones y a un super precio. Gracias OpSurvey!"
+                />
+                <OpinionCard
+                  clientName="Carlos Silva"
+                  opinionImg="https://cdn.opsurveyapp.com/Carlos_Silva.jpg"
+                  opinionContent="El rendimiento del proceso de cotizar aumento desde que utilizamos OpSurvey, nuestros clientes estan felices y hemos ahorrado tiempo en el proceso."
                 />
               </article>
             </section>
@@ -138,7 +145,7 @@ export default function Home() {
             <h1 className="text-8xl font-black">$1 USD</h1>
             <p className="text-2xl font-medium">por cotización enviada</p>
           </div>
-          <div className="sx:w-full flex items-center flex-col p-5">
+          <div className="sx:w-full flex justify-center items-center flex-col p-5">
             <Link href="./quoter">
               <a>
                 <Button style="bg-zinc-900 text-white" text="Empieza ahora" />

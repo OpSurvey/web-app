@@ -11,7 +11,7 @@ export default function HowToUseCard(props) {
       className={`"w-full pt-0 pb-5 flex flex-col items-center rounded-lg h-[120px] md:${props.direction} md:flex"`}
     >
       <img
-        className="object-cover w-full h-auto md:h-36 md:w-36 md:rounded-none md:rounded-l-lg md:m-2"
+        className="object-cover w-full h-auto md:h-36 md:w-36 md:rounded-none md:rounded-l-lg md:m-2 lg:w-[350px] lg:h-[150px]"
         src={`${props.img}`}
         alt=""
       />

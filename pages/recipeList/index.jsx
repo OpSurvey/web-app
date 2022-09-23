@@ -1,11 +1,11 @@
-import MaterialList from "../../components/MaterialList";
+import RecipeList from "../../components/RecipeList";
 import NavDashboard from "../../components/NavDashboard"
 
-export default function Materials() {
+export default function AllRecipes() {
     return (
         <>
         <NavDashboard/>
-        <MaterialList/>
+        <RecipeList/>
         </>
     )
 }

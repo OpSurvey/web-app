@@ -14,7 +14,7 @@ export default function HowToUseCardIMG(props) {
           </p>
         </div>
         <img
-          className="object-cover w-full h-auto xs:w-[290px] xs:h-[200px] xs:px-6 md:h-36 md:w-36 md:rounded-none md:rounded-l-lg md:m-2"
+          className="object-cover w-full h-auto xs:w-[290px] xs:h-[200px] md:h-36 md:w-36 6 xs:px-6 md:rounded-none md:rounded-l-lg md:m-2 lg:w-[350px] lg:h-[150px]"
           src={`${props.img}`}
           alt=""
         />

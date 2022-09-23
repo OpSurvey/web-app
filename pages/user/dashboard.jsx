@@ -13,7 +13,7 @@ export default function Dashboard() {
     <>
       <NavDashboard />
       <main className="bg-zinc-800 w-auto">
-      <section className="px-48 pt-12 text-white">
+      <section className="lg:px-48 pt-12 text-white">
         <h3>Bienvenido Cotizador</h3>
       </section>
       <section className="lg:ml-40 lg:mr-40 ">
