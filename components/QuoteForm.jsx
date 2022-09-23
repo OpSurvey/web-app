@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
 import { Footer } from "flowbite-react";
@@ -25,7 +25,7 @@ export default function QuoteForm() {
     <NavbarLanding />
     <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
       <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full rounded-lg lg:rounded-none xl:rounded-lg">
-      <h1 className="text-white text-center text-xl">Crear nueva Cotización</h1>
+      <h1 className="text-white text-center text-xl mb-3 mt-2">Crear nueva Cotización</h1>
       <div className="mb-4 w-full">
           <label
             htmlFor="clientId"
@@ -189,12 +189,11 @@ export default function QuoteForm() {
           )}
         </div>
 
-        <div className="flex justify-center align-center">
-          <ButtonLanding text="Enviar" />
+        <div className="flex justify-center align-center mt-2 mb-3">
+          <Button style="bg-lime-400 text-black" text="Enviar" />
         </div>
       </form>
     </main>
-    <FooterLanding />
     </>
   );
 }

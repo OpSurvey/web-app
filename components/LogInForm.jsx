@@ -1,31 +1,44 @@
-import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
+import { useForm } from "react-hook-form"
+import Button from "./Button"
+import NavbarLanding from "./NavbarLanding"
+import FooterLanding from "./FooterLanding"
+import { useRouter } from 'next/router'
 
 export default function LogInForm() {
+
+  const router = useRouter()
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
-  };
+  const onSubmit = async (data) => {
+    console.log(data)
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      method:"POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    const response= await result.json()
+    const token= response.data.token
+    // console.log("token", token)
+    //Ponerlo en localStorage
+    localStorage.setItem("token", token)
+    //Redirección
+    router.push("/user/dashboard")
+  }
 
   return (
     <>
       <NavbarLanding />
-      <main className="mt-[61px] lg:px-44 sm:px-3 md:px-6 min-h-screen flex justify-center items-center ">
+      <main className="p-0 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-zinc-900 px-6 mx-3 py-3 rounded-lg w-full lg:w-2/3 h-full  "
+          className="bg-black px-6 mx-3 py-4 rounded-lg w-full lg:w-2/3 h-full  "
         >
           <h2 className="text-white text-center text-xl">Inicia Sesión</h2>
           <div className="mb-4 w-ful mt-3">
@@ -84,12 +97,11 @@ export default function LogInForm() {
             )}
           </div>
 
-          <div className="flex justify-center align-center">
-            <ButtonLanding id="iniciarSesion" text="Iniciar Sesión" />
+          <div className="flex justify-center align-center mb-3 mt-2">
+            <Button style="bg-lime-400 text-black" id="iniciarSesion" text="Iniciar Sesión" />
           </div>
         </form>
       </main>
-      <FooterLanding />
     </>
-  );
+  )
 }

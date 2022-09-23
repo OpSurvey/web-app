@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import ButtonLanding from "./ButtonLanding";
+import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
+import NavDashboard from "./NavDashboard";
 
 export default function ClientForm() {
   const {
@@ -21,14 +22,14 @@ export default function ClientForm() {
 
   return (
   <>
-  <NavbarLanding />
-    <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+  <NavDashboard />
+    <main className="py-10 lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full   sm:rounded-lg"
       >
         <h1 className="text-white text-center text-xl">Crear nuevo Cliente</h1>
-        <h2 className="text-white text-center text-lg pt-2">Información Personal</h2>
+        <h2 className="text-white text-center text-lg pt-2 pb-3">Información Personal</h2>
         <div className="mb-4 w-full mt-3">
           <label
             htmlFor="firstName"
@@ -171,7 +172,7 @@ export default function ClientForm() {
             <span className="text-red-400 ">El RFC es requerido</span>
           )}
         </div>
-        <h2 className="text-white text-center text-lg pt-2">
+        <h2 className="text-white text-center text-lg pt-2 pb-3">
           Información del negocio
         </h2>
         <div className="grid md:grid-cols-2 md:gap-6">
@@ -326,12 +327,11 @@ export default function ClientForm() {
           </div>
         </div>
 
-        <div className="flex justify-center align-center mb-3">
-          <ButtonLanding text="Enviar" />
+        <div className="flex justify-center align-center mb-3 mt-2">
+          <Button style="bg-lime-400 text-black" text="Enviar" />
         </div>
       </form>
     </main>
-    <FooterLanding />
     </>
   );
 }
