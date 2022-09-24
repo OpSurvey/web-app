@@ -11,7 +11,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
   return (
     <tr className='text-black'> 
     <td className="w-full">
-      <QuoteField
+      <Search
         onEditRecipe={(event) => onEditRecipe(event)}
         cellData={{
           placeholder: 'Recetas',

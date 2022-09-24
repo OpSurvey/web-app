@@ -68,6 +68,8 @@ const InvoiceForm = () => {
       value: event.target.value,
     };
 
+    console.log('editedRecipe', editedRecipe);
+
     const newRecipe = recipes.map((recipe) => {
       for (const key in recipe) {
         if (key === editedRecipe.name && recipe.id === editedRecipe.id) {

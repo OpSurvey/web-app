@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-export default function Search() {
+export default function Search(props) {
   const [recipesData, setRecipesData] = useState([])
   const [selected, setSelected] = useState('')
   const [query, setQuery] = useState('')
@@ -27,6 +27,11 @@ export default function Search() {
     .includes(query.toLowerCase().replace(/\s+/g, ''))
       )
 
+  const onChange = (event) =>{
+
+    props.onEditRecipe(event)
+
+  }
 
 return (
   <div className="w-72">
@@ -36,8 +41,10 @@ return (
           <Combobox.Input
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
             displayValue={(recipe) => recipe.title}
-            onChange={(event) => setQuery(event.target.value)}
-            searchProps={(recipe) => recipe.price}
+            // onChange={(event) => setQuery(event.target.value)}
+            name={props.name}
+            id={props.id}
+           onChange={onChange}
             
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
