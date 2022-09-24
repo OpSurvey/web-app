@@ -1,109 +1,59 @@
-import { Fragment, useState, useEffect } from 'react'
-import { Combobox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { Fragment, useState, useEffect } from "react";
 
 export default function Search(props) {
-  const [recipesData, setRecipesData] = useState([])
-  const [selected, setSelected] = useState('')
-  const [query, setQuery] = useState('')
+  const [recipesData, setRecipesData] = useState([]);
+  const [data, setData] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  console.log('props',props)
 
   useEffect(() => {
-    fetch('https://api.storerestapi.com/products')
+    fetch("https://api.storerestapi.com/products")
       .then((res) => res.json())
       .then((data) => {
-        setRecipesData(data.data)
-      })
-    }, [])
-    
+        setRecipesData(data.data);
+      });
+  }, []);
 
-
-  const filteredRecipes =
-  query === ''
-    ? recipesData
-    : recipesData.filter((recipe) =>
-    recipe.title
-    .toLowerCase()
-    .replace(/\s+/g, '')
-    .includes(query.toLowerCase().replace(/\s+/g, ''))
-      )
-
-  const onChange = (event) =>{
-
-    props.onEditRecipe(event)
-
+  const onSuggestHandler = (data) => {
+    setData(data)
+    console.log('dataSuggestHandler', data);
+    setSuggestions([])
   }
 
-return (
-  <div className="w-72">
-    <Combobox value={selected} onChange={setSelected}>
-      <div className="relative">
-        <div className=" h-10 relative w-full cursor-default overflow-hidden bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-          <Combobox.Input
-            className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-            displayValue={(recipe) => recipe.title}
-            // onChange={(event) => setQuery(event.target.value)}
-            name={props.name}
-            id={props.id}
-           onChange={onChange}
-            
-          />
-          <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-            <ChevronUpDownIcon
-              className="h-6 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-          </Combobox.Button>
-        </div>
-        <Transition
-          as={Fragment}
-          leave="transition ease-in duration-100"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-          afterLeave={() => setQuery('')}
-        >
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredRecipes.length === 0 && query !== '' ? (
-              <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                Nothing found.
-              </div>
-            ) : (
-              filteredRecipes.map((recipe) => (
-                <Combobox.Option
-                  key={recipe.id}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-teal-600 text-white' : 'text-gray-900'
-                    }`
-                  }
-                  value={recipe}
-                >
-                  {({ selected, active }) => (
-                    <>
-                      <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
-                      >
-                        {recipe.title}
-                      </span>
-                      {selected ? (
-                        <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? 'text-white' : 'text-teal-600'
-                          }`}
-                        >
-                          <CheckIcon className="h-6 w-5" aria-hidden="true" />
-                        </span>
-                      ) : null}
-                    </>
-                  )}
-                </Combobox.Option>
-              ))
-            )}
-          </Combobox.Options>
-        </Transition>
-      </div>
-    </Combobox>
-  </div>
-  )
+  const onChangeHandler = (data) => {
+    let matches = [];
+    if (data.length > 0) {
+      matches = recipesData.filter((recipe) => {
+        const regex = new RegExp(`${data}`, "gi");
+        return recipe.title.match(regex);
+      });
+    }
+    setSuggestions(matches);
+    setData(data);
+  };
+
+  return (
+    <>
+      <input
+        type="text"
+        onChange={(event) => onChangeHandler(event.target.value)}
+        value={data}
+        onBlur={() =>{
+          setTimeout(() =>{
+            setSuggestions([])
+          },200)
+        }}
+      />
+      {suggestions && suggestions.map((suggestion) => 
+       <div
+            className="text-black static z-10 ring-2 ring-black cursor-pointer bg-lime-400 hover:bg-lime-600 "
+            key={suggestion.id}
+            onClick={() => onSuggestHandler(console.log('lista',suggestion.title))}
+       >
+        {suggestion.title}
+       </div>
+      )}
+    </>
+  );
 }
