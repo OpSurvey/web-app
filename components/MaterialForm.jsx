@@ -2,8 +2,13 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import NavbarLanding from "./NavbarLanding";
 import FooterLanding from "./FooterLanding";
+import { useRouter } from 'next/router'
+
 
 export default function MaterialForm() {
+
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -11,12 +16,18 @@ export default function MaterialForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/materials`, {
+    console.log("data", data);
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
       method:"POST",
+      headers: {
+        "Content-Type": "application/json"
+        },
       body:JSON.stringify(data)
     })
-    console.log(result)
+    console.log('result', result)
+    const response= await result.json()
+    //Redirección
+    // router.push("/user/dashboard")
   };
 
   return (

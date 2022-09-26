@@ -25,9 +25,10 @@ export default function QuoterForm() {
     })
     const response= await result.json()
     
-    const token= response.data.token
-    
-    localStorage.setItem("token", token)
+    // const token= response.data.token
+    console.log(response)
+
+    // localStorage.setItem("token", token)
 
     router.push("/user/dashboard")
   }
