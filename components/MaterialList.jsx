@@ -1,4 +1,13 @@
+import { useEffect, useState } from "react";
+
 export default function MaterialList() {
+  const [materials, setMaterials] = useState([])
+  
+  useEffect(()=>{
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`)
+    .then((response) => response.json())
+  },[])
+  
   return (
     <>
       <div className="overflow-x-auto relative lg:px-36">

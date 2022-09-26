@@ -10,13 +10,13 @@ export default function MaterialForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/materials`, {
+      method:"POST",
+      body:JSON.stringify(data)
+    })
+    console.log(result)
   };
 
   return (
