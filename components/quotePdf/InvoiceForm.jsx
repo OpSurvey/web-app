@@ -203,7 +203,6 @@ const InvoiceForm = () => {
                     <input
                       name="price"
                       value={childInfo[index]?.price}
-                      onChange={editRecipeHandler}
                     />
                   </td>
                   <td className="flex items-center justify-center">
