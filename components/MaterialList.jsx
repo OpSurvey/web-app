@@ -1,15 +1,34 @@
+import { Button } from "./Button";
 import { useEffect, useState } from "react";
 
 export default function MaterialList() {
-  const [materials, setMaterials] = useState([])
-  
-  useEffect(()=>{
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`)
-    .then((response) => response.json())
-  },[])
-  
+  const [materials, setMaterials] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("token", token);
+
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((json) => {
+        console.log(json);
+        setMaterials(json.material);
+        console.log(materials);
+      });
+  }, [setMaterials]);
+
   return (
     <>
+      <div className="overflow-x-auto relative lg:px-36">
+        <Button></Button>
+      </div>
       <div className="overflow-x-auto relative lg:px-36">
         <table className="w-full text-basic text-left text-white bg-black">
           <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
@@ -21,7 +40,7 @@ export default function MaterialList() {
                 Marca
               </th>
               <th scope="col" className="py-3 px-2">
-                Cotizador
+                Proveedor
               </th>
               <th scope="col" className="py-3 px-2">
                 Precio
@@ -31,20 +50,24 @@ export default function MaterialList() {
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="bg-black border-b">
-              <th
-                scope="row"
-                className="py-4 px-6 font-normal text-white whitespace-nowrap"
-              >
-                Cemento
-              </th>
-              <td className="py-4 px-2">Cemex</td>
-              <td className="py-4 px-2">Bere Cervantes</td>
-              <td className="py-4 px-2">214.00</td>
-              <td className="py-4 px-2">Costal</td>
-            </tr>
-          </tbody>
+          {materials.map((material) => {
+            return (
+              <tbody>
+                <tr className="bg-black border-b">
+                  <th
+                    scope="row"
+                    className="py-4 px-6 font-normal text-white whitespace-nowrap"
+                  >
+                    {material.name}
+                  </th>
+                  <td className="py-4 px-2">{material.brand}</td>
+                  <td className="py-4 px-2">{material.supplier}</td>
+                  <td className="py-4 px-2">{material.price}</td>
+                  <td className="py-4 px-2">{material.unit}</td>
+                </tr>
+              </tbody>
+            );
+          })}
         </table>
       </div>
     </>
