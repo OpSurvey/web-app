@@ -23,9 +23,9 @@ export default function Home() {
               <PresentationCard />
             </article>
           </section>
-          <section name="howToUse" className="xs:pt-6 md: lg:ml-12">
-            {/* How to use the app */}
 
+          {/* How to use the app */}
+          <section name="howToUse" className="xs:pt-6 md: lg:ml-12">
             <HowToUseCard
               backgroundColor="bg-lime-400"
               direction="flex-row"
@@ -66,13 +66,16 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-16 md:mx-2 lg:mx-8">
+            <section
+              name="clientsOpinion"
+              className=" bg-white pt-16 md:mx-2 lg:mx-8"
+            >
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
               <article
                 name="opinionCard"
-                className="pt-8 md:flex md:flex-row md:justify-between"
+                className="pt-8 relative md:flex md:flex-row md:justify-between bg-red-500"
               >
                 <OpinionCard
                   clientName="Berenice Cervantes"
