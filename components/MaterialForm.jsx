@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
-import { useRouter } from 'next/router'
-
+import { useRouter } from "next/router";
+import NavDashboard from "./NavDashboard";
 
 export default function MaterialForm() {
-  const router=useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -16,25 +14,25 @@ export default function MaterialForm() {
 
   const onSubmit = async (data) => {
     console.log(data);
-    const token= localStorage.getItem('token')
-    console.log('token', token)
+    const token = localStorage.getItem("token");
+    console.log("token", token);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
-      method:"POST",
+      method: "POST",
       headers: {
-      "Content-Type": "application/json", 
-      "Authorization": `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body:JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
 
-    window.alert('El material ha sido agregado')
+    window.alert("El material ha sido agregado");
 
-    router.push("/user/dashboard")
+    router.push("/materials");
   };
 
   return (
     <>
-      <NavbarLanding />
+      <NavDashboard />
       <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}

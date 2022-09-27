@@ -1,5 +1,6 @@
-import { Button } from "./Button";
+import Button from "./Button";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function MaterialList() {
   const [materials, setMaterials] = useState([]);
@@ -24,10 +25,21 @@ export default function MaterialList() {
       });
   }, [setMaterials]);
 
+  const router = useRouter();
+
+  const onClick = () => {
+    console.log("click");
+    router.push("/material");
+  };
+
   return (
     <>
-      <div className="overflow-x-auto relative lg:px-36">
-        <Button></Button>
+      <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40">
+        <Button
+          onClick={onClick}
+          style="bg-lime-400 text-black"
+          text="Agregar material"
+        />
       </div>
       <div className="overflow-x-auto relative lg:px-36">
         <table className="w-full text-basic text-left text-white bg-black">
