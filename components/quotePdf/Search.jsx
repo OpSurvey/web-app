@@ -1,33 +1,36 @@
 import { Fragment, useState, useEffect } from "react";
 
 export default function Search(props) {
-  const [recipesData, setRecipesData] = useState([]);
-  const [data, setData] = useState("");
+  const [quoteData, setQuoteData] = useState([]);
+  const [data, setData] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [filterInfo, setFilterInfo] = useState({});
 
-  console.log('props',props)
 
   useEffect(() => {
     fetch("https://api.storerestapi.com/products")
       .then((res) => res.json())
       .then((data) => {
-        setRecipesData(data.data);
+        setQuoteData(data.data);
       });
   }, []);
 
   const onSuggestHandler = (data) => {
-    setData(data)
+    setData(data.title)
+    props.ChangeData(data)
     console.log('dataSuggestHandler', data);
     setSuggestions([])
   }
+  
 
   const onChangeHandler = (data) => {
     let matches = [];
     if (data.length > 0) {
-      matches = recipesData.filter((recipe) => {
+      matches = quoteData.filter(quoteInfo => {
         const regex = new RegExp(`${data}`, "gi");
-        return recipe.title.match(regex);
-      });
+        
+        return quoteInfo.title.match(regex);
+      })
     }
     setSuggestions(matches);
     setData(data);
@@ -37,7 +40,7 @@ export default function Search(props) {
     <>
       <input
         type="text"
-        onChange={(event) => onChangeHandler(event.target.value)}
+        onChange={event => onChangeHandler(event.target.value)}
         value={data}
         onBlur={() =>{
           setTimeout(() =>{
@@ -48,8 +51,8 @@ export default function Search(props) {
       {suggestions && suggestions.map((suggestion) => 
        <div
             className="text-black static z-10 ring-2 ring-black cursor-pointer bg-lime-400 hover:bg-lime-600 "
-            key={suggestion.id}
-            onClick={() => onSuggestHandler(console.log('lista',suggestion.title))}
+            key={suggestion._id}
+            onClick={() => { onSuggestHandler(suggestion)}}
        >
         {suggestion.title}
        </div>

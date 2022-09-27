@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import QuoteField from './QuoteField';
 import Search from './Search';
 
 const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
+  const [childInfo, setChildInfo] = useState({});
+  console.log('child info', childInfo)
+
   const deleteQuoteHandler = () => {
     onDeleteRecipe(id);
   };
@@ -10,18 +13,7 @@ const QuoteItem = ({ id, name, qty, price, onDeleteRecipe, onEditRecipe }) => {
 
   return (
     <tr className='text-black'> 
-    <td className="w-full">
-      <Search
-        onEditRecipe={(event) => onEditRecipe(event)}
-        cellData={{
-          placeholder: 'Recetas',
-          type: 'text',
-          name: 'name',
-          id: id,
-          value: name,
-        }}
-      />
-    </td>
+
     <td className="min-w-[65px] h-10">
       <QuoteField
         onEditRecipe={(event) => onEditRecipe(event)}

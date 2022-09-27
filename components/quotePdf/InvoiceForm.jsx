@@ -1,32 +1,42 @@
-import React, { useState } from 'react';
-import { uid } from 'uid';
-import QuoteItem from './QuoteItem';
-import QuoteModal from './QuoteModal';
-import Search from './Search';
-import incrementString from '../../helpers/incrementString';
+import React, { useState } from "react";
+import { uid } from "uid";
+import QuoteItem from "./QuoteItem";
+import Search from "./Search";
+import incrementString from "../../helpers/incrementString";
 
 const date = new Date();
-const today = date.toLocaleDateString('en-GB', {
-  month: 'numeric',
-  day: 'numeric',
-  year: 'numeric',
+const today = date.toLocaleDateString("en-GB", {
+  month: "numeric",
+  day: "numeric",
+  year: "numeric",
 });
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [tax, setTax] = useState('');
+  const [childInfo, setChildInfo] = useState([{}]);
+  const [tax, setTax] = useState("");
   const [quoteNumber, setQuoteNumber] = useState(1);
-  const [quoterName, setQuoterName] = useState('');
-  const [customerName, setCustomerName] = useState('');
+  const [quoterName, setQuoterName] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [recipes, setRecipes] = useState([
     {
       id: 1,
-      name: '',
-      qty: 1,
-      price: '1.00',
+      name: "",
+      quantity: 1,
+      price: "1.00",
     },
   ]);
 
+  console.log('childinf',childInfo)
+
+  // childInfo.length >= 1 ? setRecipes(childInfo) : setRecipes({
+  //   id: 1,
+  //   name: "",
+  //   quantity: 1,
+  //   price: "1.00",
+  // })
+
+  console.log("childInfo", childInfo);
   const reviewQuoteHandler = (event) => {
     event.preventDefault();
     setIsOpen(true);
@@ -37,9 +47,9 @@ const InvoiceForm = () => {
     setRecipe([
       {
         id: 2,
-        name: '',
-        qty: 1,
-        price: '1.00',
+        name: "",
+        quantity: 1,
+        price: "1.00",
       },
     ]);
   };
@@ -50,15 +60,17 @@ const InvoiceForm = () => {
       ...prevRecipe,
       {
         id: id,
-        name: '',
-        qty: 1,
-        price: '1.00',
+        name: "",
+        quantity: 1,
+        price: "1.00",
       },
     ]);
   };
 
   const deleteRecipeHandler = (id) => {
-    setRecipes((prevRecipe) => prevRecipe.filter((recipe) => recipe.id !== id));
+    console.log('deleteRecipeHandler', id)
+    const newRecipes = recipes.filter((recipe) => recipe.id !== id)
+    setRecipes(newRecipes)
   };
 
   const editRecipeHandler = (event) => {
@@ -68,11 +80,9 @@ const InvoiceForm = () => {
       value: event.target.value,
     };
 
-    console.log('editedRecipe', editedRecipe);
-
     const newRecipe = recipes.map((recipe) => {
       for (const key in recipe) {
-        if (key === editedRecipe.name && recipe.id === editedRecipe.id) {
+        if (key === editedRecipe.name && recipe._id === editedRecipe._id) {
           recipe[key] = editedRecipe.value;
         }
       }
@@ -82,9 +92,17 @@ const InvoiceForm = () => {
     setRecipes(newRecipe);
   };
 
+  const onSearchChange = (data,index) => {
+
+      childInfo[index] = data 
+      setChildInfo([...childInfo])
+
+  }
+
+
   const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
-      return prev + Number(curr.price * Math.floor(curr.qty));
+      return prev + Number(curr.price * Math.floor(curr.quantity));
     else return prev;
   }, 0);
   const taxRate = (tax * subtotal) / 100;
@@ -100,7 +118,6 @@ const InvoiceForm = () => {
           <div className="flex space-x-2">
             <span className="font-bold">Fecha: </span>
             <span>{today}</span>
-            
           </div>
           <div className="flex items-center space-x-2">
             <label className="font-bold" htmlFor="quoteNumber">
@@ -116,9 +133,7 @@ const InvoiceForm = () => {
               step="1"
               value={quoteNumber}
               onChange={(event) => setQuoteNumber(event.target.value)}
-
             />
-            
           </div>
         </div>
         <h1 className="text-center text-lg font-bold">Cotización</h1>
@@ -129,6 +144,7 @@ const InvoiceForm = () => {
           >
             Cotizador:
           </label>
+
           <input
             required
             className="flex-1 text-black"
@@ -159,27 +175,61 @@ const InvoiceForm = () => {
         <table className="w-full p-4 text-left">
           <thead>
             <tr className="border-b border-gray-900/10 text-white text-sm md:text-base">
-              <th className='text-white'>Concepto</th>
-              <th className='text-white'>Cantidad</th>
+              <th className="text-white">Concepto</th>
+              <th className="text-white">Cantidad</th>
               <th className=" text-white text-center">Precio</th>
               <th className="text-center">Eliminar</th>
             </tr>
           </thead>
-          <tbody className=''>
-            {recipes.map((recipe) => (
-
-              <>
-              <QuoteItem
-                key={recipe.id}
-                id={recipe.id}
-                name={recipe.name}
-                qty={recipe.qty}
-                price={recipe.price}
-                onDeleteRecipe={deleteRecipeHandler}
-                onEditRecipe={editRecipeHandler}
-              />
-              </>
-
+          <tbody className="">
+            {recipes.map((recipe, index) => (
+                <tr
+                key={childInfo[index]?._id}
+                >
+                    
+                  <td className="w-full text-black">
+                    <Search
+                      ChangeData={(childInfo) => onSearchChange(childInfo, index)}
+                      value={childInfo[index]?.title}
+                    />
+                  </td>
+                  <td className="min-w-[65px] h-10 text-black">
+                    <input
+                      name="recipes"
+                      onChange={editRecipeHandler}
+                    />
+                  </td>
+                  <td className="min-w-[65px] h-10 text-black">
+                    <input
+                      name="price"
+                      value={childInfo[index]?.price}
+                      onChange={editRecipeHandler}
+                    />
+                  </td>
+                  <td className="flex items-center justify-center">
+                    delete
+                    <div
+                      
+                      className="rounded-md bg-red-500 p-2 text-white shadow-sm transition-colors duration-200 hover:bg-red-600"
+                      onClick={() => deleteRecipeHandler(childInfo[index]?._id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </div>
+                  </td>
+                </tr>
             ))}
           </tbody>
         </table>
@@ -198,7 +248,7 @@ const InvoiceForm = () => {
           <div className="flex w-full justify-between md:w-1/2">
             <span className="font-bold">Impuestos:</span>
             <span>
-              ({tax || '0'}%)${taxRate.toFixed(2)}
+              ({tax || "0"}%)${taxRate.toFixed(2)}
             </span>
           </div>
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
@@ -217,20 +267,7 @@ const InvoiceForm = () => {
           >
             Revisar Cotización
           </button>
-          <QuoteModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            invoiceInfo={{
-              quoteNumber,
-              quoterName,
-              customerName,
-              subtotal,
-              taxRate,
-              total,
-            }}
-            recipes={recipes}
-            onAddNextQuote={addNextQuoteHandler}
-          />
+        
           <div className="space-y-4 py-2 ">
             <div className="space-y-2">
               <label className="text-sm font-bold md:text-base" htmlFor="tax">
@@ -260,4 +297,4 @@ const InvoiceForm = () => {
   );
 };
 
-export default InvoiceForm
+export default InvoiceForm;
