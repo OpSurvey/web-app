@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavDashboard from "./NavDashboard";
 
-export default function MaterialList() {
+export default function ClientList() {
   const [materials, setMaterials] = useState([]);
 
   useEffect(() => {
