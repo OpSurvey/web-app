@@ -1,62 +1,56 @@
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Search(props) {
-  const [quoteData, setQuoteData] = useState([]);
-  const [data, setData] = useState('');
+  const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [filterInfo, setFilterInfo] = useState({});
-
 
   useEffect(() => {
-    fetch("https://api.storerestapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setQuoteData(data.data);
-      });
+    setValue(value || props.value);
   }, []);
 
-  const onSuggestHandler = (data) => {
-    setData(data.title)
-    props.ChangeData(data)
-    console.log('dataSuggestHandler', data);
-    setSuggestions([])
-  }
-  
+  const onSelectSuggestion = (suggestionSelected) => {
+    setValue(suggestionSelected.name);
+    props.ChangeData(suggestionSelected);
+    console.log("suggestionSelected", suggestionSelected);
+    setSuggestions([]);
+  };
 
-  const onChangeHandler = (data) => {
+  const onChangeHandler = (text) => {
     let matches = [];
-    if (data.length > 0) {
-      matches = quoteData.filter(quoteInfo => {
-        const regex = new RegExp(`${data}`, "gi");
-        
-        return quoteInfo.title.match(regex);
-      })
+    if (text.length > 0) {
+      matches = props.options.filter((option) => {
+        const regex = new RegExp(`${text}`, "gi");
+        return option.name.match(regex);
+      });
     }
     setSuggestions(matches);
-    setData(data);
+    setValue(text);
   };
 
   return (
     <>
       <input
         type="text"
-        onChange={event => onChangeHandler(event.target.value)}
-        value={data}
-        onBlur={() =>{
-          setTimeout(() =>{
-            setSuggestions([])
-          },200)
+        onChange={(event) => onChangeHandler(event.target.value)}
+        value={value}
+        onBlur={() => {
+          setTimeout(() => {
+            setSuggestions([]);
+          }, 200);
         }}
       />
-      {suggestions && suggestions.map((suggestion) => 
-       <div
+      {suggestions &&
+        suggestions.map((suggestion) => (
+          <div
             className="text-black static z-10 ring-2 ring-black cursor-pointer bg-lime-400 hover:bg-lime-600 "
             key={suggestion._id}
-            onClick={() => { onSuggestHandler(suggestion)}}
-       >
-        {suggestion.title}
-       </div>
-      )}
+            onClick={() => {
+              onSelectSuggestion(suggestion);
+            }}
+          >
+            {suggestion.name}
+          </div>
+        ))}
     </>
   );
 }
