@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import { uid } from "uid";
-import QuoteItem from "./QuoteItem";
+import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import incrementString from "../../helpers/incrementString";
 
 const date = new Date();
 const today = date.toLocaleDateString("en-GB", {
@@ -12,11 +9,9 @@ const today = date.toLocaleDateString("en-GB", {
 });
 
 const InvoiceForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [childInfo, setChildInfo] = useState([{}]);
+  const [userRecipes, setUserRecipes] = useState([]);
   const [tax, setTax] = useState("");
   const [quoteNumber, setQuoteNumber] = useState(1);
-  const [quoterName, setQuoterName] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [recipes, setRecipes] = useState([
     {
@@ -27,52 +22,42 @@ const InvoiceForm = () => {
     },
   ]);
 
-  console.log('childinf',childInfo)
-
-  // childInfo.length >= 1 ? setRecipes(childInfo) : setRecipes({
-  //   id: 1,
-  //   name: "",
-  //   quantity: 1,
-  //   price: "1.00",
-  // })
-
-  console.log("childInfo", childInfo);
-  const reviewQuoteHandler = (event) => {
-    event.preventDefault();
-    setIsOpen(true);
-  };
-
-  const addNextQuoteHandler = () => {
-    setQuoteNumber((prevNumber) => incrementString(prevNumber));
-    setRecipe([
-      {
-        id: 2,
-        name: "",
-        quantity: 1,
-        price: "1.00",
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    ]);
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("recipes data: ", data);
+        setUserRecipes(data.recipe);
+      });
+  }, []);
+
+  const onSubmit = (event) => {
+    alert("Form submit");
   };
 
   const addRecipeHandler = () => {
-    const id = uid(6);
     setRecipes((prevRecipe) => [
       ...prevRecipe,
       {
-        id: id,
+        _id: "",
         name: "",
         quantity: 1,
-        price: "1.00",
+        price: "0",
       },
     ]);
   };
 
-  const deleteRecipeHandler = (id) => {
-    console.log('deleteRecipeHandler', id)
-    const newRecipes = recipes.filter((recipe) => recipe.id !== id)
-    setRecipes(newRecipes)
+  const deleteRecipeHandler = (idToDelete) => {
+    console.log("deleteRecipeHandler", idToDelete);
+    const newRecipes = recipes.filter((recipe) => recipe._id !== idToDelete);
+    setRecipes(newRecipes);
   };
 
+  // TODO: fix
   const editRecipeHandler = (event) => {
     const editedRecipe = {
       id: event.target.id,
@@ -92,13 +77,12 @@ const InvoiceForm = () => {
     setRecipes(newRecipe);
   };
 
-  const onSearchChange = (data,index) => {
-
-      childInfo[index] = data 
-      setChildInfo([...childInfo])
-
-  }
-
+  const onSearchChange = (data, index) => {
+    console.log("data on search change: ", data);
+    recipes[index] = data;
+    console.log("newRecipes: ", recipes);
+    setRecipes([...recipes]);
+  };
 
   const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
@@ -111,7 +95,7 @@ const InvoiceForm = () => {
   return (
     <form
       className="relative flex flex-col px-2 md:flex-row sm:w-100"
-      onSubmit={reviewQuoteHandler}
+      onSubmit={onSubmit}
     >
       <div className="my-6 flex-1 space-y-2 rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">
         <div className="flex flex-col justify-between space-y-2 border-b border-gray-900/10 pb-4 md:flex-row md:items-center md:space-y-0">
@@ -120,6 +104,7 @@ const InvoiceForm = () => {
             <span>{today}</span>
           </div>
           <div className="flex items-center space-x-2">
+            {/* TODO: Traer de la base de datos */}
             <label className="font-bold" htmlFor="quoteNumber">
               Cotización #:
             </label>
@@ -139,31 +124,14 @@ const InvoiceForm = () => {
         <h1 className="text-center text-lg font-bold">Cotización</h1>
         <div className="grid grid-cols-2 gap-2 pt-4 pb-8">
           <label
-            htmlFor="quoterName"
-            className="text-sm font-bold sm:text-base"
-          >
-            Cotizador:
-          </label>
-
-          <input
-            required
-            className="flex-1 text-black"
-            placeholder="Cotizador"
-            type="text"
-            name="quoterName"
-            id="quoterName"
-            value={quoterName}
-            onChange={(event) => setQuoterName(event.target.value)}
-          />
-          <label
             htmlFor="customerName"
-            className="col-start-2 row-start-1 text-sm font-bold md:text-base"
+            className="col-start-1 row-start-1 text-sm font-bold md:text-base"
           >
             Cliente:
           </label>
           <input
             required
-            className="flex-1 text-black"
+            className="flex-1 text-black col-start-1 row-start-2"
             placeholder="Nombre del cliente"
             type="text"
             name="customerName"
@@ -183,53 +151,45 @@ const InvoiceForm = () => {
           </thead>
           <tbody className="">
             {recipes.map((recipe, index) => (
-                <tr
-                key={childInfo[index]?._id}
-                >
-                    
-                  <td className="w-full text-black">
-                    <Search
-                      ChangeData={(childInfo) => onSearchChange(childInfo, index)}
-                      value={childInfo[index]?.title}
-                    />
-                  </td>
-                  <td className="min-w-[65px] h-10 text-black">
-                    <input
-                      name="recipes"
-                      onChange={editRecipeHandler}
-                    />
-                  </td>
-                  <td className="min-w-[65px] h-10 text-black">
-                    <input
-                      name="price"
-                      value={childInfo[index]?.price}
-                      onChange={editRecipeHandler}
-                    />
-                  </td>
-                  <td className="flex items-center justify-center">
-                    delete
-                    <div
-                      
-                      className="rounded-md bg-red-500 p-2 text-white shadow-sm transition-colors duration-200 hover:bg-red-600"
-                      onClick={() => deleteRecipeHandler(childInfo[index]?._id)}
+              <tr key={recipe._id}>
+                <td className="w-full text-black">
+                  <Search
+                    ChangeData={(recipeData) =>
+                      onSearchChange(recipeData, index)
+                    }
+                    value={recipe.name}
+                    options={userRecipes}
+                  />
+                </td>
+                <td className="min-w-[65px] h-10 text-black">
+                  <input name="quantity" onChange={editRecipeHandler} />
+                </td>
+                <td className="min-w-[65px] h-10 text-black">
+                  <input name="price" value={recipe.cost} />
+                </td>
+                <td className="flex items-center justify-center">
+                  delete
+                  <div
+                    className="rounded-md bg-red-500 p-2 text-white shadow-sm transition-colors duration-200 hover:bg-red-600"
+                    onClick={() => deleteRecipeHandler(recipe._id)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        />
-                      </svg>
-                    </div>
-                  </td>
-                </tr>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
@@ -267,7 +227,7 @@ const InvoiceForm = () => {
           >
             Revisar Cotización
           </button>
-        
+
           <div className="space-y-4 py-2 ">
             <div className="space-y-2">
               <label className="text-sm font-bold md:text-base" htmlFor="tax">
