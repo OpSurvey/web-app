@@ -6,8 +6,7 @@ import { useRouter } from 'next/router'
 
 
 export default function MaterialForm() {
-
-  const router = useRouter()
+  const router=useRouter()
 
   const {
     register,
@@ -16,18 +15,21 @@ export default function MaterialForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("data", data);
+    console.log(data);
+    const token= localStorage.getItem('token')
+    console.log('token', token)
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
       method:"POST",
       headers: {
-        "Content-Type": "application/json"
-        },
+      "Content-Type": "application/json", 
+      "Authorization": `Bearer ${token}`
+      },
       body:JSON.stringify(data)
     })
-    console.log('result', result)
-    const response= await result.json()
-    //Redirección
-    // router.push("/user/dashboard")
+
+    window.alert('El material ha sido agregado')
+
+    router.push("/user/dashboard")
   };
 
   return (
