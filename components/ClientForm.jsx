@@ -33,7 +33,7 @@ export default function ClientForm() {
   return (
     <>
       <NavDashboard />
-      <main className="py-10 lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="py-6 lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full sm:rounded-lg"

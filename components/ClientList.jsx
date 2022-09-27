@@ -36,7 +36,7 @@ export default function ClientList() {
   return (
     <>
       <NavDashboard />
-      <div className="flex flex-col w-full h-full bg-red-500">
+      <div className="flex flex-col w-full h-full pt-6">
         <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4">
           <Button
             onClick={onClick}
