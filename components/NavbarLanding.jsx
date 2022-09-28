@@ -7,7 +7,7 @@ export default function NavbarLanding() {
 
   return (
     <>
-      <nav className="bg-black w-full flex top-0 left-0 xs:pl-6 xs:py-0 md:px-2 py-10 h-20 lg:px-2 xl:px-2 2xl:pl-40 2xl:pr-40">
+      <nav className="bg-black flex justify-between w-full pt-0 pr-2 pl-4 h-16 xs:pl-6 xs:py-0 md:px-2 md:h-20 lg:px-2 xl:px-2 2xl:pl-40 2xl:pr-40">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link href="/">
             <a className="flex items-center">
@@ -17,12 +17,12 @@ export default function NavbarLanding() {
             </a>
           </Link>
 
-          <div className="flex md:order-2">
-            <ul className="flex flex-col p-4 mt-0 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:bg-black">
+          <div className="flex">
+            <ul className="bg-black flex flex-col pr-4 xs:pr-2 md:p-4 mt-0 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <Link href="./login">
                   <a
-                    className="block py-2 pr-4 pl-3 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400 md:p-0"
+                    className="block py-0 pr-0 pl-3 xs:pr-0 sm:pr-0 md:pr-4 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400 md:p-0"
                     aria-current="page"
                   >
                     Login

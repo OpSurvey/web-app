@@ -66,7 +66,7 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-16 md:mx-2 lg:mx-8">
+            <section name="clientsOpinion" className="pt-16">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
