@@ -16,16 +16,16 @@ export default function Home() {
       <header>
         <NavbarLanding />
       </header>
-      <main className=" bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
+      <main className=" bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-44 lg:pl-36 lg:pb-8">
         <section className="pt-10 xs:w-full p-0 m-0 md:grid md:mb-2 lg:grid-cols-[500px_1fr] lg:my-2 ">
           <section className="firsthView">
             <article name="presentationCard" className="xs: p-1 lg:mx-2">
               <PresentationCard />
             </article>
           </section>
+          <section name="howToUse" className="xs:pt-6 lg:ml-12">
+            {/* How to use the app */}
 
-          {/* How to use the app */}
-          <section name="howToUse" className="xs:pt-6 md: lg:ml-12">
             <HowToUseCard
               backgroundColor="bg-lime-400"
               direction="flex-row"
@@ -66,16 +66,13 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section
-              name="clientsOpinion"
-              className=" bg-white pt-16 md:mx-2 lg:mx-8"
-            >
+            <section name="clientsOpinion" className="pt-16 md:mx-2 lg:mx-8">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
               <article
                 name="opinionCard"
-                className="pt-8 relative md:flex md:flex-row md:justify-between bg-red-500"
+                className="pt-8 md:flex md:flex-row md:justify-between"
               >
                 <OpinionCard
                   clientName="Berenice Cervantes"
