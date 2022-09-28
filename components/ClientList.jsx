@@ -8,7 +8,6 @@ export default function ClientList() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("token", token);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/client`, {
       headers: {
@@ -16,20 +15,16 @@ export default function ClientList() {
       },
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         setClients(json.data.clients);
-        console.log(clients);
       });
   }, [setClients]);
 
   const router = useRouter();
 
   const onClick = () => {
-    console.log("click");
     router.push("/client");
   };
 
