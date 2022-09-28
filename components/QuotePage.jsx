@@ -18,7 +18,7 @@ export default function QuotePage() {
             name="date"
             className="bg-white border-2 border-black rounded p-2 w-1/3 text-center"
           >
-            <p>Cotizacion 001</p>
+            <p className="font-bold">Cotizacion 001</p>
             <p>createdAt</p>
           </div>
         </section>
@@ -110,7 +110,7 @@ export default function QuotePage() {
             <p>Descuentos</p>
             <p>Recargos</p>
             <p>I.V.A</p>
-            <p>TOTAL</p>
+            <p className="font-bold">TOTAL</p>
           </div>
         </section>
       </main>
