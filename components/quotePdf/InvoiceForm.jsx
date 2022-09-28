@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
+import SearchClients from "./SearchClients";
+import { useRouter } from "next/router";
 
 const date = new Date();
 const today = date.toLocaleDateString("en-GB", {
@@ -13,8 +15,8 @@ const InvoiceForm = () => {
   const [profit, setProfit] = useState("");
   const [riskFactor, setRiskFactor] = useState("");
   const [financing, setFinancing] = useState("");
-  const [quoteNumber, setQuoteNumber] = useState(1);
-  const [customerName, setCustomerName] = useState("");
+  const [clientName, setClientName] = useState({});
+  const [notes, setNotes] = useState("");
   const [recipes, setRecipes] = useState([
     {
       id: 1,
@@ -23,8 +25,7 @@ const InvoiceForm = () => {
       price: "1.00",
     },
   ]);
-
-  console.log("recetas para POST", recipes);
+  const router = useRouter();
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
@@ -34,35 +35,26 @@ const InvoiceForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("recipes data: ", data);
         setUserRecipes(data.recipe);
       });
   }, []);
 
-  const ejemplo = {
-    clientId: "632d4531e5204c58f043a1db",
-    profit: 45,
-    riskFactor: 15,
-    financing: 4,
-    note: "Quote Alejandro",
-    recipes: [{ id: "63310b32f0968000cd95e668", quantity: 5 }],
-  };
-
   const onSubmit = async (event) => {
     event.preventDefault();
     const recipeData = {
-      SKU: sku,
-      name: recipeName,
-      unit: recipeUnits,
-      tags: [recipeTags],
-      type: recipeType,
-      materials: materials.map((material) => {
+      clientId: clientName._id,
+      profit: profit,
+      riskFactor: riskFactor,
+      financing: financing,
+      note: notes,
+      recipes: recipes.map((recipe) => {
         return {
-          id: material._id,
-          quantity: material.quantity,
+          id: recipe._id,
+          quantity: recipe.quantity,
         };
       }),
     };
+
     const token = localStorage.getItem("token");
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
       method: "POST",
@@ -75,7 +67,7 @@ const InvoiceForm = () => {
 
     window.alert("La receta ha sido agregada");
 
-    router.push("/recipeList");
+    router.push("/user/dashboard");
   };
   const addRecipeHandler = () => {
     setRecipes((prevRecipe) => [
@@ -90,7 +82,6 @@ const InvoiceForm = () => {
   };
 
   const deleteRecipeHandler = (idToDelete) => {
-    console.log("deleteRecipeHandler", idToDelete);
     const newRecipes = recipes.filter((recipe) => recipe._id !== idToDelete);
     setRecipes(newRecipes);
   };
@@ -101,11 +92,11 @@ const InvoiceForm = () => {
   };
 
   const onSearchChange = (data, index) => {
-    console.log("data on search change: ", data);
     recipes[index] = data;
-    console.log("newRecipes: ", recipes);
     setRecipes([...recipes]);
   };
+
+  console.log("Recetas", recipes);
 
   const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
@@ -126,41 +117,21 @@ const InvoiceForm = () => {
             <span className="font-bold">Fecha: </span>
             <span>{today}</span>
           </div>
-          <div className="flex items-center space-x-2">
-            {/* TODO: Traer de la base de datos */}
-            <label className="font-bold" htmlFor="quoteNumber">
-              Cotización #:
-            </label>
-            <input
-              required
-              className="max-w-[130px] text-black"
-              type="number"
-              name="quoteNumber"
-              id="quoteNumber"
-              min="1"
-              step="1"
-              value={quoteNumber}
-              onChange={(event) => setQuoteNumber(event.target.value)}
-            />
-          </div>
         </div>
         <h1 className="text-center text-lg font-bold">Cotización</h1>
-        <div className="grid grid-cols-2 gap-2 pt-4 pb-8">
+        <div className=" gap-2 pt-4 pb-8">
           <label
             htmlFor="customerName"
-            className="col-start-1 row-start-1 text-sm font-bold md:text-base"
+            className=" text-sm font-bold md:text-base"
           >
             Cliente:
           </label>
-          <input
-            required
-            className="flex-1 text-black col-start-1 row-start-2"
-            placeholder="Nombre del cliente"
-            type="text"
-            name="customerName"
-            id="customerName"
-            value={customerName}
-            onChange={(event) => setCustomerName(event.target.value)}
+          <div></div>
+          <SearchClients
+            className="text-black"
+            ChangeClientName={(clientName) => setClientName(clientName)}
+            value={clientName.firstName}
+            options={clientName}
           />
         </div>
         <table className="w-full p-4 text-left">
@@ -172,7 +143,7 @@ const InvoiceForm = () => {
               <th className="text-center">Eliminar</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {recipes.map((recipe, index) => (
               <tr key={recipe._id}>
                 <td className="w-full text-black">
@@ -186,6 +157,7 @@ const InvoiceForm = () => {
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
                   <input
+                    className="h-10"
                     name="quantity"
                     onChange={(event) =>
                       editQuantityHandler(event.target.value, index)
@@ -193,7 +165,12 @@ const InvoiceForm = () => {
                   />
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
-                  <input name="price" value={recipe.cost} disabled="disabled" />
+                  <input
+                    className="h-10"
+                    name="price"
+                    value={recipe.cost}
+                    disabled="disabled"
+                  />
                 </td>
                 <td className="flex items-center justify-center">
                   <div
@@ -252,7 +229,7 @@ const InvoiceForm = () => {
             className="w-full rounded-md bg-lime-400 py-2 text-md font-semibold text-black shadow-sm hover:bg-lime-500"
             type="submit"
           >
-            Revisar Cotización
+            Guardar Cotización
           </button>
 
           <div className="space-y-4 py-2 ">
@@ -317,6 +294,24 @@ const InvoiceForm = () => {
                 <span className="rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 shadow-sm">
                   %
                 </span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-lime-400 md:text-base">
+                Notas:
+              </label>
+              <div className="flex items-center">
+                <input
+                  className="w-full h-52 rounded-xl bg-white text-black shadow-sm"
+                  type="text"
+                  name="notes"
+                  id="notes"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="Agrega notas a tu cotización"
+                  value={notes}
+                  onChange={(event) => setNotes(event.target.value)}
+                />
               </div>
             </div>
           </div>

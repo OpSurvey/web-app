@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-export default function Search(props) {
+export default function SearchClients(props) {
   const [value, setValue] = useState("");
+  const [clients, setClients] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
-  const [client, setClient] = useState([]);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/client`, {
@@ -13,22 +13,21 @@ export default function Search(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("recipes data: ", data);
+        setClients(data.data.clients);
       });
   }, []);
 
   const onSelectSuggestion = (suggestionSelected) => {
-    setValue(suggestionSelected.name);
-    props.ChangeData(suggestionSelected);
+    setValue(suggestionSelected.firstName);
     setSuggestions([]);
   };
 
   const onChangeHandler = (text) => {
     let matches = [];
     if (text.length > 0) {
-      matches = props.options.filter((option) => {
+      matches = clients.filter((option) => {
         const regex = new RegExp(`${text}`, "gi");
-        return option.name.match(regex);
+        return option.firstName.match(regex);
       });
     }
     setSuggestions(matches);
@@ -38,6 +37,7 @@ export default function Search(props) {
   return (
     <>
       <input
+        className="text-black"
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={value}
@@ -54,9 +54,10 @@ export default function Search(props) {
             key={suggestion._id}
             onClick={() => {
               onSelectSuggestion(suggestion);
+              props.ChangeClientName(suggestion);
             }}
           >
-            {suggestion.name}
+            {suggestion.firstName}
           </div>
         ))}
     </>
