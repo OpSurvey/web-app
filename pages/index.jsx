@@ -69,7 +69,7 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-16">
+            <section name="clientsOpinion" className="pt-6 lg:ml-10">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
@@ -104,7 +104,7 @@ export default function Home() {
         ) : (
           <section
             name="clientsOpinion"
-            className="hidden pt-16 md:mx-2 lg:mx-8"
+            className="hidden pt-16 md:mx-2 lg:mx-8 "
           >
             <p className="text-2xl text-center text-white md:text-4xl mb-6">
               Lo que dicen nuestros Clientes
@@ -137,12 +137,18 @@ export default function Home() {
 
         <article
           name="greenCard"
-          className="mt-36 bg-lime-400 pt-10 rounded-lg my-16 md:flex md:justify-between md:p-16"
+          className="p-5 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-12"
         >
           <div className="">
-            <p className="align-middle text-4xl font-bold">Todo por tan solo</p>
-            <h1 className="text-8xl font-black">$1 USD</h1>
-            <p className="text-2xl font-medium">por cotización enviada</p>
+            <p className="align-middle text-2xl font-bold md:text-4xl pb-2">
+              Todo por tan solo
+            </p>
+            <h1 className="text-2xl font-black md:text-4xl lg:text-5xl">
+              $1 USD
+            </h1>
+            <p className="text-2xl font-medium md:pt-2">
+              por cotización enviada
+            </p>
           </div>
           <div className="sx:w-full flex justify-center items-center flex-col p-5">
             <Link href="./quoter">

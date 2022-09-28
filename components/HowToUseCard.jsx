@@ -19,7 +19,7 @@ export default function HowToUseCard(props) {
               className={`"flex flex-col justify-center align-middle content-center pt-6 h-[200px] md:h-36 md:rounded-lg ${props.backgroundColor} leading-normal"`}
             >
               <p
-                className={`"text-basic md:text-basic lg:text-basic xl:text-lg 2xl:text-xl text-center font-bold align-middle tracking-tight" ${props.textColor} `}
+                className={`"text-basic md:text-basic lg:text-basic xl:text-lg 2xl:text-xl text-center font-bold align-middle tracking-tight" ${props.textColor}`}
               >
                 {props.content}
               </p>
