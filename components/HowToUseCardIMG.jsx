@@ -8,7 +8,7 @@ export default function HowToUseCardIMG(props) {
           className={`"p-4 leading-normal w-full flex flex-col justify-center align-middle content-center h-[120px] ${props.backgroundColor} xs:h-[120px] xs:px-4 xs:rounded-lg md:h-36 md:rounded-lg md:content-center"`}
         >
           <p
-            className={`"mb-2 md:text-2xl text-center font-bold align-middle tracking-tight ${props.textColor} xs:text-base"`}
+            className={`"mb-2 md:text-basic lg:basic xl:text-lg 2xl:text-2xl text-center font-bold align-middle tracking-tight ${props.textColor} xs:text-base"`}
           >
             {props.content}
           </p>
