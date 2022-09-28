@@ -137,16 +137,16 @@ export default function Home() {
 
         <article
           name="greenCard"
-          className="p-5 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-12"
+          className="p-6 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-12"
         >
           <div className="">
-            <p className="align-middle text-2xl font-bold md:text-4xl pb-2">
+            <p className="align-middle text-xl font-medium md:text-3xl pb-2">
               Todo por tan solo
             </p>
             <h1 className="text-2xl font-black md:text-4xl lg:text-5xl">
               $1 USD
             </h1>
-            <p className="text-2xl font-medium md:pt-2">
+            <p className="text-xl font-medium md:pt-2 md:text-3xl">
               por cotización enviada
             </p>
           </div>
