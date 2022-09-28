@@ -11,7 +11,6 @@ export default function Search(props) {
   const onSelectSuggestion = (suggestionSelected) => {
     setValue(suggestionSelected.name);
     props.ChangeData(suggestionSelected);
-    console.log("suggestionSelected", suggestionSelected);
     setSuggestions([]);
   };
 

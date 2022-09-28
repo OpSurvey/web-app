@@ -22,6 +22,8 @@ const InvoiceForm = () => {
     },
   ]);
 
+  console.log("recetas para POST", recipes);
+
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
       headers: {
@@ -165,7 +167,7 @@ const InvoiceForm = () => {
                   <input name="quantity" onChange={editRecipeHandler} />
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
-                  <input name="price" value={recipe.cost} />
+                  <input name="price" value={recipe.cost} disabled="disabled" />
                 </td>
                 <td className="flex items-center justify-center">
                   delete
