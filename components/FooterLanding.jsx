@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function FooterLanding() {
   return (
     <>
-      <footer className="bg-black xs:p-3 md:flex flex-row md:items-center md:justify-between md:p-6">
+      <footer className="bg-black xs:p-3 md:flex flex-row md:items-center md:justify-between md:p-6 print:hidden">
         <span className="md:pl-36 text-base text-lime-400 sm:text-center">
           <Link href="https://www.linkedin.com/">
             <a className="hover:underline">Linkedin/OpSurvey</a>

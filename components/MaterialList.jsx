@@ -66,7 +66,7 @@ export default function MaterialList() {
           </thead>
           {materials.map((material) => {
             return (
-              <tbody>
+              <tbody key={material.name}>
                 <tr className="bg-black border-b">
                   <th
                     scope="row"
