@@ -16,7 +16,6 @@ const RecipesForm = () => {
   const [recipeName, setRecipeName] = useState("");
   const [recipeTags, setRecipeTags] = useState([]);
   const [recipeType, setRecipeType] = useState("");
-  const [recipeQuantity, setRecipeQuantity] = useState(1);
   const [materials, setMaterials] = useState([
     {
       id: 1,
@@ -26,11 +25,7 @@ const RecipesForm = () => {
     },
   ]);
 
-  console.log("materials", materials);
-
   const router = useRouter();
-
-  console.log("array de materiales", materials);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
@@ -102,18 +97,19 @@ const RecipesForm = () => {
     setMaterials([...materials]);
   };
 
-  console.log("todos los materials", materials);
-
   const onSearchChange = (data, index) => {
     materials[index] = data;
     setMaterials([...materials]);
   };
 
-  // const total = materials.reduce((prev, curr) => {
-  //   if (curr.name.trim().length > 0)
-  //     return prev + Number(curr.price * Math.floor(recipeQuantity));
-  //   else return prev;
-  // }, 0);
+  const total = materials.reduce((prev, curr) => {
+    if (curr.name.trim().length > 0)
+      return (
+        prev +
+        Number(curr.price * Math.floor(curr.quantity ? curr.quantity : 0))
+      );
+    else return prev;
+  }, 0);
 
   return (
     <form
@@ -294,7 +290,7 @@ const RecipesForm = () => {
         <div className="flex flex-col items-end space-y-2 pt-6">
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
             <span className="font-bold">Total:</span>
-            {/* <span className="font-bold"> {`$ ${total}`}</span> */}
+            <span className="font-bold"> {`$ ${total}`}</span>
           </div>
         </div>
       </div>
