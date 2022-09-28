@@ -27,10 +27,7 @@ export default function Home() {
             </article>
           </section>
 
-          <section
-            name="howToUse"
-            className="bg-red-500 w-full lg:h-full flex flex-col"
-          >
+          <section name="howToUse" className="w-full lg:h-full flex flex-col">
             {/* How to use the app */}
             <HowToUseCard
               backgroundColor="bg-lime-400"

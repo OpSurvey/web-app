@@ -3,7 +3,7 @@ export default function HowToUseCardIMG(props) {
     <>
       <>
         <div
-          className={`"w-full bg-pink-200 h-full lg:h-[160px] pb-4 flex flex-col items-center md:flex md:flex-row md:justify-between" `}
+          className={`"w-full h-full lg:h-[160px] pb-4 flex flex-col items-center md:flex md:flex-row md:justify-between" `}
         >
           <div
             className={`"w-full md:w-2/3 flex items-center px-${props.padding} px-2 h-[120px] ${props.backgroundColor} rounded-lg "`}
@@ -15,7 +15,7 @@ export default function HowToUseCardIMG(props) {
             </p>
           </div>
 
-          <div className="w-full md:w-1/3 flex justify-center items-center h-full md:h-full lg:h-28 p-2 bg-slate-400  ">
+          <div className="w-full md:w-1/3 flex justify-center items-center h-full md:h-full lg:h-28 p-2">
             <img
               className="object-cover w-full h-full lg:w-36 lg:h-28"
               src={`${props.img}`}
