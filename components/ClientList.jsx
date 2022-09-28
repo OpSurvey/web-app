@@ -67,7 +67,7 @@ export default function ClientList() {
             </thead>
             {clients.map((client) => {
               return (
-                <tbody>
+                <tbody key={client.name}>
                   <tr className="bg-black border-b">
                     <th
                       scope="row"
