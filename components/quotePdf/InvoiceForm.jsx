@@ -96,7 +96,6 @@ const InvoiceForm = () => {
     setRecipes([...recipes]);
   };
 
-  console.log("Recetas", recipes);
 
   const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
