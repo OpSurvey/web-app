@@ -7,14 +7,14 @@ export default function NavbarLanding() {
 
   return (
     <>
-      <nav className="bg-black w-full flex top-0 left-0 xs:pl-6 xs:py-0 md:px-2 py-10 h-20 lg:px-2 xl:px-2 2xl:pl-40 2xl:pr-40">
+      <nav className="bg-black w-full flex top-0 left-0 xs:pl-6 xs:py-0 md:px-2 py-10 h-20 ">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link href="/">
-            <a className="flex items-center">
-              <span className="text-lime-400 self-center font-sans text-2xl font-semibold whitespace-nowrap">
-                OpSurvey
-              </span>
-            </a>
+          <a className="flex items-center">
+            <span className="text-lime-400 self-center font-sans text-2xl font-semibold whitespace-nowrap">
+              OpSurvey
+            </span>
+          </a>
           </Link>
 
           <div className="flex md:order-2">
@@ -30,7 +30,7 @@ export default function NavbarLanding() {
                 </Link>
               </li>
             </ul>
-
+            
             <Link href="./quoter">
               <a>
                 {width > 768 ? (

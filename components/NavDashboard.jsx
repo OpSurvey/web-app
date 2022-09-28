@@ -26,12 +26,12 @@ export default function NavDashboard() {
               >
                 <ul className="flex flex-col p-4 mt-4 border md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black">
                   <li>
-                    <Link href="../client">
+                    <Link href="../clients">
                       <a
                         className="block py-2 pr-4 pl-3 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400 md:p-0"
                         aria-current="page"
                       >
-                        Agregar cliente
+                        Clientes
                       </a>
                     </Link>
                   </li>
