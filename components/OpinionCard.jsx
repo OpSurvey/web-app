@@ -14,7 +14,7 @@ export default function OpinionCard(props) {
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
           {props.clientName}
         </h5>
-        <p className="mb-3 text-gray-200 md:text-sm lg:text-base xl:text-lg">
+        <p className="mb-3 text-gray-200 italic md:text-sm lg:text-base xl:text-lg">
           {props.opinionContent}
         </p>
       </div>

@@ -5,21 +5,21 @@ export default function HowToUseCard(props) {
 
   return (
     <>
-      {width > 768 ? (
+      {width >= 768 ? (
         <>
           <div
             className={`"w-full pt-0 pb-5 flex flex-col items-center rounded-lg h-[120px] md:${props.direction} md:flex"`}
           >
             <img
-              className="object-cover w-full h-auto md:h-36 md:w-36 md:rounded-none md:rounded-l-lg md:m-2 lg:w-[350px] lg:h-[150px]"
+              className="object-cover w-[290px] h-[200px] md:h-36 md:w-36 md:rounded-none md:rounded-l-lg md:m-2 lg:w-[250px] lg:h-[150px]"
               src={`${props.img}`}
               alt=""
             />
             <div
-              className={`"p-4 flex flex-col justify-center align-middle content-center h-[200px] ${props.backgroundColor} p-4 leading-normal w-full md:h-36 md:rounded-lg md:content-center"`}
+              className={`"flex flex-col justify-center align-middle content-center pt-6 h-[200px] md:h-36 md:rounded-lg ${props.backgroundColor} leading-normal"`}
             >
               <p
-                className={`"mb-2 md:text-basic lg:basic xl:text-lg 2xl:text-xl text-center font-bold align-middle tracking-tight" ${props.textColor} `}
+                className={`"text-basic md:text-basic lg:text-basic xl:text-lg 2xl:text-xl text-center font-bold align-middle tracking-tight" ${props.textColor} `}
               >
                 {props.content}
               </p>

@@ -19,7 +19,10 @@ export default function Home() {
       <main className="bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
         <section className="pt-10 xs:w-full p-0 m-0 md:grid md:mb-2 lg:grid-cols-[500px_1fr] lg:my-2 ">
           <section className="firsthView">
-            <article name="presentationCard" className="xs: p-1 lg:mx-2">
+            <article
+              name="presentationCard"
+              className="xs:p-1 lg:mx-2 xl:pl-10"
+            >
               <PresentationCard />
             </article>
           </section>
@@ -77,27 +80,23 @@ export default function Home() {
                 <OpinionCard
                   clientName="Berenice Cervantes"
                   opinionImg="https://cdn.opsurveyapp.com/Berenice_Cervantes.jpg"
-                  opinionContent="El proceso de cotización mejoro muchisimo con la ayuda de OpSurvey, nuestros tiempos eran altos, y teníamos la información muy vulnerable a perderse o no poder rastrear una modificación, ahora me siento más segura, sabiendo que para poder hacer una modificación es necesario contar con un usuario, agilizamos el proceso y evitamos riesgos."
+                  opinionContent='"El proceso de cotización mejoro muchisimo con la ayuda de OpSurvey, nuestros tiempos eran altos, y teníamos la información muy vulnerable a perderse o no poder rastrear una modificación, agilizamos el proceso y evitamos riesgos."'
                 />
                 <OpinionCard
                   clientName="Ernesto García"
                   opinionImg="https://cdn.opsurveyapp.com/Ernesto_Garcia.jpeg"
-                  opinionContent="Nunca me había dado cuenta de cuánto tiempo perdía al ir a un punto para realizar una cotización y volver a mi oficina para obtener la información y podérsela mandar al cliente. Hasta que conocí OPSurvey! 
-                  Me di cuenta que perdía más de medio día de trabajo para realizar una sola cotización. Ahora puedo realizar hasta 3 cotizaciones en un solo día! 
-                  Realmente es una herramienta muy útil, 100% recomendable!
-                  Estos chavos se volaron la barda !!!"
+                  opinionContent='"Nunca me había dado cuenta de cuánto tiempo perdía al ir a un punto para realizar una cotización y volver a mi oficina para obtener la información y poderla mandar al cliente. Hasta que conocí OPSurvey!
+                  Ahora trabajamos, más eficiente que nunca."'
                 />
                 <OpinionCard
                   clientName="Francisco Martínez"
                   opinionImg="https://cdn.opsurveyapp.com/Francisco_Martinez1.jpeg"
-                  opinionContent="Antes sentia que tenia un flujo muy bueno al momento de realzar cotizaciones y no tenia en cuenta el tiempo que se perdia para poder generar una cotización, pero cuando empecé a utilizar OpSurvey mi flujo de cotizaciones aumentó en un caso un 100% ya que no tenia que llegar a mi oficina para realizarlas ya solamente me enfocaba en lo verdaderamente importante que es captar la mayor cantidad de posibles clientes al dia.
-
-                  Es la mejor herramienta que pude conseguir para mis cotizaciones y a un super precio. Gracias OpSurvey!"
+                  opinionContent='"Antes sentia que tenia un flujo muy bueno al momento de realizar cotizaciones y no tenía en cuenta el tiempo que se perdía para poder generar una cotización, mi flujo de cotizaciones aumentó en un caso un 100% ya que no tenía que llegar a mi oficina para realizarlas."'
                 />
                 <OpinionCard
                   clientName="Carlos Silva"
                   opinionImg="https://cdn.opsurveyapp.com/Carlos_Silva.jpg"
-                  opinionContent="El rendimiento del proceso de cotizar aumento desde que utilizamos OpSurvey, nuestros clientes estan felices y hemos ahorrado tiempo en el proceso."
+                  opinionContent='"El rendimiento del proceso de cotizar aumento desde que utilizamos OpSurvey, nuestros clientes estan felices y hemos ahorrado tiempo en el proceso."'
                 />
               </article>
             </section>

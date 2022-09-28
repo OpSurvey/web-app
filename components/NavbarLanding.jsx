@@ -7,7 +7,7 @@ export default function NavbarLanding() {
 
   return (
     <>
-      <nav className="bg-black flex justify-between w-full pt-0 pr-2 pl-4 h-16 xs:pl-6 xs:py-0 md:px-2 md:h-20 lg:px-2 xl:px-2 2xl:pl-40 2xl:pr-40">
+      <nav className="bg-black flex justify-between w-full pt-0 pr-2 pl-4 h-16 xs:pl-6 xs:py-0 md:px-2 md:pl-6 md:h-20 lg:px-2 lg:pl-10 xl:px-2 2xl:pl-40 2xl:pr-40">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link href="/">
             <a className="flex items-center">
