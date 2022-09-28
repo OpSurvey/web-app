@@ -1,24 +1,29 @@
 export default function HowToUseCardIMG(props) {
   return (
     <>
-      <div
-        className={`"w-full pt-5 pb-10 flex flex-col items-center rounded-lg xs:m-1 md:flex md:${props.direction} xs:pb-10"`}
-      >
+      <>
         <div
-          className={`"p-4 leading-normal w-full flex flex-col justify-center align-middle content-center h-[120px] ${props.backgroundColor} md:h-36 rounded-lg md:content-center`}
+          className={`"w-full bg-pink-200 h-full lg:h-[160px] pb-4 flex flex-col items-center md:flex md:flex-row md:justify-between" `}
         >
-          <p
-            className={`"mb-2 md:text-basic lg:basic xl:text-lg 2xl:text-2xl text-center font-bold align-middle tracking-tight ${props.textColor} xs:text-base"`}
+          <div
+            className={`"w-full md:w-2/3 flex items-center px-${props.padding} px-2 h-[120px] ${props.backgroundColor} rounded-lg "`}
           >
-            {props.content}
-          </p>
+            <p
+              className={`"tracking-normal leading-normal text-basic font-semibold ${props.textColor} inline-block align-middle text-center md:text-basic lg:text-basic xl:text-lg 2xl:text-xl " `}
+            >
+              {props.content}
+            </p>
+          </div>
+
+          <div className="w-full md:w-1/3 flex justify-center items-center h-full md:h-full lg:h-28 p-2 bg-slate-400  ">
+            <img
+              className="object-cover w-full h-full lg:w-36 lg:h-28"
+              src={`${props.img}`}
+              alt=""
+            />
+          </div>
         </div>
-        <img
-          className="object-cover w-[200px] h-[200px] xs:w-[300px] xs:h-[200px] md:h-36 md:w-[200px] lg:w-[200px] lg:h-[120px] xs:px-6 md:rounded-none md:rounded-l-lg md:m-2"
-          src={`${props.img}`}
-          alt=""
-        />
-      </div>
+      </>
     </>
   );
 }

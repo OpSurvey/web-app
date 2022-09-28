@@ -17,7 +17,7 @@ export default function Home() {
         <NavbarLanding />
       </header>
       <main className="bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
-        <section className="pt-10 xs:w-full p-0 m-0 md:grid md:mb-2 lg:grid-cols-[500px_1fr] lg:my-2 ">
+        <section className="pt-10 w-full p-0 m-0 md:grid md:mb-0 lg:grid-cols-[500px_1fr]">
           <section className="firsthView">
             <article
               name="presentationCard"
@@ -26,9 +26,12 @@ export default function Home() {
               <PresentationCard />
             </article>
           </section>
-          <section name="howToUse" className="xs:pt-6 lg:ml-12">
-            {/* How to use the app */}
 
+          <section
+            name="howToUse"
+            className="bg-red-500 w-full lg:h-full flex flex-col"
+          >
+            {/* How to use the app */}
             <HowToUseCard
               backgroundColor="bg-lime-400"
               direction="flex-row"
@@ -52,6 +55,7 @@ export default function Home() {
             />
             <HowToUseCardIMG
               backgroundColor="bg-zinc-900"
+              padding="10"
               direction="flex-row"
               textColor="text-white"
               content="Registra a tus clientes"
@@ -69,7 +73,7 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-6 lg:ml-10">
+            <section name="clientsOpinion" className="pt-2 lg:ml-10">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
