@@ -10,7 +10,9 @@ const today = date.toLocaleDateString("en-GB", {
 
 const InvoiceForm = () => {
   const [userRecipes, setUserRecipes] = useState([]);
-  const [tax, setTax] = useState("");
+  const [profit, setProfit] = useState("");
+  const [riskFactor, setRiskFactor] = useState("");
+  const [financing, setFinancing] = useState("");
   const [quoteNumber, setQuoteNumber] = useState(1);
   const [customerName, setCustomerName] = useState("");
   const [recipes, setRecipes] = useState([
@@ -37,10 +39,44 @@ const InvoiceForm = () => {
       });
   }, []);
 
-  const onSubmit = (event) => {
-    alert("Form submit");
+  const ejemplo = {
+    clientId: "632d4531e5204c58f043a1db",
+    profit: 45,
+    riskFactor: 15,
+    financing: 4,
+    note: "Quote Alejandro",
+    recipes: [{ id: "63310b32f0968000cd95e668", quantity: 5 }],
   };
 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const recipeData = {
+      SKU: sku,
+      name: recipeName,
+      unit: recipeUnits,
+      tags: [recipeTags],
+      type: recipeType,
+      materials: materials.map((material) => {
+        return {
+          id: material._id,
+          quantity: material.quantity,
+        };
+      }),
+    };
+    const token = localStorage.getItem("token");
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(recipeData),
+    });
+
+    window.alert("La receta ha sido agregada");
+
+    router.push("/recipeList");
+  };
   const addRecipeHandler = () => {
     setRecipes((prevRecipe) => [
       ...prevRecipe,
@@ -59,24 +95,9 @@ const InvoiceForm = () => {
     setRecipes(newRecipes);
   };
 
-  // TODO: fix
-  const editRecipeHandler = (event) => {
-    const editedRecipe = {
-      id: event.target.id,
-      name: event.target.name,
-      value: event.target.value,
-    };
-
-    const newRecipe = recipes.map((recipe) => {
-      for (const key in recipe) {
-        if (key === editedRecipe.name && recipe._id === editedRecipe._id) {
-          recipe[key] = editedRecipe.value;
-        }
-      }
-      return recipe;
-    });
-
-    setRecipes(newRecipe);
+  const editQuantityHandler = (quantity, index) => {
+    recipes[index].quantity = quantity;
+    setRecipes([...recipes]);
   };
 
   const onSearchChange = (data, index) => {
@@ -91,8 +112,8 @@ const InvoiceForm = () => {
       return prev + Number(curr.price * Math.floor(curr.quantity));
     else return prev;
   }, 0);
-  const taxRate = (tax * subtotal) / 100;
-  const total = subtotal + taxRate;
+  const profitRate = (profit * subtotal) / 100;
+  const total = subtotal + profitRate;
 
   return (
     <form
@@ -164,13 +185,17 @@ const InvoiceForm = () => {
                   />
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
-                  <input name="quantity" onChange={editRecipeHandler} />
+                  <input
+                    name="quantity"
+                    onChange={(event) =>
+                      editQuantityHandler(event.target.value, index)
+                    }
+                  />
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
                   <input name="price" value={recipe.cost} disabled="disabled" />
                 </td>
                 <td className="flex items-center justify-center">
-                  delete
                   <div
                     className="rounded-md bg-red-500 p-2 text-white shadow-sm transition-colors duration-200 hover:bg-red-600"
                     onClick={() => deleteRecipeHandler(recipe._id)}
@@ -208,9 +233,9 @@ const InvoiceForm = () => {
             <span>${subtotal.toFixed(2)}</span>
           </div>
           <div className="flex w-full justify-between md:w-1/2">
-            <span className="font-bold">Impuestos:</span>
+            <span className="font-bold">Ganancia:</span>
             <span>
-              ({tax || "0"}%)${taxRate.toFixed(2)}
+              ({profit || "0"}%)${profitRate.toFixed(2)}
             </span>
           </div>
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
@@ -232,20 +257,62 @@ const InvoiceForm = () => {
 
           <div className="space-y-4 py-2 ">
             <div className="space-y-2">
-              <label className="text-sm font-bold md:text-base" htmlFor="tax">
-                Impuestos:
+              <label className="text-sm text-lime-400 font-bold md:text-base">
+                Ganancia:
               </label>
               <div className="flex items-center">
                 <input
                   className="w-full rounded-r-none bg-white text-black shadow-sm"
                   type="number"
-                  name="tax"
-                  id="tax"
+                  name="profit"
+                  id="profit"
                   min="0.01"
                   step="0.01"
                   placeholder="0.0"
-                  value={tax}
-                  onChange={(event) => setTax(event.target.value)}
+                  value={profit}
+                  onChange={(event) => setProfit(event.target.value)}
+                />
+                <span className="rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 shadow-sm">
+                  %
+                </span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-lime-400 md:text-base">
+                Factor de riesgo:
+              </label>
+              <div className="flex items-center">
+                <input
+                  className="w-full rounded-r-none bg-white text-black shadow-sm"
+                  type="number"
+                  name="riskFactor"
+                  id="riskFactor"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.0"
+                  value={riskFactor}
+                  onChange={(event) => setRiskFactor(event.target.value)}
+                />
+                <span className="rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 shadow-sm">
+                  %
+                </span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-lime-400 md:text-base">
+                Financiamiento:
+              </label>
+              <div className="flex items-center">
+                <input
+                  className="w-full rounded-r-none bg-white text-black shadow-sm"
+                  type="number"
+                  name="financing"
+                  id="financing"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.0"
+                  value={financing}
+                  onChange={(event) => setFinancing(event.target.value)}
                 />
                 <span className="rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 shadow-sm">
                   %
