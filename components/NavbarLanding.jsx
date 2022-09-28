@@ -22,7 +22,7 @@ export default function NavbarLanding() {
               <li>
                 <Link href="./login">
                   <a
-                    className="block py-0 pr-0 pl-3 xs:pr-0 sm:pr-0 md:pr-20 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400"
+                    className="block py-0 pr-0 pl-3 xs:pr-0 sm:pr-0 md:pr-20 lg:px-0 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400"
                     aria-current="page"
                   >
                     Login
