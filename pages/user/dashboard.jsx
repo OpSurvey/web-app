@@ -17,7 +17,7 @@ export default function Dashboard() {
           <h3>Bienvenido Cotizador</h3>
         </section>
         <div className="overflow-x-auto pt-4 relative lg:px-36">
-          <div className="bg-black p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+          <div className="bg-black w-full p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
             <p>Tus cotizaciones</p>
           </div>
           <table className="w-full text-basic text-left text-white bg-black">

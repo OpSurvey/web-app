@@ -39,7 +39,11 @@ export default function ClientList() {
             text="Agregar cliente"
           />
         </div>
+
         <div className="overflow-x-auto relative lg:px-36">
+          <div className="bg-black p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+            <p>Clientes</p>
+          </div>
           <table className="w-full text-basic text-left text-white bg-black">
             <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
               <tr>
