@@ -13,9 +13,7 @@ export default function MaterialForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const token = localStorage.getItem("token");
-    console.log("token", token);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
       method: "POST",
       headers: {

@@ -8,7 +8,6 @@ export default function MaterialList() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("token", token);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
       headers: {
@@ -16,13 +15,10 @@ export default function MaterialList() {
       },
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((json) => {
-        console.log(json);
         setMaterials(json.material);
-        console.log(materials);
       });
   }, [setMaterials]);
 

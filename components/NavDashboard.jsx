@@ -45,17 +45,9 @@ export default function NavDashboard() {
                   </li>
 
                   <li>
-                    <Link href="../recipe">
-                      <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                        Crear receta
-                      </a>
-                    </Link>
-                  </li>
-
-                  <li>
                     <Link href="../recipeList">
                       <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                        Lista de recetas
+                        Recetas
                       </a>
                     </Link>
                   </li>
