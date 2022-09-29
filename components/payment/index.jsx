@@ -1,6 +1,7 @@
 import { loadStripe } from "@stripe/stripe-js";
+import React, { useState, useEffect } from "react";
 
-async function checkout({ lineItems }) {
+async function checkout({ lineItems, quoteId }) {
   let stripePromise = null;
 
   const getStripe = () => {
@@ -12,15 +13,24 @@ async function checkout({ lineItems }) {
 
   const stripe = await getStripe();
 
+  console.log("lineItems", lineItems);
+
   await stripe.redirectToCheckout({
     mode: "payment",
     lineItems,
-    successUrl: `${window.location.origin}/quote/thank-you/id`,
+    successUrl: `${window.location.origin}/quote/thank-you?id=${quoteId}`,
     cancelUrl: window.location.origin,
   });
 }
 
 export default function Payment(props) {
+  const [propsQuoteId, setPropsQupteId] = useState({});
+
+  useEffect(() => {
+    setPropsQupteId(props);
+  }, []);
+
+  console.log("props tank you fuera useEffect", propsQuoteId);
   return (
     <button
       type="button"

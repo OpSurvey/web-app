@@ -1,6 +1,30 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function ThankYou() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const queryId = router.query.id;
+
+    if (queryId) {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote/${queryId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then(() => {
+          console.log("todo ok");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [router.query]);
+
   return (
     <section className="h-screen flex justify-center place-items-center ">
       <div className="flex-col border pt-4 bg-zinc-900 border-lime-400 justify-between w-screen md:w-3/4 h-fit text-white">

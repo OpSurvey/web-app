@@ -60,7 +60,9 @@ export default function CardTable(props) {
               </tr>
             </thead>
             <tbody>
-              {/* {quotes.map} */}
+              {/* {quotes.map((quote, index)=>(
+
+              ))} */}
 
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
