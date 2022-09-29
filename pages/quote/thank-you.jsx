@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ThankYou() {
   return (
     <section className="h-screen flex justify-center place-items-center ">
@@ -9,9 +11,9 @@ export default function ThankYou() {
           <p className=" mb-4 text-center text-2xl">Por su compra</p>
           <div className="flex justify-center">
             <button className="bg-lime-400 rounded-md text-black">
-              <a className="m-6" href="/user/dashboard">
-                Continuar
-              </a>
+              <Link href="/user/dashboard">
+                <a className="m-6">Continuar</a>
+              </Link>
             </button>
           </div>
         </div>
