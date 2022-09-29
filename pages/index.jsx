@@ -16,7 +16,7 @@ export default function Home() {
       <header>
         <NavbarLanding />
       </header>
-      <main className="bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
+      <main className="container mx-auto bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
         <section className="pt-10 w-full p-0 m-0 md:grid md:mb-0 lg:grid-cols-[500px_1fr] xl:gap-20">
           <section className="firsthView">
             <article

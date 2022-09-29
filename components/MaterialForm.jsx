@@ -33,7 +33,7 @@ export default function MaterialForm() {
   return (
     <>
       <NavDashboard />
-      <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="container mx-auto lg:px-44 sm:px-6 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full sm:rounded-lg"

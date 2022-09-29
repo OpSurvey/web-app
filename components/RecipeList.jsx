@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export default function RecipeList() {
-const  [recipes, setRecipies] = useState([])
+  const [recipes, setRecipies] = useState([]);
 
-useEffect(()=>{
-  fetch('')
-  .then((response)=>response.json())
-  .then((json)=>{
-    setRecipies(json.results)
-  })
-},[])
+  useEffect(() => {
+    fetch("")
+      .then((response) => response.json())
+      .then((json) => {
+        setRecipies(json.results);
+      });
+  }, []);
 
   return (
     <>
-      <div className="overflow-x-auto relative lg:px-36">
+      <div className="container mx-auto overflow-x-auto relative lg:px-36">
         <table className="w-full text-basic text-left text-white bg-black">
           <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
             <tr>
