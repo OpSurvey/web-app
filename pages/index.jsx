@@ -154,7 +154,10 @@ export default function Home() {
           <div className="sx:w-full flex justify-center items-center flex-col p-5">
             <Link href="./quoter">
               <a>
-                <Button style="bg-zinc-900 text-white" text="Empieza ahora" />
+                <Button
+                  style="xs:w-[200px] bg-zinc-900 text-white"
+                  text="Empieza ahora"
+                />
               </a>
             </Link>
           </div>

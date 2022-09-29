@@ -22,7 +22,10 @@ export default function PresentationCard(props) {
           <div className="w-full flex items-center flex-col">
             <Link href="./quoter">
               <a>
-                <Button style="bg-lime-400 text-black" text="Empieza ahora" />
+                <Button
+                  style="xs:w-[200px] bg-lime-400 text-black"
+                  text="Empieza ahora"
+                />
               </a>
             </Link>
           </div>

@@ -16,19 +16,19 @@ export default function Dashboard() {
   return (
     <>
       <NavDashboard />
-      <main className="container mx-auto bg-zinc-800 w-auto">
-        <section className="px-10 lg:px-48 pt-12 text-white">
+      <main className="container mx-auto w-auto bg-zinc-800 ">
+        <section className="w-full px-2 lg:px-2 pt-12 pb-8 text-white">
           <h3>Bienvenido Cotizador</h3>
         </section>
-        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4 pt-4 lg:pt-0">
+        <div className="flex justify-end xs:justify-center md:justify-end mx-5 md:mx-0 md:pr-6 pb-4">
           <Button
             onClick={onClick}
             style="bg-lime-400 text-black"
             text="Generar cotizacion"
           />
         </div>
-        <div className="overflow-x-auto pt-4 relative lg:px-36">
-          <div className="bg-black w-full p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+        <div className="overflow-x-auto relative pt-4 ">
+          <div className="bg-black w-fulln flex flex-row justify-center p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
             <p>Tus cotizaciones</p>
           </div>
           <table className="w-full text-basic text-left text-white bg-black">
