@@ -20,7 +20,7 @@ export default function Dashboard() {
         <section className="px-10 lg:px-48 pt-12 text-white">
           <h3>Bienvenido Cotizador</h3>
         </section>
-        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4">
+        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4 pt-4 lg:pt-0">
           <Button
             onClick={onClick}
             style="bg-lime-400 text-black"
