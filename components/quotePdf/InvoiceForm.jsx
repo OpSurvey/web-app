@@ -56,7 +56,7 @@ const InvoiceForm = () => {
     };
 
     const token = localStorage.getItem("token");
-    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +128,6 @@ const InvoiceForm = () => {
           </label>
           <div></div>
           <SearchClients
-            className="text-black"
             ChangeClientName={(clientName) => setClientName(clientName)}
             value={clientName.firstName}
             options={clientName}

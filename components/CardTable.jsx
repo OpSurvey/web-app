@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TableDropdown from "../components/TableDropdown";
 import Payment from "./payment";
 
 export default function CardTable(props) {
+  const [quotes, setQuotes] = useState([]);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("fetch data", data.quotes);
+        setQuotes(data.recipe);
+      });
+  }, []);
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-black text-white">
@@ -45,6 +60,10 @@ export default function CardTable(props) {
               </tr>
             </thead>
             <tbody>
+              {/* {quotes.map((quote, index)=>(
+
+              ))} */}
+
               <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                   Aplanado de pared
@@ -70,41 +89,6 @@ export default function CardTable(props) {
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex items-center">07/09/2022</div>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">
-                    <Payment />
-                  </div>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
-                </td>
-              </tr>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                  Mantenimiento minisplit 1 TR
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  COT002
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  $800.00 MXN
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-emerald-500 mr-2"></i> ACME
-                  inc.
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex">
-                    <img
-                      src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-File.png"
-                      alt="..."
-                      className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
-                    ></img>
-                  </div>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <div className="flex items-center">02/09/2022</div>
                 </td>
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                   <div className="flex items-center">
