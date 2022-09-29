@@ -33,7 +33,7 @@ export default function MaterialList() {
     <>
       <NavDashboard />
       <div className="container mx-auto flex flex-col w-full h-full pt-6">
-        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40">
+        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4">
           <Button
             onClick={onClick}
             style="bg-lime-400 text-black"

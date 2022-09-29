@@ -1,13 +1,17 @@
-import CardTable from "../../components/CardTable";
-import StatusCard from "../../components/InformativeCard";
-import InformativeCarousel from "../../components/informativeCarousel";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-import ProjectCard from "../../components/ProjectCard";
 import NavDashboard from "../../components/NavDashboard";
+import Button from "../../components/Button";
+import { useRouter } from "next/router";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
   console.log(width);
+
+  const router = useRouter();
+
+  const onClick = () => {
+    router.push("/user/cotizacion");
+  };
 
   return (
     <>
@@ -16,6 +20,13 @@ export default function Dashboard() {
         <section className="px-10 lg:px-48 pt-12 text-white">
           <h3>Bienvenido Cotizador</h3>
         </section>
+        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4">
+          <Button
+            onClick={onClick}
+            style="bg-lime-400 text-black"
+            text="Generar cotizacion"
+          />
+        </div>
         <div className="overflow-x-auto pt-4 relative lg:px-36">
           <div className="bg-black w-full p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
             <p>Tus cotizaciones</p>
