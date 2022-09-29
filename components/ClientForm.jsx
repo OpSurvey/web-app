@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import NavDashboard from "./NavDashboard";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function ClientForm() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function ClientForm() {
       body: JSON.stringify(data),
     });
 
-    window.alert("El cliente ha sido agregado");
+    toast("El cliente ha sido agregado");
 
     router.push("/clients");
   };
