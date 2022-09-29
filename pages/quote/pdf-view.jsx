@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState} from "react";
+import Link from "next/link";
 import { Document, Page } from "react-pdf";
 
 export default function PdfDownload() {
   return (
     <div>
-      <a
+      <Link
         href={`${process.env.NEXT_PUBLIC_API_URL}/quote/123/pdf`}
-        frameborder="0"
-      ></a>
+      >
+        <a>Descargar</a>
+      </Link>
     </div>
   );
 }
