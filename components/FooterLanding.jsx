@@ -3,19 +3,21 @@ import Link from "next/link";
 export default function FooterLanding() {
   return (
     <>
-      <footer className="bg-black xs:p-3 md:flex flex-row md:items-center md:justify-between md:p-6">
-        <span className="md:pl-36 text-base text-lime-400 sm:text-center">
-          <Link href="https://www.linkedin.com/">
-            <a className="hover:underline">Linkedin/OpSurvey</a>
-          </Link>
-        </span>
-        <span className="xs:p-0 md:pr-36 flex flex-wrap items-center mt-3 text-base text-lime-400">
-          <Link href="/">
-            <a className="xs:invisible md:visible mr-4 hover:underline md:mr-6">
-              OpSurvey
-            </a>
-          </Link>
-        </span>
+      <footer className=" bg-black h-[60px] flex flex-row items-center justify-between p-2 xs:p-3 md:flex md:flex-row md:items-center md:justify-between md:p-6">
+        <div className="container mx-auto flex flex-row items-center justify-between p-2">
+          <span className="text-base invisible text-lime-400 text-center md:visible md:pl-10">
+            <Link href="https://www.linkedin.com/">
+              <a className="hover:underline">Linkedin/OpSurvey</a>
+            </Link>
+          </span>
+          <span className="md:pr-12 flex flex-wrap items-center text-base text-lime-400">
+            <Link href="/">
+              <a className="md:visible mr-4 hover:underline md:mr-6">
+                OpSurvey
+              </a>
+            </Link>
+          </span>
+        </div>
       </footer>
     </>
   );

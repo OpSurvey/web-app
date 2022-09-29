@@ -1,28 +1,38 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
-import NavbarLanding from "./NavbarLanding";
-import FooterLanding from "./FooterLanding";
+import { useRouter } from "next/router";
+import NavDashboard from "./NavDashboard";
+import { toast } from "react-toastify";
 
 export default function MaterialForm() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // let result = await fetch("url", {
-    //   method:"POST",
-    //   body:JSON.stringify(data)
-    // })
-    // console.log(await result.json())
+  const onSubmit = async (data) => {
+    const token = localStorage.getItem("token");
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    toast("El material ha sido agregado");
+
+    router.push("/materials");
   };
 
   return (
     <>
-      <NavbarLanding />
-      <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+      <NavDashboard />
+      <main className="container mx-auto pt-10 pb-10 sm:px-6 lg:px-44 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full sm:rounded-lg"

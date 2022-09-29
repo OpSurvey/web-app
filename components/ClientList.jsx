@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavDashboard from "./NavDashboard";
 
-export default function MaterialList() {
-  const [materials, setMaterials] = useState([]);
+export default function ClientList() {
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/material`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/client`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -18,66 +18,66 @@ export default function MaterialList() {
         return response.json();
       })
       .then((json) => {
-        setMaterials(json.material);
+        setClients(json.data.clients);
       });
-  }, [setMaterials]);
+  }, [setClients]);
 
   const router = useRouter();
 
   const onClick = () => {
-    console.log("click");
-    router.push("/material");
+    router.push("/client");
   };
 
   return (
     <>
       <NavDashboard />
       <div className="container mx-auto flex flex-col w-full h-full pt-6">
-        <div className="flex justify-end xs:justify-center md:justify-end mx-5 md:mx-0 md:pr-6 lg:pr-40 pb-4">
+        <div className="flex justify-end xs:justify-center md:justify-end mx-5 md:mx-0 md:pr-20 lg:pr-40 pb-4">
           <Button
             onClick={onClick}
             style="bg-lime-400 text-black"
-            text="Agregar material"
+            text="Agregar cliente"
           />
         </div>
+
         <div className="overflow-x-auto relative lg:px-36">
           <div className="bg-black p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
-            <p>Materiales</p>
+            <p>Clientes</p>
           </div>
           <table className="w-full text-basic text-left text-white bg-black">
             <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
               <tr>
                 <th scope="col" className="py-3 px-6">
-                  Material
+                  Nombre
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Marca
+                  Apellido
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Proveedor
+                  Email
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Precio
+                  Telefono
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Unidad
+                  Empresa
                 </th>
               </tr>
             </thead>
-            {materials.map((material) => {
+            {clients.map((client) => {
               return (
-                <tbody key={material.name}>
+                <tbody key={client.name}>
                   <tr className="bg-black border-b">
                     <th
                       scope="row"
                       className="py-4 px-6 font-normal text-white whitespace-nowrap"
                     >
-                      {material.name}
+                      {client.firstName}
                     </th>
-                    <td className="py-4 px-2">{material.brand}</td>
-                    <td className="py-4 px-2">{material.supplier}</td>
-                    <td className="py-4 px-2">{material.price}</td>
-                    <td className="py-4 px-2">{material.unit}</td>
+                    <td className="py-4 px-2">{client.lastName}</td>
+                    <td className="py-4 px-2">{client.email}</td>
+                    <td className="py-4 px-2">{client.phone}</td>
+                    <td className="py-4 px-2">{client.businessName}</td>
                   </tr>
                 </tbody>
               );
