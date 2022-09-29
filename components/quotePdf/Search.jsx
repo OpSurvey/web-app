@@ -29,6 +29,7 @@ export default function Search(props) {
   return (
     <>
       <input
+        className="w-96"
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={value}
