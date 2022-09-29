@@ -113,7 +113,7 @@ const RecipesForm = () => {
 
   return (
     <form
-      className="relative w-screen flex flex-col px-2 md:flex-row"
+      className="container mx-auto relative w-screen flex flex-col px-2 md:flex-row"
       onSubmit={onSubmit}
     >
       <div className="my-6 flex-1 space-y-2 rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">

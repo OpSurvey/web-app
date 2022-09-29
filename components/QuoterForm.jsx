@@ -1,45 +1,44 @@
-import { useForm } from "react-hook-form"
-import Button from "./Button"
-import NavbarLanding from "./NavbarLanding"
-import FooterLanding from "./FooterLanding"
-import { useRouter } from 'next/router'
+import { useForm } from "react-hook-form";
+import Button from "./Button";
+import NavbarLanding from "./NavbarLanding";
+import FooterLanding from "./FooterLanding";
+import { useRouter } from "next/router";
 
 export default function QuoterForm() {
-
-  const router=useRouter()
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data)
+    console.log(data);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quoter`, {
-      method:"POST",
+      method: "POST",
       headers: {
-      "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify(data)
-    })
-    const response= await result.json()
-    
+      body: JSON.stringify(data),
+    });
+    const response = await result.json();
+
     // const token= response.data.token
-    console.log(response)
+    console.log(response);
 
     // localStorage.setItem("token", token)
 
-    router.push("/user/dashboard")
-  }
+    router.push("/user/dashboard");
+  };
 
   return (
     <>
       <NavbarLanding />
-      <main className="pt-8 pb-8 bg-zinc-800 lg:px-48 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="container mx-auto pt-10 pb-10 bg-zinc-800 lg:px-48 sm:px-6 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-zinc-900 px-32 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:rounded-none xl:rounded-lg"
+          className="bg-zinc-900 px-2 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:px-10 lg:rounded-none xl:rounded-lg"
         >
           <h1 className="text-white text-center text-xl">Crear nueva cuenta</h1>
           <h3 className="text-white text-center text-lg pt-2 mb-3">
@@ -145,7 +144,7 @@ export default function QuoterForm() {
               required=""
               {...register("phone", {
                 required: true,
-                minLength: 10
+                minLength: 10,
               })}
             />
             {errors.phone?.type === "minLength" && (
@@ -381,10 +380,10 @@ export default function QuoterForm() {
           </div>
 
           <div className="flex justify-center align-center w-200 mb-3 mt-2">
-                <Button style="bg-lime-400 text-black" text="Enviar" />
+            <Button style="bg-lime-400 text-black" text="Enviar" />
           </div>
         </form>
       </main>
     </>
-  )
+  );
 }

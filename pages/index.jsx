@@ -16,16 +16,22 @@ export default function Home() {
       <header>
         <NavbarLanding />
       </header>
-      <main className=" bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-44 lg:pl-36 lg:pb-8">
-        <section className="pt-10 xs:w-full p-0 m-0 md:grid md:mb-2 lg:grid-cols-[500px_1fr] lg:my-2 ">
+      <main className="container mx-auto bg-zinc-800 xs:p-2 m-2 md:pt-4 md:pr-20 md:pl-16 md:pb-8 lg:pt-4 lg:pr-0 lg:pl-0 lg:pb-8 xl:pr-10 xl:pl-2 2xl:pl-40 2xl:pr-44">
+        <section className="pt-10 w-full p-0 m-0 md:grid md:mb-0 lg:grid-cols-[500px_1fr] xl:gap-20">
           <section className="firsthView">
-            <article name="presentationCard" className="xs: p-1 lg:mx-2">
+            <article
+              name="presentationCard"
+              className="xs:p-1 lg:mx-2 xl:pl-10"
+            >
               <PresentationCard />
             </article>
           </section>
-          <section name="howToUse" className="xs:pt-6 lg:ml-12">
-            {/* How to use the app */}
 
+          <section
+            name="howToUse"
+            className="w-full px-2 lg:h-full flex flex-col lg:px-2"
+          >
+            {/* How to use the app */}
             <HowToUseCard
               backgroundColor="bg-lime-400"
               direction="flex-row"
@@ -49,6 +55,7 @@ export default function Home() {
             />
             <HowToUseCardIMG
               backgroundColor="bg-zinc-900"
+              padding="10"
               direction="flex-row"
               textColor="text-white"
               content="Registra a tus clientes"
@@ -66,7 +73,7 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-16 md:mx-2 lg:mx-8">
+            <section name="clientsOpinion" className="pt-2 lg:ml-2 xl:ml-10">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
@@ -77,27 +84,23 @@ export default function Home() {
                 <OpinionCard
                   clientName="Berenice Cervantes"
                   opinionImg="https://cdn.opsurveyapp.com/Berenice_Cervantes.jpg"
-                  opinionContent="El proceso de cotización mejoro muchisimo con la ayuda de OpSurvey, nuestros tiempos eran altos, y teníamos la información muy vulnerable a perderse o no poder rastrear una modificación, ahora me siento más segura, sabiendo que para poder hacer una modificación es necesario contar con un usuario, agilizamos el proceso y evitamos riesgos."
+                  opinionContent='"El proceso de cotización mejoro muchisimo con la ayuda de OpSurvey, nuestros tiempos eran altos, y teníamos la información muy vulnerable a perderse o no poder rastrear una modificación, agilizamos el proceso y evitamos riesgos."'
                 />
                 <OpinionCard
                   clientName="Ernesto García"
                   opinionImg="https://cdn.opsurveyapp.com/Ernesto_Garcia.jpeg"
-                  opinionContent="Nunca me había dado cuenta de cuánto tiempo perdía al ir a un punto para realizar una cotización y volver a mi oficina para obtener la información y podérsela mandar al cliente. Hasta que conocí OPSurvey! 
-                  Me di cuenta que perdía más de medio día de trabajo para realizar una sola cotización. Ahora puedo realizar hasta 3 cotizaciones en un solo día! 
-                  Realmente es una herramienta muy útil, 100% recomendable!
-                  Estos chavos se volaron la barda !!!"
+                  opinionContent='"Nunca me había dado cuenta de cuánto tiempo perdía al ir a un punto para realizar una cotización y volver a mi oficina para obtener la información y poderla mandar al cliente. Hasta que conocí OPSurvey!
+                  Ahora trabajamos, más eficiente que nunca."'
                 />
                 <OpinionCard
                   clientName="Francisco Martínez"
                   opinionImg="https://cdn.opsurveyapp.com/Francisco_Martinez1.jpeg"
-                  opinionContent="Antes sentia que tenia un flujo muy bueno al momento de realzar cotizaciones y no tenia en cuenta el tiempo que se perdia para poder generar una cotización, pero cuando empecé a utilizar OpSurvey mi flujo de cotizaciones aumentó en un caso un 100% ya que no tenia que llegar a mi oficina para realizarlas ya solamente me enfocaba en lo verdaderamente importante que es captar la mayor cantidad de posibles clientes al dia.
-
-                  Es la mejor herramienta que pude conseguir para mis cotizaciones y a un super precio. Gracias OpSurvey!"
+                  opinionContent='"Antes sentia que tenia un flujo muy bueno al momento de realizar cotizaciones y no tenía en cuenta el tiempo que se perdía para poder generar una cotización, mi flujo de cotizaciones aumentó en un caso un 100% ya que no tenía que llegar a mi oficina para realizarlas."'
                 />
                 <OpinionCard
                   clientName="Carlos Silva"
                   opinionImg="https://cdn.opsurveyapp.com/Carlos_Silva.jpg"
-                  opinionContent="El rendimiento del proceso de cotizar aumento desde que utilizamos OpSurvey, nuestros clientes estan felices y hemos ahorrado tiempo en el proceso."
+                  opinionContent='"El rendimiento del proceso de cotizar aumento desde que utilizamos OpSurvey, nuestros clientes estan felices y hemos ahorrado tiempo en el proceso."'
                 />
               </article>
             </section>
@@ -138,17 +141,26 @@ export default function Home() {
 
         <article
           name="greenCard"
-          className="mt-36 bg-lime-400 pt-10 rounded-lg my-16 md:flex md:justify-between md:p-16"
+          className="p-6 mx-2 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-10"
         >
           <div className="">
-            <p className="align-middle text-4xl font-bold">Todo por tan solo</p>
-            <h1 className="text-8xl font-black">$1 USD</h1>
-            <p className="text-2xl font-medium">por cotización enviada</p>
+            <p className="align-middle text-xl font-medium md:text-3xl pb-2">
+              Todo por tan solo
+            </p>
+            <h1 className="text-2xl font-black md:text-4xl lg:text-5xl">
+              $1 USD
+            </h1>
+            <p className="text-xl font-medium md:pt-2 md:text-3xl">
+              por cotización enviada
+            </p>
           </div>
           <div className="sx:w-full flex justify-center items-center flex-col p-5">
             <Link href="./quoter">
               <a>
-                <Button style="bg-zinc-900 text-white" text="Empieza ahora" />
+                <Button
+                  style="xs:w-[200px] bg-zinc-900 text-white"
+                  text="Empieza ahora"
+                />
               </a>
             </Link>
           </div>

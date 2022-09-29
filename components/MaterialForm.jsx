@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useRouter } from "next/router";
 import NavDashboard from "./NavDashboard";
+import { toast } from "react-toastify";
 
 export default function MaterialForm() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function MaterialForm() {
       body: JSON.stringify(data),
     });
 
-    window.alert("El material ha sido agregado");
+    toast("El material ha sido agregado");
 
     router.push("/materials");
   };
@@ -31,7 +32,7 @@ export default function MaterialForm() {
   return (
     <>
       <NavDashboard />
-      <main className="mt-[61px] lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="container mx-auto pt-10 pb-10 sm:px-6 lg:px-44 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full sm:rounded-lg"

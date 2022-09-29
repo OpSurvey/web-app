@@ -1,84 +1,74 @@
-import CardTable from "../../components/CardTable";
-import StatusCard from "../../components/InformativeCard";
-import InformativeCarousel from "../../components/informativeCarousel";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-import ProjectCard from "../../components/ProjectCard";
 import NavDashboard from "../../components/NavDashboard";
+import Button from "../../components/Button";
+import { useRouter } from "next/router";
 
 export default function Dashboard() {
   const width = useWindowDimensions();
   console.log(width);
 
+  const router = useRouter();
+
+  const onClick = () => {
+    router.push("/user/cotizacion");
+  };
+
   return (
     <>
       <NavDashboard />
-      <main className="bg-zinc-800 w-auto">
-      <section className="lg:px-48 pt-12 text-white">
-        <h3>Bienvenido Cotizador</h3>
-      </section>
-      <section className="lg:ml-40 lg:mr-40 ">
-        {width > 768 ? (
-          <>
-            <section className="flex justify-around my-8">
-              <StatusCard
-                statusTitle="Cotizaciones realizadas"
-                statusValue="25"
-                statusPercent="12.2%"
-              />
-              <StatusCard
-                statusTitle="Mayor Cliente"
-                statusValue="Acme inc"
-                statusPercent="47.1%"
-              />
-              <StatusCard
-                statusTitle="Recetas Creadas"
-                statusValue="110"
-                statusPercent=""
-              />
-              <StatusCard
-                statusTitle="Cotizaciones realizadas"
-                statusValue="25"
-                statusPercent="12.2%"
-              />
-            </section>
-            <section className="m-8">
-              <CardTable />
-            </section>
-          </>
-        ) : (
-          <>
-            <InformativeCarousel />
-            <ProjectCard
-              quoteName="Aplanado de pared"
-              quoteTotal="$3500.00"
-              quoteId="COT001"
-              quoteClient="Acme Inc"
-              s
-            />
-            <ProjectCard
-              quoteName="Aplanado de pared"
-              quoteTotal="$3500.00"
-              quoteId="COT001"
-              quoteClient="Acme Inc"
-              s
-            />
-            <ProjectCard
-              quoteName="Aplanado de pared"
-              quoteTotal="$3500.00"
-              quoteId="COT001"
-              quoteClient="Acme Inc"
-              s
-            />
-            <ProjectCard
-              quoteName="Aplanado de pared"
-              quoteTotal="$3500.00"
-              quoteId="COT001"
-              quoteClient="Acme Inc"
-              s
-            />
-          </>
-        )}
-      </section>
+      <main className="container mx-auto w-auto bg-zinc-800 ">
+        <section className="w-full px-2 lg:px-2 pt-12 pb-8 text-white">
+          <h3>Bienvenido Cotizador</h3>
+        </section>
+        <div className="flex justify-end xs:justify-center md:justify-end mx-5 md:mx-0 md:pr-6 pb-4">
+          <Button
+            onClick={onClick}
+            style="bg-lime-400 text-black"
+            text="Generar cotizacion"
+          />
+        </div>
+        <div className="overflow-x-auto pt-4 ">
+          <div className="bg-black w-full flex flex-row justify-center p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+            <p>Tus cotizaciones</p>
+          </div>
+          <table className="w-full text-basic text-left text-white bg-black">
+            <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
+              <tr>
+                <th scope="col" className="py-3 px-6">
+                  Material
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Marca
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Proveedor
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Precio
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Unidad
+                </th>
+              </tr>
+            </thead>
+            {/* {materials.map((material) => {
+              return ( */}
+            <tbody key="">
+              <tr className="bg-black border-b">
+                <th
+                  scope="row"
+                  className="py-4 px-6 font-normal text-white whitespace-nowrap"
+                ></th>
+                <td className="py-4 px-2"></td>
+                <td className="py-4 px-2"></td>
+                <td className="py-4 px-2"></td>
+                <td className="py-4 px-2"></td>
+              </tr>
+            </tbody>
+            {/* //   );
+            // })} */}
+          </table>
+        </div>
       </main>
     </>
   );

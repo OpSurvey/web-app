@@ -51,6 +51,14 @@ export default function NavDashboard() {
                       </a>
                     </Link>
                   </li>
+
+                  <li>
+                    <Link href="../user/dashboard">
+                      <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                        Cotizaciones
+                      </a>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </>
