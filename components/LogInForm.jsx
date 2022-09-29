@@ -34,7 +34,7 @@ export default function LogInForm() {
   return (
     <>
       <NavbarLanding />
-      <main className="p-0 pt-6 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
+      <main className="container mx-auto pt-10 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-black px-6 mx-3 py-4 rounded-lg w-full lg:w-2/3 h-full  "
