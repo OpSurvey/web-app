@@ -30,6 +30,7 @@ export default function Search(props) {
     <>
       <input
         type="text"
+        className="text-black"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={value}
         onBlur={() => {
