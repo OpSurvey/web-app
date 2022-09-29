@@ -1,50 +1,17 @@
-import { loadStripe } from "@stripe/stripe-js";
-
 export default function ThankYou() {
-  async function checkout({ lineItems }) {
-    let stripePromise = null;
-
-    const getStripe = () => {
-      if (!stripePromise) {
-        stripePromise = loadStripe(process.env.NEXT_PUBLIC_API_KEY);
-      }
-      return stripePromise;
-    };
-
-    const stripe = await getStripe();
-
-    await stripe.redirectToCheckout({
-      mode: "payment",
-      lineItems,
-      successUrl: `${window.location.origin}/quote/thank-you/id`,
-      cancelUrl: window.location.origin,
-    });
-  }
-
   return (
-    <section className="container  h-screen flex justify-center place-items-center">
-      <div className="flex-col border bg-zinc-900 border-lime-400 justify-between w-3/4 h-fit text-white">
+    <section className="h-screen flex justify-center place-items-center ">
+      <div className="flex-col border pt-4 bg-zinc-900 border-lime-400 justify-between w-screen md:w-3/4 h-fit text-white">
         <div className="flex-col justify-center">
-          <p className="text-center text-[96px]">Gracias!</p>
-          <p className=" mb-4 text-center text-4xl">Por su compra</p>
+          <p className="text-center text-4xl text-bold md:text-[40px] ">
+            Gracias!
+          </p>
+          <p className=" mb-4 text-center text-2xl">Por su compra</p>
           <div className="flex justify-center">
-            <button
-              type="button"
-              className={
-                "bg-lime-400 text-black font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-3 md:mr-0"
-              }
-              onClick={() => {
-                checkout({
-                  lineItems: [
-                    {
-                      price: "price_1Lfa56EAka5mfhGRoCSaIdW4",
-                      quantity: 1,
-                    },
-                  ],
-                });
-              }}
-            >
-              Continuar
+            <button className="bg-lime-400 rounded-md text-black">
+              <a className="m-6" href="/user/dashboard">
+                Continuar
+              </a>
             </button>
           </div>
         </div>
