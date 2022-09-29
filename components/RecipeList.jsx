@@ -57,6 +57,9 @@ export default function RecipeList() {
                 <th scope="col" className="py-3 px-2">
                   Unidad
                 </th>
+                <th scope="col" className="py-3 px-2">
+                  Precio
+                </th>
               </tr>
             </thead>
             {recipes.map((recipe) => {
@@ -71,7 +74,7 @@ export default function RecipeList() {
                     </th>
                     <td className="py-4 px-2">{recipe.name}</td>
                     <td className="py-4 px-2">{recipe.unit}</td>
-                    <td className="py-4 px-2">m2</td>
+                    <td className="py-4 px-2">{recipe.cost}</td>
                   </tr>
                 </tbody>
               );
