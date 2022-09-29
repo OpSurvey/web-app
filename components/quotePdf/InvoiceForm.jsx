@@ -96,14 +96,15 @@ const InvoiceForm = () => {
     setRecipes([...recipes]);
   };
 
-
   const subtotal = recipes.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
-      return prev + Number(curr.price * Math.floor(curr.quantity));
+      return prev + Number(curr.cost * Math.floor(curr.quantity));
     else return prev;
   }, 0);
   const profitRate = (profit * subtotal) / 100;
-  const total = subtotal + profitRate;
+  const riskFactorRate = (riskFactor * subtotal) / 100;
+  const financingRate = (financing * subtotal) / 100;
+  const total = subtotal + profitRate + riskFactorRate + financingRate;
 
   return (
     <form
@@ -156,6 +157,8 @@ const InvoiceForm = () => {
                 </td>
                 <td className="min-w-[65px] h-10 text-black">
                   <input
+                    type="number"
+                    placeholder="0.0"
                     className="h-10"
                     name="quantity"
                     onChange={(event) =>
@@ -206,19 +209,23 @@ const InvoiceForm = () => {
         <div className="flex flex-col items-end space-y-2 pt-6">
           <div className="flex w-full justify-between md:w-1/2">
             <span className="font-bold">Subtotal:</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>${subtotal ? subtotal.toFixed(2) : 0.0}</span>
           </div>
           <div className="flex w-full justify-between md:w-1/2">
             <span className="font-bold">Ganancia:</span>
-            <span>
-              ({profit || "0"}%)${profitRate.toFixed(2)}
-            </span>
+            <span>$ {profitRate ? profitRate.toFixed(2) : 0.0}</span>
+          </div>
+          <div className="flex w-full justify-between md:w-1/2">
+            <span className="font-bold">Factor de riesgo:</span>
+            <span>$ {riskFactorRate ? riskFactorRate.toFixed(2) : 0.0}</span>
+          </div>
+          <div className="flex w-full justify-between md:w-1/2">
+            <span className="font-bold">Financiamiento:</span>
+            <span>$ {financingRate ? financingRate.toFixed(2) : 0.0}</span>
           </div>
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
             <span className="font-bold">Total:</span>
-            <span className="font-bold">
-              ${total % 1 === 0 ? total : total.toFixed(2)}
-            </span>
+            <span className="font-bold">${total ? total.toFixed(2) : 0}</span>
           </div>
         </div>
       </div>
