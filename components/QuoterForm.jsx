@@ -38,7 +38,7 @@ export default function QuoterForm() {
       <main className="container mx-auto pt-10 pb-10 bg-zinc-800 lg:px-48 sm:px-6 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-zinc-900 px-32 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:rounded-none xl:rounded-lg"
+          className="bg-zinc-900 px-2 py-3 w-full md:h-full lg:w-full sm:rounded-none md:rounded-lg lg:px-10 lg:rounded-none xl:rounded-lg"
         >
           <h1 className="text-white text-center text-xl">Crear nueva cuenta</h1>
           <h3 className="text-white text-center text-lg pt-2 mb-3">

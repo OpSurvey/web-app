@@ -27,8 +27,8 @@ export default function Dashboard() {
             text="Generar cotizacion"
           />
         </div>
-        <div className="overflow-x-auto relative pt-4 ">
-          <div className="bg-black w-fulln flex flex-row justify-center p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+        <div className="overflow-x-auto pt-4 ">
+          <div className="bg-black w-full flex flex-row justify-center p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
             <p>Tus cotizaciones</p>
           </div>
           <table className="w-full text-basic text-left text-white bg-black">

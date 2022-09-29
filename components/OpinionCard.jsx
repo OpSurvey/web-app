@@ -1,11 +1,9 @@
-import Image from "next/image";
-
 export default function OpinionCard(props) {
   return (
     <div className="w-[350px] m-3 bg-zinc-900 lg:rounded-lg shadow-md flex flex-col ">
       <div className="flex justify-center pt-6">
         <img
-          className="md:w-[150px] md:h-[210px] lg:w-[200px] lg:h-[260px] xl:w-[300px] xl:h-[380px]"
+          className="object-cover md:w-[150px] md:h-[210px] lg:w-[200px] lg:h-[240px] xl:w-[300px] xl:h-[380px]"
           src={props.opinionImg}
           alt=""
         />

@@ -27,7 +27,10 @@ export default function Home() {
             </article>
           </section>
 
-          <section name="howToUse" className="w-full lg:h-full flex flex-col">
+          <section
+            name="howToUse"
+            className="w-full px-2 lg:h-full flex flex-col lg:px-2"
+          >
             {/* How to use the app */}
             <HowToUseCard
               backgroundColor="bg-lime-400"
@@ -70,7 +73,7 @@ export default function Home() {
 
         {width > 900 ? (
           <>
-            <section name="clientsOpinion" className="pt-2 lg:ml-10">
+            <section name="clientsOpinion" className="pt-2 lg:ml-2 xl:ml-10">
               <p className="text-2xl text-center text-white md:text-4xl mb-6">
                 Lo que dicen nuestros Clientes
               </p>
@@ -105,7 +108,7 @@ export default function Home() {
         ) : (
           <section
             name="clientsOpinion"
-            className="hidden pt-16 md:mx-2 lg:mx-8 "
+            className="hidden pt-16 md:mx-2 lg:mx-8"
           >
             <p className="text-2xl text-center text-white md:text-4xl mb-6">
               Lo que dicen nuestros Clientes
@@ -138,7 +141,7 @@ export default function Home() {
 
         <article
           name="greenCard"
-          className="p-6 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-12"
+          className="p-6 mx-2 mt-20 mb-10 bg-lime-400 rounded-lg md:flex md:justify-between md:p-16 xl:ml-10"
         >
           <div className="">
             <p className="align-middle text-xl font-medium md:text-3xl pb-2">
