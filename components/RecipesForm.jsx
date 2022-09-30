@@ -14,7 +14,7 @@ const RecipesForm = () => {
     {
       id: 1,
       name: "",
-      quantity: 1,
+      quantity: 0,
       price: "1.00",
     },
   ]);
