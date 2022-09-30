@@ -23,7 +23,7 @@ export default function QuoterForm() {
     });
     const response = await result.json();
 
-    router.push("/user/dashboard");
+    router.push("/login");
   };
 
   return (
