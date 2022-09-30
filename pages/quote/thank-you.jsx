@@ -8,6 +8,11 @@ export default function ThankYou() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+
     const queryId = router.query.id;
 
     if (queryId) {

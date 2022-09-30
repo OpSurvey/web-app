@@ -1,10 +1,17 @@
 import Link from "next/link";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-import { useState } from "react"; // import state
+import { useEffect, useState } from "react"; // import state
+import Router, { useRouter } from "next/router";
 
 export default function NavDashboard() {
+  const router = useRouter();
   const width = useWindowDimensions();
   const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    router.replace("/");
+  };
 
   return (
     <>
@@ -58,6 +65,15 @@ export default function NavDashboard() {
                         Cotizaciones
                       </a>
                     </Link>
+                  </li>
+
+                  <li>
+                    <div
+                      onClick={logOut}
+                      className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0 cursor-pointer"
+                    >
+                      Logout
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -124,6 +140,14 @@ export default function NavDashboard() {
                         <Link href="../user/dashboard">
                           <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
                             Cotizaciones
+                          </a>
+                        </Link>
+                      </li>
+
+                      <li className="border-b border-gray-400 my-8">
+                        <Link href="../">
+                          <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                            Logout
                           </a>
                         </Link>
                       </li>
