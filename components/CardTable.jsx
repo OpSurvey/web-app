@@ -13,7 +13,6 @@ export default function CardTable(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("fetch data", data.quotes);
         setQuotes(data.recipe);
       });
   }, []);

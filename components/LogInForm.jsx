@@ -14,7 +14,6 @@ export default function LogInForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: "POST",
       headers: {
@@ -24,7 +23,6 @@ export default function LogInForm() {
     });
     const response = await result.json();
     const token = response.data.token;
-    // console.log("token", token)
     //Ponerlo en localStorage
     localStorage.setItem("token", token);
     //Redirección

@@ -25,8 +25,6 @@ export default function Dashboard() {
       });
   }, []);
 
-  console.log("quotes fuera de fetch", quotes);
-
   const onClick = () => {
     router.push("/user/cotizacion");
   };
