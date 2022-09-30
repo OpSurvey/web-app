@@ -1,7 +1,17 @@
 import RecipeForm from "../../components/RecipeForm";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Recipe() {
-    return (
-        <RecipeForm/>
-    )
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+  });
+
+  return <RecipeForm />;
 }
