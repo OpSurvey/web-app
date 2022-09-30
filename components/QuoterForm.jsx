@@ -188,7 +188,7 @@ export default function QuoterForm() {
               password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
@@ -352,23 +352,6 @@ export default function QuoterForm() {
                 placeholder=" "
                 required=""
                 {...register("businessName")}
-              />
-            </div>
-            <div className="mb-4 w-full">
-              <label
-                htmlFor="logo"
-                className="block mb-2 text-sm font-medium text-lime-400"
-              >
-                Logo
-              </label>
-              <input
-                type="text"
-                name="logo"
-                id="logo"
-                className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2"
-                placeholder=" "
-                required=""
-                {...register("logo")}
               />
             </div>
           </div>

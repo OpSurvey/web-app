@@ -1,3 +1,4 @@
+import NavDashboard from "../../components/NavDashboard";
 import RecipesForm from "../../components/RecipesForm";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -15,6 +16,7 @@ export default function Recipe() {
 
   return (
     <>
+      <NavDashboard />
       <RecipesForm />
     </>
   );

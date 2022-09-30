@@ -1,4 +1,5 @@
 import InvoiceForm from "../../components/quotePdf/InvoiceForm";
+import NavDashboard from "../../components/NavDashboard";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -15,6 +16,7 @@ export default function Cotizacion() {
 
   return (
     <>
+      <NavDashboard />
       <InvoiceForm />
     </>
   );

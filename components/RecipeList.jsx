@@ -24,7 +24,7 @@ export default function RecipeList() {
       .then((json) => {
         setRecipies(json.recipe);
       });
-  }, [setRecipies]);
+  }, [recipes]);
 
   const router = useRouter();
 
