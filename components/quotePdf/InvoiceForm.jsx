@@ -128,7 +128,6 @@ const InvoiceForm = () => {
           </label>
           <div></div>
           <SearchClients
-            className="text-black"
             ChangeClientName={(clientName) => setClientName(clientName)}
             value={clientName.firstName}
             options={clientName}

@@ -37,7 +37,7 @@ export default function SearchClients(props) {
   return (
     <>
       <input
-        className="text-black"
+        className="text-black w-96"
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={value}

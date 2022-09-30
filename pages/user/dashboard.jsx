@@ -2,12 +2,28 @@ import useWindowDimensions from "../../hooks/useWindowDimensions";
 import NavDashboard from "../../components/NavDashboard";
 import Button from "../../components/Button";
 import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
+import Payment from "../../components/payment";
+import PdfDownload from "../../components/pdfDownload";
 
 export default function Dashboard() {
-  const width = useWindowDimensions();
-  console.log(width);
-
   const router = useRouter();
+
+  const [quotes, setQuotes] = useState([]);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setQuotes(data.data.quotes);
+      });
+  }, []);
+
+  console.log("quotes fuera de fetch", quotes);
 
   const onClick = () => {
     router.push("/user/cotizacion");
@@ -35,38 +51,92 @@ export default function Dashboard() {
             <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
               <tr>
                 <th scope="col" className="py-3 px-6">
-                  Material
+                  ID cotización
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Marca
+                  Cliente
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Proveedor
+                  Notas
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Precio
+                  Vencimiento
                 </th>
                 <th scope="col" className="py-3 px-2">
-                  Unidad
+                  Pagar
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Descargar
+                </th>
+                <th scope="col" className="py-3 px-2">
+                  Enviar por email
                 </th>
               </tr>
             </thead>
-            {/* {materials.map((material) => {
-              return ( */}
-            <tbody key="">
-              <tr className="bg-black border-b">
-                <th
-                  scope="row"
-                  className="py-4 px-6 font-normal text-white whitespace-nowrap"
-                ></th>
-                <td className="py-4 px-2"></td>
-                <td className="py-4 px-2"></td>
-                <td className="py-4 px-2"></td>
-                <td className="py-4 px-2"></td>
-              </tr>
-            </tbody>
-            {/* //   );
-            // })} */}
+
+            {quotes.map((quote) => {
+              return (
+                <tbody key={quote._id}>
+                  <tr className="bg-black border-b">
+                    <th
+                      scope="row"
+                      className="py-4 px-6 font-normal text-white whitespace-nowrap"
+                    >
+                      {quote._id}
+                    </th>
+                    <td className="py-4 px-2">{quote.clientId.businessName}</td>
+                    <td className="py-4 px-2">{quote.note}</td>
+                    <td className="py-4 px-2">{quote.expirationDate}</td>
+                    {quote.paidOut ? (
+                      <>
+                        <td className="py-4 px-2">
+                          <Payment quoteId={quote._id}>
+                            Pagar cotización
+                          </Payment>
+                        </td>
+                        <td className="py-4 px-2">
+                          <PdfDownload quoteId={quote._id} />
+                        </td>
+                        <td className="py-4 px-2">
+                          <button className="bg-lime-400 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0">
+                            Enviar
+                          </button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="py-4 px-2">
+                          <Payment
+                            quoteId={quote._id}
+                            disablePayment="disabled"
+                          >
+                            Pagar cotización
+                          </Payment>
+                        </td>
+                        <td className="py-4 px-2 ">
+                          <button
+                            className="bg-red-600 cursor-not-allowed text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0"
+                            disabled
+                            type="button"
+                          >
+                            Descargar
+                          </button>
+                        </td>
+                        <td className="py-4 px-2">
+                          <button
+                            className="bg-red-600 cursor-not-allowed text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0"
+                            disabled
+                            type="button"
+                          >
+                            Enviar
+                          </button>
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                </tbody>
+              );
+            })}
           </table>
         </div>
       </main>
