@@ -66,7 +66,7 @@ export default function QuotePage(props) {
               <tbody>
                 {props.quote.recipe.map((recipe) => {
                   return (
-                    <tr className="">
+                    <tr key={recipe._id} className="">
                       <td className="py-2 px-2 w-5/12">
                         {recipe.recipeId.name}
                       </td>
