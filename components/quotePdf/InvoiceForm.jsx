@@ -56,7 +56,7 @@ const InvoiceForm = () => {
     };
 
     const token = localStorage.getItem("token");
-    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
+    let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const InvoiceForm = () => {
       body: JSON.stringify(recipeData),
     });
 
-    window.alert("La receta ha sido agregada");
+    window.alert("La cotizacion ha sido agregada");
 
     router.push("/user/dashboard");
   };
