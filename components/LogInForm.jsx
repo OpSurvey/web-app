@@ -76,7 +76,7 @@ export default function LogInForm() {
               password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "

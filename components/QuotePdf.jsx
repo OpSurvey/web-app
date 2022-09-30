@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 export default function QuotePage(props) {
   const subtotal = props.quote.recipe.reduce((prev, curr) => {
@@ -34,7 +34,7 @@ export default function QuotePage(props) {
           >
             <p className="font-bold">Cotizacion</p>
             <p className="font-bold">{props.quote._id}</p>
-            <p>{props.quote.createdAt}</p>
+            <p>{format(new Date(props.quote.createdAt), "dd-MM-yyyy")}</p>
           </div>
         </section>
 

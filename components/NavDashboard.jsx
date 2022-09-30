@@ -95,40 +95,35 @@ export default function NavDashboard() {
                     </div>
                     <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
                       <li className="border-b border-gray-400 my-8">
-                        <Link href="../client">
+                        <Link href="../clients">
                           <a
                             className="block py-2 pr-4 pl-3 text-white rounded hover:text-lime-400 md:bg-transparent md:text-white md:hover:text-lime-400 md:p-0"
                             aria-current="page"
                           >
-                            Agregar cliente
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="border-b border-gray-400 my-8">
-                        <Link href="#">
-                          <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                            Agregar material
+                            Clientes
                           </a>
                         </Link>
                       </li>
                       <li className="border-b border-gray-400 my-8">
                         <Link href="../materials">
                           <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                            Lista de materiales
+                            Materiales
                           </a>
                         </Link>
                       </li>
+
                       <li className="border-b border-gray-400 my-8">
-                        <Link href="../recipe">
-                          <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                            Crear receta
-                          </a>
-                        </Link>
-                      </li>
-                      <li>
                         <Link href="../recipeList">
                           <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
-                            Lista de recetas
+                            Recetas
+                          </a>
+                        </Link>
+                      </li>
+
+                      <li className="border-b border-gray-400 my-8">
+                        <Link href="../user/dashboard">
+                          <a className="block py-2 pr-4 pl-3 text-white rounded hover:bg-lime-400 md:hover:bg-transparent md:border-0 md:hover:text-lime-400 md:p-0">
+                            Cotizaciones
                           </a>
                         </Link>
                       </li>
