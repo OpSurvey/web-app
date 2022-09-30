@@ -29,9 +29,8 @@ export default function Search(props) {
   return (
     <>
       <input
-        className="w-96"
+        className="w-96 text-black"
         type="text"
-        className="text-black"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={value}
         onBlur={() => {
