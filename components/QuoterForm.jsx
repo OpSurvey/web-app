@@ -14,7 +14,6 @@ export default function QuoterForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quoter`, {
       method: "POST",
       headers: {
@@ -23,11 +22,6 @@ export default function QuoterForm() {
       body: JSON.stringify(data),
     });
     const response = await result.json();
-
-    // const token= response.data.token
-    console.log(response);
-
-    // localStorage.setItem("token", token)
 
     router.push("/user/dashboard");
   };

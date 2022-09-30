@@ -13,8 +13,6 @@ async function checkout({ lineItems, quoteId }) {
 
   const stripe = await getStripe();
 
-  console.log("lineItems", lineItems);
-
   await stripe.redirectToCheckout({
     mode: "payment",
     lineItems,
@@ -30,7 +28,6 @@ export default function Payment(props) {
     setPropsQupteId(props);
   }, []);
 
-  console.log("props tank you fuera useEffect", propsQuoteId);
   return (
     <button
       type="button"
