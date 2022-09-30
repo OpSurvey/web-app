@@ -1,8 +1,8 @@
-import QuoteForm from "../../components/QuoteForm";
+import RecipeForm from "../../components/RecipeForm";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export default function Quote() {
+export default function Recipe() {
   const router = useRouter();
 
   useEffect(() => {
@@ -12,5 +12,6 @@ export default function Quote() {
       return;
     }
   });
-  return <QuoteForm />;
+
+  return <RecipeForm />;
 }

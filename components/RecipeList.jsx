@@ -8,6 +8,10 @@ export default function RecipeList() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
       headers: {
