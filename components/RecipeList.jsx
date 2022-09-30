@@ -22,7 +22,6 @@ export default function RecipeList() {
         return response.json();
       })
       .then((json) => {
-        console.log("json", json);
         setRecipies(json.recipe);
       });
   }, [recipes]);

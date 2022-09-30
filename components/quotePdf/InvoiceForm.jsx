@@ -133,7 +133,7 @@ const InvoiceForm = () => {
             {recipes.map((recipe, index) => {
               return (
                 <div
-                  className="w-full grid grid-cols-4 sm:grid-cols-[1fr_60px_90px_60px] gap-3 border-b border-b-slate-700 py-2"
+                  className="w-full grid grid-cols-4 sm:grid-cols-[1fr_60px_90px_50px] gap-3 border-b border-b-slate-700 py-2"
                   data-component="row"
                   key="recipe._id"
                 >
@@ -193,7 +193,7 @@ const InvoiceForm = () => {
                   </div>
 
                   <div
-                    className="flex flex-col justify-center items-center text-center col-start-4 row-start-1 row-end-3 sm:col-start-5"
+                    className="flex flex-col justify-center items-center text-center col-start-4 row-start-2 row-end-3 sm:col-start-5"
                     data-component="col-price"
                     onClick={() => deleteRecipeHandler(recipe._id)}
                   >
