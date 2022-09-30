@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function ThankYou() {
   const router = useRouter();
@@ -15,13 +16,9 @@ export default function ThankYou() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-        .then(() => {
-          console.log("todo ok");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      }).then(() => {
+        toast("Pago procesado exitosamente");
+      });
     }
   }, [router.query]);
 

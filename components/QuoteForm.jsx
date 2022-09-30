@@ -10,12 +10,10 @@ export default function QuoteForm() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     // let result = await fetch("url", {
     //   method:"POST",
     //   body:JSON.stringify(data)
     // })
-    // console.log(await result.json())
   };
 
   return (

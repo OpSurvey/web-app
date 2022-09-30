@@ -25,7 +25,6 @@ export default function MaterialList() {
   const router = useRouter();
 
   const onClick = () => {
-    console.log("click");
     router.push("/material");
   };
 

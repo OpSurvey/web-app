@@ -65,7 +65,7 @@ const InvoiceForm = () => {
       body: JSON.stringify(recipeData),
     });
 
-    window.alert("La receta ha sido agregada");
+    window.alert("La cotizacion ha sido agregada");
 
     router.push("/user/dashboard");
   };

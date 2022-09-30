@@ -8,7 +8,6 @@ export default function RecipeList() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("token", token);
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipe`, {
       headers: {
@@ -26,7 +25,6 @@ export default function RecipeList() {
   const router = useRouter();
 
   const onClick = () => {
-    console.log("click");
     router.push("user/recipe");
   };
 
