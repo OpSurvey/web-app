@@ -7,6 +7,7 @@ import Payment from "../../components/payment";
 import PdfDownload from "../../components/pdfDownload";
 import SendEmailButton from "../../components/SendEmailButton";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -14,6 +15,12 @@ export default function Dashboard() {
   const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/login");
+      return;
+    }
+
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/quote`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
