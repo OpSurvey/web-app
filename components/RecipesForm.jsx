@@ -108,14 +108,10 @@ const RecipesForm = () => {
   return (
     <>
       <main className="pt-8 pb-8 bg-zinc-800 lg:px-48 sm:px-6 min-h-screen flex justify-center items-center">
-<<<<<<< HEAD
         <form
           className="my-6 flex-1 space-y-2 rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6"
           onSubmit={onSubmit}
         >
-=======
-        <form className="my-6 flex-1 space-y-2 rounded-md bg-zinc-900 text-white p-4 shadow-sm sm:space-y-4 md:p-6">
->>>>>>> bf16463ddfa6fc2ed063914d8a65ef401f0b01ad
           <h1 className="text-center text-lg font-bold">Nueva Receta</h1>
           <article className="flex flex-col sm:grid sm:grid-cols-2 gap-3 pt-4 pb-8">
             <div className="col-start-1 row-start-1 flex flex-col gap-2">
@@ -127,11 +123,7 @@ const RecipesForm = () => {
               </label>
               <input
                 required
-<<<<<<< HEAD
                 className="flex-1 text-black col-start-1 row-start-2"
-=======
-                className="flex-1 text-black "
->>>>>>> bf16463ddfa6fc2ed063914d8a65ef401f0b01ad
                 placeholder="Nombre de la receta"
                 type="text"
                 name="name"
