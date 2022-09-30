@@ -91,36 +91,36 @@ export default function QuotePage(props) {
             Observaciones
           </div>
           <div className="bg-white p-2 border-2 border-black rounded w-1/3">
-            <div class="overflow-x-auto relative">
-              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <div className="overflow-x-auto relative">
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <tbody>
-                  <tr class="bg-white dark:bg-gray-800">
+                  <tr className="bg-white dark:bg-gray-800">
                     <th
                       scope="row"
-                      class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
                       Subtotal
                     </th>
-                    <td class="py-2 px-6">${totalSinIva}</td>
+                    <td className="py-2 px-6">${totalSinIva}</td>
                   </tr>
 
-                  <tr class="bg-white dark:bg-gray-800">
+                  <tr className="bg-white dark:bg-gray-800">
                     <th
                       scope="row"
-                      class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
                       I.V.A
                     </th>
-                    <td class="py-2 px-6">${Iva}</td>
+                    <td className="py-2 px-6">${Iva}</td>
                   </tr>
                 </tbody>
 
                 <tfoot>
-                  <tr class="font-semibold text-gray-900 dark:text-white">
-                    <th scope="row" class="py-3 px-6 text-base">
+                  <tr className="font-semibold text-gray-900 dark:text-white">
+                    <th scope="row" className="py-3 px-6 text-base">
                       Total
                     </th>
-                    <td class="py-3 px-6">${totalCotizacion}</td>
+                    <td className="py-3 px-6">${totalCotizacion}</td>
                   </tr>
                 </tfoot>
               </table>
