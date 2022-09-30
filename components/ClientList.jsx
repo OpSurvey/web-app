@@ -31,15 +31,19 @@ export default function ClientList() {
   return (
     <>
       <NavDashboard />
-      <div className="flex flex-col w-full h-full pt-6">
-        <div className="flex justify-end xs:justify-center md:justify-end md:pr-20 lg:pr-40 pb-4">
+      <div className="container mx-auto flex flex-col w-full h-full pt-6">
+        <div className="flex justify-end xs:justify-center md:justify-end mx-5 md:mx-0 md:pr-20 lg:pr-40 pb-4">
           <Button
             onClick={onClick}
             style="bg-lime-400 text-black"
             text="Agregar cliente"
           />
         </div>
+
         <div className="overflow-x-auto relative lg:px-36">
+          <div className="bg-black p-2 xl:p-6 text-lg font-medium text-center text-lime-400">
+            <p>Clientes</p>
+          </div>
           <table className="w-full text-basic text-left text-white bg-black">
             <thead className="text-basic font-normal text-white uppercase border-b border-lime-400">
               <tr>

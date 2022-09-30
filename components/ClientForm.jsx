@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import NavDashboard from "./NavDashboard";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function ClientForm() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function ClientForm() {
       body: JSON.stringify(data),
     });
 
-    window.alert("El cliente ha sido agregado");
+    toast("El cliente ha sido agregado");
 
     router.push("/clients");
   };
@@ -31,7 +32,7 @@ export default function ClientForm() {
   return (
     <>
       <NavDashboard />
-      <main className="py-6 lg:px-44 sm:px-6 min-h-screen flex justify-center items-center">
+      <main className="container mx-auto pt-10 pb-10 lg:px-44 sm:px-6 flex justify-center items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-zinc-900 px-6 py-3 w-full md:h-full lg:w-full sm:rounded-lg"

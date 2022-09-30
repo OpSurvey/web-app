@@ -14,7 +14,6 @@ export default function LogInForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     let result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: "POST",
       headers: {
@@ -24,7 +23,6 @@ export default function LogInForm() {
     });
     const response = await result.json();
     const token = response.data.token;
-    // console.log("token", token)
     //Ponerlo en localStorage
     localStorage.setItem("token", token);
     //Redirección
@@ -34,7 +32,7 @@ export default function LogInForm() {
   return (
     <>
       <NavbarLanding />
-      <main className="p-0 pt-6 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
+      <main className="container mx-auto pt-10 bg-zinc-800 lg:px-44 sm:px-3 md:px-6 h-full flex justify-center items-center ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-black px-6 mx-3 py-4 rounded-lg w-full lg:w-2/3 h-full  "
@@ -78,7 +76,7 @@ export default function LogInForm() {
               password
             </label>
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               className="bg-gray-500 border border-gray-300 text-white text-sm rounded-lg focus:ring-lime-400 focus:border-lime-400 block w-full p-2 "
