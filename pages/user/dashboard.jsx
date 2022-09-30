@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import Payment from "../../components/payment";
 import PdfDownload from "../../components/pdfDownload";
 import SendEmailButton from "../../components/SendEmailButton";
+import { format } from "date-fns";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -87,7 +88,9 @@ export default function Dashboard() {
                     </th>
                     <td className="py-4 px-2">{quote.clientId.businessName}</td>
                     <td className="py-4 px-2">{quote.note}</td>
-                    <td className="py-4 px-2">{quote.expirationDate}</td>
+                    <td className="py-4 px-2">
+                      {format(new Date(quote.expirationDate), "dd-MM-yyyy")}
+                    </td>
                     {quote.paidOut ? (
                       <>
                         <td className="py-4 px-2">
