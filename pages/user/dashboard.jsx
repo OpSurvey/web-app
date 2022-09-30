@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Payment from "../../components/payment";
 import PdfDownload from "../../components/pdfDownload";
+import SendEmailButton from "../../components/SendEmailButton";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -98,9 +99,7 @@ export default function Dashboard() {
                           <PdfDownload quoteId={quote._id} />
                         </td>
                         <td className="py-4 px-2">
-                          <button className="bg-lime-400 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0">
-                            Enviar
-                          </button>
+                          <SendEmailButton quoteId={quote._id} />
                         </td>
                       </>
                     ) : (
