@@ -7,21 +7,12 @@ import FooterLanding from "../components/FooterLanding";
 import HowToUseCardIMG from "../components/HowToUseCardIMG";
 import Link from "next/link";
 import useWindowDimensions from "../hooks/useWindowDimensions";
-import Head from "next/head";
 
 export default function Home() {
   const width = useWindowDimensions();
 
   return (
     <>
-      <Head>
-        <title>OpSurvey</title>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-          key="title"
-        />
-      </Head>
       <header>
         <NavbarLanding />
       </header>
